@@ -24,6 +24,6 @@ data/DoctrineORMModule/cache/
 demos/
 extras/documentation
 ecommerce/application/configs/application.ini
-ecommerce/library/
+ecommerce/library/*
 
 ecommerce/nbproject/private/
