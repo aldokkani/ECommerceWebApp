@@ -9,31 +9,37 @@
       <controllersDirectory>
         <controllerFile controllerName="Index">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="listshoppingcart"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
-        <controllerFile controllerName="User">
+        <controllerFile controllerName="Offer">
           <actionMethod actionName="index"/>
-          <actionMethod actionName="addUser"/>
-          <actionMethod actionName="listUsers"/>
-          <actionMethod actionName="edit"/>
-          <actionMethod actionName="delete"/>
-          <actionMethod actionName="block"/>
+          <actionMethod actionName="list"/>
         </controllerFile>
-        <controllerFile controllerName="Product">
+        <controllerFile controllerName="Listshoppingcart">
           <actionMethod actionName="index"/>
         </controllerFile>
+        <controllerFile controllerName="Coupon">
+          <actionMethod actionName="index"/>
+        </controllerFile>        
+        <controllerFile controllerName="Shoppingcart">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="listshoppingcart"/>
+          <actionMethod actionName="getusershoppingcart"/>
+          <actionMethod actionName="additemtoshoppingcart"/>  
+        </controllerFile>      
       </controllersDirectory>
       <formsDirectory>
-        <formFile formName="SignUp"/>
       </formsDirectory>
-      <layoutsDirectory>
-        <layoutScriptsDirectory>
-          <layoutScriptFile layoutName="layout"/>
-        </layoutScriptsDirectory>
-      </layoutsDirectory>
+      <layoutsDirectory enabled="false"/>
       <modelsDirectory>
         <modelFile modelName="User"/>
         <modelFile modelName="Products"/>
+        <modelFile modelName="ShoppingCart"/>
+        <modelFile modelName="ShoppingCartDetails"/>
+        <modelFile modelName="Shoppingcart"/>
+        <modelFile modelName="Offer"/>
+        <modelFile modelName="Coupon"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -44,27 +50,6 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Error">
             <viewScriptFile forActionName="error"/>
-          </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="User">
-            <viewScriptFile forActionName="index"/>
-          </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="User">
-            <viewScriptFile forActionName="addUser"/>
-          </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="User">
-            <viewScriptFile forActionName="listUsers"/>
-          </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="User">
-            <viewScriptFile forActionName="edit"/>
-          </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="User">
-            <viewScriptFile forActionName="delete"/>
-          </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="User">
-            <viewScriptFile forActionName="block"/>
-          </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Product">
-            <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
