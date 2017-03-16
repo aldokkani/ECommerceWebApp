@@ -1,4 +1,20 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Offer</b> and script/action name <b>index</b></p>
+<?php
+    foreach ($this->products as $product) {
+?>
+<div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+        <img src="<?= $product['photo'] ?>">
+      <div class="caption">
+        <h3><?= $product['name_en'] ?></h3>
+        <p><?= $product['description_en'] ?></p>
+        <p>
+            <a href="#" class="btn btn-primary" role="button">Add To Cart</a>
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
+<?php
+    }
+?>

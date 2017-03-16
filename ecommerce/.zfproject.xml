@@ -18,12 +18,20 @@
         <controllerFile controllerName="Coupon">
           <actionMethod actionName="index"/>
         </controllerFile>
+        <controllerFile controllerName="Product">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
-      <layoutsDirectory enabled="false"/>
+      <layoutsDirectory>
+        <layoutScriptsDirectory>
+          <layoutScriptFile layoutName="layout"/>
+        </layoutScriptsDirectory>
+      </layoutsDirectory>
       <modelsDirectory>
         <modelFile modelName="Offer"/>
         <modelFile modelName="Coupon"/>
+        <modelFile modelName="Product"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -42,6 +50,9 @@
             <viewScriptFile forActionName="list"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Coupon">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Product">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
