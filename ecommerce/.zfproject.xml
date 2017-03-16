@@ -9,12 +9,32 @@
       <controllersDirectory>
         <controllerFile controllerName="Index">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="listshoppingcart"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
+        <controllerFile controllerName="Listshoppingcart">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Shoppingcart">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="listshoppingcart"/>
+          <actionMethod actionName="getusershoppingcart"/>
+          <actionMethod actionName="additemtoshoppingcart"/>
+        </controllerFile>
       </controllersDirectory>
-      <formsDirectory enabled="false"/>
+      <formsDirectory>
+        <formFile formName="Addtocart"/>
+      </formsDirectory>
       <layoutsDirectory enabled="false"/>
-      <modelsDirectory/>
+      <modelsDirectory>
+        <modelFile modelName="Customer"/>
+        <modelFile modelName="Product"/>
+        <modelFile modelName="ShoppingCart"/>
+        <modelFile modelName="ShoppingCartDetails"/>
+        <modelFile modelName="Shoppingcart"/>
+        <modelFile modelName="Offer"/>
+        <modelFile modelName="Coupon"/>
+      </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
       <viewsDirectory>
@@ -24,6 +44,24 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Error">
             <viewScriptFile forActionName="error"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Listshoppingcart">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Shoppingcart">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="listshoppingcart"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Shoppingcart">
+            <viewScriptFile forActionName="listshoppingcart"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Shoppingcart">
+            <viewScriptFile forActionName="getusershoppingcart"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Shoppingcart">
+            <viewScriptFile forActionName="additemtoshoppingcart"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
