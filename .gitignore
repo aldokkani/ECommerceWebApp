@@ -27,3 +27,4 @@ ecommerce/application/configs/application.ini
 ecommerce/library/*
 ecommerce/public/assets/node_modules/
 ecommerce/nbproject/*
+dbzend.sql
