@@ -12,12 +12,21 @@
           <actionMethod actionName="listshoppingcart"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
+        <controllerFile controllerName="Offer">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="list"/>
+        </controllerFile>
+        <controllerFile controllerName="Coupon">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Product">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
-      <formsDirectory>
-
-      </formsDirectory>
-      <layoutsDirectory enabled="false">
+      <formsDirectory enabled="false"/>
+      <layoutsDirectory>
         <layoutScriptsDirectory>
+          <layoutScriptFile layoutName="layout"/>
         </layoutScriptsDirectory>
       </layoutsDirectory>
       <modelsDirectory>
@@ -66,6 +75,9 @@
             <viewScriptFile forActionName="listall"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Reviews">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Product">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Reviews">

@@ -25,5 +25,5 @@ demos/
 extras/documentation
 ecommerce/application/configs/application.ini
 ecommerce/library/*
-
-ecommerce/nbproject/private/
+ecommerce/public/assets/node_modules/
+ecommerce/nbproject/*
