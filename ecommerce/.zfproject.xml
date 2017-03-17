@@ -9,43 +9,27 @@
       <controllersDirectory>
         <controllerFile controllerName="Index">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="listshoppingcart"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
-        <controllerFile controllerName="Category">
-          <actionMethod actionName="index"/>
-          <actionMethod actionName="list"/>
-          <actionMethod actionName="details"/>
-          <actionMethod actionName="add"/>
-          <actionMethod actionName="delete"/>
-          <actionMethod actionName="update"/>
-        </controllerFile>
-        <controllerFile controllerName="UserProductReview">
-          <actionMethod actionName="index"/>
-          <actionMethod actionName="listall"/>
-        </controllerFile>
-        <controllerFile controllerName="Reviews">
-          <actionMethod actionName="index"/>
-          <actionMethod actionName="listall"/>
-          <actionMethod actionName="selectOne"/>
-          <actionMethod actionName="details"/>
-          <actionMethod actionName="delete"/>
-          <actionMethod actionName="add"/>
-          <actionMethod actionName="listAllByProduct"/>
-          <actionMethod actionName="listAllByUser"/>
-        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
-        <formFile formName="CatForm"/>
-        <formFile formName="ReviewForm"/>
+
       </formsDirectory>
       <layoutsDirectory enabled="false">
         <layoutScriptsDirectory>
-          <layoutScriptFile layoutName="layout"/>
         </layoutScriptsDirectory>
       </layoutsDirectory>
       <modelsDirectory>
         <modelFile modelName="Category"/>
         <modelFile modelName="UserProductReview"/>
+        <modelFile modelName="User"/>
+        <modelFile modelName="Products"/>
+        <modelFile modelName="ShoppingCart"/>
+        <modelFile modelName="ShoppingCartDetails"/>
+        <modelFile modelName="Shoppingcart"/>
+        <modelFile modelName="Offer"/>
+        <modelFile modelName="Coupon"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -161,6 +145,16 @@
             <testApplicationActionMethod forActionName="add"/>
             <testApplicationActionMethod forActionName="listAllByProduct"/>
             <testApplicationActionMethod forActionName="listAllByUser"/>
+          <testApplicationControllerFile forControllerName="User">
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="addUser"/>
+            <testApplicationActionMethod forActionName="listUsers"/>
+            <testApplicationActionMethod forActionName="edit"/>
+            <testApplicationActionMethod forActionName="delete"/>
+            <testApplicationActionMethod forActionName="block"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Product">
+            <testApplicationActionMethod forActionName="index"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>

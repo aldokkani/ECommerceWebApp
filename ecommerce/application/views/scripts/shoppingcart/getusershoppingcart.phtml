@@ -1,0 +1,32 @@
+<br /><br />
+<div id="view-content">
+	<p>View script for controller <b>Shoppingcart</b> and script/action name <b>getusershoppingcart</b></p>
+</div>
+
+
+
+
+<?php
+
+echo $this->shopping_cart['customer_id']."<br/>";
+echo $this->shopping_cart['discount']."<br/>";
+echo $this->shopping_cart['due_amount']."<br/>";
+echo $this->shopping_cart['id']."<br/>";
+echo $this->shopping_cart['total_amount']."<br/>";
+
+
+echo "<br/> Shopping cart id of details is ";
+// var_dump($this->shopping_cart_details);
+
+foreach ($this->shopping_cart_details as $key => $value) {
+		
+		echo $value['id']."<br/>";
+		echo $value['product_id']."<br/>";
+		echo $value['shopping_cart_id']."<br/>";
+		echo $value['quantity']."<br/>";
+		echo $value['unit_price']."<br/>";
+		echo $value['discount']."<br/>";
+	}
+	// echo "<br/> Shopping cart id of details is " . $this->shopping_cart_details['discount'] . "";
+			
+?>
