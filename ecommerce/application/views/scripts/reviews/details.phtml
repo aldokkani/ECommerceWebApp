@@ -1,0 +1,19 @@
+<div class="container">
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h1><center><?php
+
+echo $this->rev_data['user_id']." ".$this->rev_data['product_id'];
+
+     ?></center></h1>
+  </div>
+    <div class="panel-body">
+      <table class="table">
+      <?php
+      echo "<tr><th>rate</th><td>".$this->rev_data['rate']."</td></tr><tr><th>comment</th><td>".$this->rev_data['comment']."</td></tr>";
+      ?>
+      </table>
+    </div>
+</div>
+</div>
