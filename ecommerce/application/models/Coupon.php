@@ -31,6 +31,5 @@ class Application_Model_Coupon extends Zend_Db_Table_Abstract
     public function deleteCoupon($c_id) {
         return $this->delete("id= $c_id");
     }
-
 }
 

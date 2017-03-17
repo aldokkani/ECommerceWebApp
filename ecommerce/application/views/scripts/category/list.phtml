@@ -1,0 +1,20 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h1><center>Category Page</center></h1>
+  </div></div>
+
+
+<div class="container">
+	<table class="table" border="1">
+	  <th>ID</th><th>Name</th><th>Parent</th><th colspan="3" ><center>actions</center></th>
+
+
+	 <?php
+	foreach ($this->all_categories as $key => $value) {
+	  echo "<tr><td>".$value['id']."</td><td>".$value['name']."</td><td>".$value['parent_cat_id']."</td><td><center><a class='btn btn-primary' href='details/cid/".$value['id']."'>details</a></center></td><td><center><a class='btn btn-danger' href='delete/cid/".$value['id']."'>delete</a><center></td><td><center><a class='btn btn-warning' href='update/cid/".$value['id']."'>update</a></center></td></tr>";
+	}
+	 ?>
+
+	</table>
+
+</div>

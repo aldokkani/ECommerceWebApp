@@ -9,6 +9,7 @@
       <controllersDirectory>
         <controllerFile controllerName="Index">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="listshoppingcart"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="Offer">
@@ -29,9 +30,15 @@
         </layoutScriptsDirectory>
       </layoutsDirectory>
       <modelsDirectory>
+        <modelFile modelName="Category"/>
+        <modelFile modelName="UserProductReview"/>
+        <modelFile modelName="User"/>
+        <modelFile modelName="Products"/>
+        <modelFile modelName="ShoppingCart"/>
+        <modelFile modelName="ShoppingCartDetails"/>
+        <modelFile modelName="Shoppingcart"/>
         <modelFile modelName="Offer"/>
         <modelFile modelName="Coupon"/>
-        <modelFile modelName="Product"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -43,17 +50,56 @@
           <viewControllerScriptsDirectory forControllerName="Error">
             <viewScriptFile forActionName="error"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Offer">
+          <viewControllerScriptsDirectory forControllerName="Category">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Offer">
+          <viewControllerScriptsDirectory forControllerName="Category">
             <viewScriptFile forActionName="list"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Coupon">
+          <viewControllerScriptsDirectory forControllerName="Category">
+            <viewScriptFile forActionName="details"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Category">
+            <viewScriptFile forActionName="add"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Category">
+            <viewScriptFile forActionName="delete"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Category">
+            <viewScriptFile forActionName="update"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="UserProductReview">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="UserProductReview">
+            <viewScriptFile forActionName="listall"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Reviews">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Product">
             <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Reviews">
+            <viewScriptFile forActionName="listall"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Reviews">
+            <viewScriptFile forActionName="selectOne"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Reviews">
+            <viewScriptFile forActionName="details"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Reviews">
+            <viewScriptFile forActionName="delete"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Reviews">
+            <viewScriptFile forActionName="add"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Reviews">
+            <viewScriptFile forActionName="listAllByProduct"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Reviews">
+            <viewScriptFile forActionName="listAllByUser"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
@@ -90,6 +136,38 @@
       <testApplicationDirectory>
         <testApplicationControllerDirectory>
           <testApplicationControllerFile forControllerName="Index"/>
+          <testApplicationControllerFile forControllerName="Category">
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="list"/>
+            <testApplicationActionMethod forActionName="details"/>
+            <testApplicationActionMethod forActionName="add"/>
+            <testApplicationActionMethod forActionName="delete"/>
+            <testApplicationActionMethod forActionName="update"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="UserProductReview">
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="listall"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Reviews">
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="listall"/>
+            <testApplicationActionMethod forActionName="selectOne"/>
+            <testApplicationActionMethod forActionName="details"/>
+            <testApplicationActionMethod forActionName="delete"/>
+            <testApplicationActionMethod forActionName="add"/>
+            <testApplicationActionMethod forActionName="listAllByProduct"/>
+            <testApplicationActionMethod forActionName="listAllByUser"/>
+          <testApplicationControllerFile forControllerName="User">
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="addUser"/>
+            <testApplicationActionMethod forActionName="listUsers"/>
+            <testApplicationActionMethod forActionName="edit"/>
+            <testApplicationActionMethod forActionName="delete"/>
+            <testApplicationActionMethod forActionName="block"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Product">
+            <testApplicationActionMethod forActionName="index"/>
+          </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
       <testLibraryDirectory/>
