@@ -20,6 +20,8 @@ class IndexController extends Zend_Controller_Action
         //----------------------------------------------------------
         $category_obj=new Application_Model_Category();
         $this->view->all_categories_ctx=$category_obj->selectAll();
+        
+        
     }
 
    
