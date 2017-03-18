@@ -95,7 +95,6 @@ class Application_Form_Shoppingcart extends Zend_Form {
 
 
 
-
         $this->addElement($email);
         $this->addElement($fname);
         $this->addElement($lname);
@@ -103,5 +102,4 @@ class Application_Form_Shoppingcart extends Zend_Form {
         $this->addElement($submit);
         $this->addElement($reset);
     }
-
 }
