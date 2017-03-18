@@ -12,18 +12,12 @@ class Application_Model_Email
             'ssl'      => 'tls',
         ));
         
-//        $mailBody = "Hello Mr/Mrs ".$mailInfo['cust_name'].",\n\nWe have made a discount for "
-//                . "you with amount of ".$mailInfo['discount']."% for upcoming purchase order."
-//                . "\nWrite this in discount field when purchasing next time:"
-//                . "\n\n\t".$mailInfo['coupon_str']
-//                . "\n\nHave a nice day. :)";
-        //Zend_Mail::setDefaultTransport($tr);
         try {
             $mail = new Zend_Mail();
             $mail->setBodyText($mailInfo['mail_body']);
             $mail->setFrom('ecommerce.zend@gmail.com', 'ECommerce');
             $mail->addTo($mailInfo['cust_mail'], $mailInfo['cust_name']);
-            $mail->setSubject('ECommerce Discount Coupon');
+            $mail->setSubject($mailInfo['mail-subject']);
             $mail->send($tr);
             return 1;
         } catch (Exception $exc) {

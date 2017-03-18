@@ -17,7 +17,7 @@ class Application_Model_Shoppingcartdetails extends Zend_Db_Table_Abstract
 		$db = new Zend_Db_Adapter_Pdo_Mysql(array(
 		    'host'     => 'localhost',
 		    'username' => 'root',
-		    'password' => 'ROOT',
+		    'password' => '123456',
 		    'dbname'   => 'dbzend'
 		));
 
@@ -80,7 +80,7 @@ class Application_Model_Shoppingcartdetails extends Zend_Db_Table_Abstract
         $db = new Zend_Db_Adapter_Pdo_Mysql(array(
 		    'host'     => 'localhost',
 		    'username' => 'root',
-		    'password' => 'ROOT',
+		    'password' => '123456',
 		    'dbname'   => 'dbzend'
 		));
 
