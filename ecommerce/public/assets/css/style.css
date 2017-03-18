@@ -1,5 +1,5 @@
 .navbar {
-    margin-bottom: 0;
+    margin-bottom: 0px;
 }
 
 body {
@@ -19,3 +19,59 @@ footer p {
     width: 50%;
     margin: 0 auto;
 }*/
+
+.carousel-inner{
+  margin-bottom: 40px;
+}
+
+.carousel-inner > .item > img {
+ margin: 0 auto;
+ height:300px;
+
+}
+
+.carousel-indicators li {
+  background-color: #999;
+  background-color: rgba(70,70,70,.25);
+}
+
+.carousel-indicators .active {
+  background-color: #444;
+}
+
+
+.img-circle {
+    border-radius: 20px;
+}
+
+
+  .rate {
+    border: 0px solid #cccccc;
+    height: 40px;
+    /*padding: 0 80px;*/
+    float: left;
+  }
+
+  .rate:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+  }
+
+  .rate:not(:checked) > label {
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 30px;
+    color: #ccc;
+  }
+
+  .rate:not(:checked) > label:before { content: '★ '; }
+
+  .rate > input:checked ~ label { color: #ffc700; }
+
+  .rate:not(:checked) > label:hover, .rate:not(:checked) > label:hover ~ label { color: #ffff00; }
+
+  .rate > input:checked + label:hover, .rate > input:checked + label:hover ~ label, .rate > input:checked ~ label:hover, .rate > input:checked ~ label:hover ~ label, .rate > label:hover ~ input:checked ~ label { color: #c59b08; }
+
