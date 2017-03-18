@@ -1,17 +1,27 @@
 .navbar {
-    margin-bottom: 0;
+    margin-bottom: 0px;
 }
 
-body {
-    padding-top: 50px;
+.carousel-inner{
+  margin-bottom: 40px;
 }
 
-footer {
-    padding-top: 50px;
-    padding-bottom: 50px;
+.carousel-inner > .item > img {
+ margin: 0 auto;
+ height:300px;
+
 }
 
-footer p {
-    width: 50%;
-    margin: 0 auto;
+.carousel-indicators li {
+  background-color: #999;
+  background-color: rgba(70,70,70,.25);
 }
+
+.carousel-indicators .active {
+  background-color: #444;
+}
+
+.img-circle {
+    border-radius: 20px;
+}
+

@@ -43,9 +43,16 @@ class Application_Model_Products extends Zend_Db_Table_Abstract
          return $this->delete("id=$id");
     }
 
+    
+     public function getCategoryProducts($id)
+     {
+         return $this->select("category_id=$id");
+     }
      
-     
-     
+     public function getNewProducts()
+     {
+         return $this->fetchAll($where=null,$order='id DESC', $count=5);
+     }
      
      
      
