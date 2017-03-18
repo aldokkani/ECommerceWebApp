@@ -3,10 +3,14 @@
 }
 
 body {
-    padding-top: 50px;
+    padding-top: 100px;
 }
 
-footer {
+table, th {
+    text-align: center;
+}
+
+/*footer {
     padding-top: 50px;
     padding-bottom: 50px;
 }
@@ -14,4 +18,4 @@ footer {
 footer p {
     width: 50%;
     margin: 0 auto;
-}
+}*/

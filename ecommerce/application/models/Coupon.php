@@ -12,13 +12,14 @@ class Application_Model_Coupon extends Zend_Db_Table_Abstract
         return $this->find($c_id)->toArray()[0];
     }
     
-    public function addCoupon($discount_amount) {
+    public function generateCoupon($discount_amount) {
         $coupon = array (
             'c_hash' => md5(bin2hex(random_bytes(60))),
             'discount' => (int)$discount_amount
         );
         $row = $this->createRow($coupon);
-        return $row->save();
+        $row->save();
+        return $coupon['c_hash'];
     }
     
     public function updateCoupon($c_id, $user_id) {

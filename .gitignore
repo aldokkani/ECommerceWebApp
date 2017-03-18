@@ -28,3 +28,5 @@ ecommerce/library/*
 ecommerce/public/assets/node_modules/
 ecommerce/nbproject/*
 dbzend.sql
+ecommerce/.zfproject.xml
+

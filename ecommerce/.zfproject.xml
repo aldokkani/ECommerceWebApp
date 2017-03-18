@@ -22,6 +22,17 @@
         <controllerFile controllerName="Product">
           <actionMethod actionName="index"/>
         </controllerFile>
+        <controllerFile controllerName="Admin">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="users"/>
+          <actionMethod actionName="block"/>
+          <actionMethod actionName="activate"/>
+          <actionMethod actionName="coupon"/>
+          <actionMethod actionName="categories"/>
+          <actionMethod actionName="editcat"/>
+          <actionMethod actionName="delcat"/>
+          <actionMethod actionName="addcat"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
       <layoutsDirectory>
@@ -39,6 +50,7 @@
         <modelFile modelName="Shoppingcart"/>
         <modelFile modelName="Offer"/>
         <modelFile modelName="Coupon"/>
+        <modelFile modelName="Email"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -101,6 +113,33 @@
           <viewControllerScriptsDirectory forControllerName="Reviews">
             <viewScriptFile forActionName="listAllByUser"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="users"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="block"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="activate"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="coupon"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="categories"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="editcat"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="delcat"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="addcat"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -157,6 +196,7 @@
             <testApplicationActionMethod forActionName="add"/>
             <testApplicationActionMethod forActionName="listAllByProduct"/>
             <testApplicationActionMethod forActionName="listAllByUser"/>
+          </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="User">
             <testApplicationActionMethod forActionName="index"/>
             <testApplicationActionMethod forActionName="addUser"/>

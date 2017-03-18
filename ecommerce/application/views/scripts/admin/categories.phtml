@@ -1,0 +1,28 @@
+<a class="btn btn-lg btn-primary" style="margin: 20px" href="addcat"><span class="glyphicon glyphicon-plus"></span>Add Category</a>
+<?php
+$counter = 0;
+foreach ($this->categories as $category) {
+    if (!($counter%3)) {
+        echo '<div class="row">';
+    }        
+?>
+
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+        <img src="<?=$category['photo']?>">
+      <div class="caption">
+        <h3><?=$category['name']?></h3>
+        <p>
+            <a href="editcat/cat_id/<?=$category['id']?>" class="btn btn-primary" role="button">Edit</a>
+            <a href="delcat/cat_id/<?=$category['id']?>" class="btn btn-danger" role="button">Delete</a>
+        </p>
+      </div>
+    </div>
+  </div>
+<?php
+     if (!(($counter-2)%3)) {
+        echo "</div>";
+    } 
+$counter+=1;
+}
+?>
