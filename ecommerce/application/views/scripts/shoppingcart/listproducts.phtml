@@ -1,0 +1,16 @@
+<br /><br />
+<div id="view-content">
+	<p>View script for controller <b>Shoppingcart</b> and script/action name <b>listproducts</b></p>
+</div>
+
+
+<?php
+
+// var_dump($this->products);
+// die();
+
+foreach ($this->products as $value) {
+    echo "<br/><a href='shoppingcart/additemtocart/product_id/'".$value."'>".$value."</a>";
+}
+
+?>

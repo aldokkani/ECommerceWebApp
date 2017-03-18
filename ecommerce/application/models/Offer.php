@@ -45,4 +45,31 @@ class Application_Model_Offer extends Zend_Db_Table_Abstract
         return $this->delete("id= $offer_id");
     }
 
+
+    function getProductOffer($product_id)
+    {
+        $discount = 0;
+
+        $db = new Zend_Db_Adapter_Pdo_Mysql(array(
+            'host'     => 'localhost',
+            'username' => 'root',
+            'password' => 'ROOT',
+            'dbname'   => 'dbzend'
+        ));
+
+        $date = Zend_Date::now();
+        $timeStamp = gmdate("Y-m-d", $date->getTimestamp());
+
+        $stmt = $db->query("SELECT * FROM offer where product_id = $product_id and end_date > '" . $timeStamp . "' and start_date < '".$timeStamp . "' "   );
+
+        $rows = $stmt->fetchAll();
+        if($rows)
+        {
+            $rows = $rows[0];
+            $discount = $rows['discount'];
+        }
+
+        return $discount ;
+    }
+
 }

@@ -1,0 +1,59 @@
+<br /><br />
+<!-- <div id="view-content">
+	<p>View script for controller <b>Shoppingcart</b> and script/action name <b>mycart</b></p>
+</div> -->
+
+
+
+<!DOCTYPE html>
+<html>
+<head>		
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<title></title>
+</head>
+<body>
+<div class="container">
+
+	<h1> Shopping Cart (<?php echo sizeof($this->all_cart_details); ?>)</h1>
+	<br/>
+
+
+
+
+	<?php 
+	foreach ($this->all_cart_details as $key => $value) {
+		echo '<div class="jumbotron">';
+		echo '<h2>' . $value['name_en'] .'</h2>';
+		echo '<p>' . $value['description_en'] . '</p>';
+		echo '<p><a class="btn btn-primary btn-lg" href="productdetails?product_id=' . $value['product_id']. '"'. ' role="button">' . 'Go to product details' . '</a>'  ;
+
+
+		echo '<p><a class="btn btn-danger btn-lg" href="removeitemfromcart?shopping_cart_det_id=' . $value['shopping_cart_det_id']. '"'. ' role="button">' . 'Remove Item Cart' . '</a>'  ;
+
+
+		echo '<p> Quantity: <input type="text" value="'.$value['quantity'].'"'. '/></p>';
+		echo '</div>';
+	}
+ 
+ 	echo '<p><a class="btn btn-default btn-lg" href="checkout" role="button"> Check Out </a>'  ;
+
+	?>
+</div>
+<!-- 
+
+<?php
+        var_dump($this->all_cart_details);
+
+?> -->
+
+
+</body>
+</html>
