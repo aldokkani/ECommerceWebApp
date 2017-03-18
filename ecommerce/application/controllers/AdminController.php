@@ -47,11 +47,11 @@ class AdminController extends Zend_Controller_Action
                 . "\n\n\t".$coupon_str
                 . "\n\nHave a nice day. :)";
         
-        $mailInfo = ['cust_name' => $user['fullname'],
+        $mailInfo = [
+            'cust_name' => $user['fullname'],
             'cust_mail' => $user['email'],
-            'coupon_str' => $coupon_str,
-            'discount' => $discount,
-            'mail_body' => $mailBody
+            'mail_body' => $mailBody,
+            'mail_subject' => "ECommerce Discount Coupon"
             ];
         
         (new Application_Model_Email())->sendMail($mailInfo);

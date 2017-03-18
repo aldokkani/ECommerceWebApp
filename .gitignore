@@ -23,11 +23,11 @@ data/DoctrineORMModule/cache/
 # Legacy ZF1
 demos/
 extras/documentation
+
+# My Ignore
 ecommerce/application/configs/application.ini
 ecommerce/library/*
 ecommerce/public/assets/node_modules/
 ecommerce/nbproject/*
-ecommerce/.zfproject.xml
-dbzend.sql
 ecommerce/.zfproject.xml
 

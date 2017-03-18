@@ -113,7 +113,23 @@ class ProductsController extends Zend_Controller_Action
 
     }
 
+    public function searchAction()
+    {
+        $this->_helper->viewRenderer->setNoRender();
+        $this->_helper->getHelper('layout')->disableLayout();
+        $productName = $this->_request->getParam('name');
+        $products = (new Application_Model_Products())->searchByName($productName);
+        
+        var_dump(json_encode($products));
+    }
 
+    public function displayAction()
+    {
+        // action body
+    }
 
 
 }
+
+
+
