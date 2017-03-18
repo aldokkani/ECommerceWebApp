@@ -16,16 +16,22 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="list"/>
         </controllerFile>
-        <controllerFile controllerName="User">
-          <actionMethod actionName="index"/>
-          <actionMethod actionName="home"/>
-        </controllerFile>
         <controllerFile controllerName="Coupon">
           <actionMethod actionName="index"/>
         </controllerFile>
         <controllerFile controllerName="Product">
           <actionMethod actionName="index"/>
-          <actionMethod actionName="home"/>
+        </controllerFile>
+        <controllerFile controllerName="Admin">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="users"/>
+          <actionMethod actionName="block"/>
+          <actionMethod actionName="activate"/>
+          <actionMethod actionName="coupon"/>
+          <actionMethod actionName="categories"/>
+          <actionMethod actionName="editcat"/>
+          <actionMethod actionName="delcat"/>
+          <actionMethod actionName="addcat"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
@@ -44,6 +50,7 @@
         <modelFile modelName="Shoppingcart"/>
         <modelFile modelName="Offer"/>
         <modelFile modelName="Coupon"/>
+        <modelFile modelName="Email"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -56,9 +63,6 @@
             <viewScriptFile forActionName="error"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Category">
-            <viewScriptFile forActionName="index"/>
-          </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Category">
@@ -109,11 +113,32 @@
           <viewControllerScriptsDirectory forControllerName="Reviews">
             <viewScriptFile forActionName="listAllByUser"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="User">
-            <viewScriptFile forActionName="home"/>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Product">
-            <viewScriptFile forActionName="home"/>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="users"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="block"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="activate"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="coupon"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="categories"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="editcat"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="delcat"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="addcat"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
@@ -179,11 +204,9 @@
             <testApplicationActionMethod forActionName="edit"/>
             <testApplicationActionMethod forActionName="delete"/>
             <testApplicationActionMethod forActionName="block"/>
-            <testApplicationActionMethod forActionName="home"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Product">
             <testApplicationActionMethod forActionName="index"/>
-            <testApplicationActionMethod forActionName="home"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
