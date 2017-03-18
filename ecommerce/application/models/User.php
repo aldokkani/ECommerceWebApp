@@ -14,7 +14,7 @@ class Application_Model_User extends Zend_Db_Table_Abstract
 
     }
 
-    public function listUsers()
+    public function selectAll()
     {
         return $this->fetchAll()->toArray();
     }
@@ -27,11 +27,11 @@ class Application_Model_User extends Zend_Db_Table_Abstract
 
     }
 
-    public function userDetails($id)
+    public function selectOne($id)
     {
          return $this->find($id)->toArray()[0];
     }
-    
+
     public function deleteUser($id)
     {
          return $this->delete("id=$id");
