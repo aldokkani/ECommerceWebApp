@@ -107,7 +107,8 @@ var radios =document.getElementsByClassName('radio');
 for (var i = 0, length = radios.length; i < length; i++) {
   if (radios[i].checked) {
       var javascriptVariable = radios[i].value;
-      window.location.href = "/product/calcRate?rate=" + javascriptVariable;
+      alert(javascriptVariable);
+      // window.location.href = "/product/calcRate?rate=" + javascriptVariable;
       break
   }
 }
