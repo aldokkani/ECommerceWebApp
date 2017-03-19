@@ -104,6 +104,9 @@ class ShoppingcartController extends Zend_Controller_Action
             }
             else
             {
+                //coupon 
+
+                
                 $shopping_cart_model = new Application_Model_Shoppingcart();
                 $shopping_cart_model->checkOutCart($shopping_cart_id);
                 
@@ -128,6 +131,10 @@ class ShoppingcartController extends Zend_Controller_Action
 
 
 }
+
+
+
+
 
 
 

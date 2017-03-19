@@ -24,7 +24,7 @@ class Application_Model_Shoppingcart extends Zend_Db_Table_Abstract
 		$db = new Zend_Db_Adapter_Pdo_Mysql(array(
 		    'host'     => 'localhost',
 		    'username' => 'root',
-		    'password' => '123456',
+		    'password' => 'ROOT',
 		    'dbname'   => 'dbzend'
 		));
 
@@ -38,7 +38,7 @@ class Application_Model_Shoppingcart extends Zend_Db_Table_Abstract
 		$db = new Zend_Db_Adapter_Pdo_Mysql(array(
 		    'host'     => 'localhost',
 		    'username' => 'root',
-		    'password' => '123456',
+		    'password' => 'ROOT',
 		    'dbname'   => 'dbzend'
 		));
 
@@ -70,7 +70,7 @@ class Application_Model_Shoppingcart extends Zend_Db_Table_Abstract
 		$db = new Zend_Db_Adapter_Pdo_Mysql(array(
 		    'host'     => 'localhost',
 		    'username' => 'root',
-		    'password' => '123456',
+		    'password' => 'ROOT',
 		    'dbname'   => 'dbzend'
 		));
 
@@ -82,16 +82,51 @@ class Application_Model_Shoppingcart extends Zend_Db_Table_Abstract
 
 		$customer_id=1;
 
-		$customerBill = $this->getUserShoppingCartBillDetails($customer_id);
-		
-		$stringBill = "Hello " . $customerBill[0]['fullname'] ."</br>";
-		$stringBill .= "your total amount is " . $customerBill[0]['total_amount'] ."</br>";
-		$stringBill .= "(-) total disount taken is  " . $customerBill[0]['discount'] ."</br>";
-		$stringBill .= "your due amount is " . $customerBill[0]['due_amount'] ."</br>";
+$customerBill = $this->getUserShoppingCartBillDetails($customer_id);
+
+$stringBill  = "your total amount is " . $customerBill[0]['total_amount'] ."\n";
+$stringBill .= "(-) total disount taken is  " . $customerBill[0]['discount'] ."\n";
+$stringBill .= "your due amount is " . $customerBill[0]['due_amount'] ."\n";
 		//$stringBill .= "Coupon used " . $customerBill[0]['coupon'] ."</br>";
 		
 		//this is the string to send into email:
-		var_dump($stringBill);
+		//var_dump($stringBill);
+		//die();
+
+
+
+		//emaill
+
+		/** Generates a coupon and send it to the customer's email */
+        //$discount = $this->getRequest()->getParam('discount');
+        //$coupon_str = (new Application_Model_Coupon())->generateCoupon($discount);
+        $user=1;
+        // $user = (new Application_Model_User())->selectOne($this->_request->getParam('uid'));
+
+        $user = (new Application_Model_User())->selectOne($user);
+
+        // var_dump($user);
+        // die();
+
+        
+        $mailBody = "Hello Mr/Mrs ".$user['fullname'].",\n\n "
+        		.  $stringBill              
+                . "\n\nHave a nice day. :)";
+        
+        $mailInfo = [
+            'cust_name' => $user['fullname'],
+            'cust_mail' => $user['email'],
+            'mail_body' => $mailBody,
+            'mail-subject' => "ECommerce Bill Information"
+            ];
+        
+        (new Application_Model_Email())->sendMail($mailInfo);
+        //$this->redirect('admin/');
+
+
+		//end email
+		// $email_model = new Application_Model_Email();
+		// $email_model->sendMail();
 
 		//send email NOW with full bill details
 		//INTO eMAIL
@@ -149,6 +184,9 @@ class Application_Model_Shoppingcart extends Zend_Db_Table_Abstract
 
 
 	}
+
+
+
 
 }
 

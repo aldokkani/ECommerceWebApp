@@ -17,7 +17,7 @@ class Application_Model_Shoppingcartdetails extends Zend_Db_Table_Abstract
 		$db = new Zend_Db_Adapter_Pdo_Mysql(array(
 		    'host'     => 'localhost',
 		    'username' => 'root',
-		    'password' => '123456',
+		    'password' => 'ROOT',
 		    'dbname'   => 'dbzend'
 		));
 
@@ -40,6 +40,7 @@ class Application_Model_Shoppingcartdetails extends Zend_Db_Table_Abstract
 		// $product_details = $product_model->getProductDetails($product_id);
 		// $unit_price = $product_details['unit_price'];
 		$unit_price = 90;
+		$product_id=1;
 
 		//Get Discount from Offer 
 		$offer_model = new Application_Model_Offer();
@@ -80,7 +81,7 @@ class Application_Model_Shoppingcartdetails extends Zend_Db_Table_Abstract
         $db = new Zend_Db_Adapter_Pdo_Mysql(array(
 		    'host'     => 'localhost',
 		    'username' => 'root',
-		    'password' => '123456',
+		    'password' => 'ROOT',
 		    'dbname'   => 'dbzend'
 		));
 

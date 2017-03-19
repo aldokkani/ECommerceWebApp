@@ -53,7 +53,7 @@ class Application_Model_Offer extends Zend_Db_Table_Abstract
         $db = new Zend_Db_Adapter_Pdo_Mysql(array(
             'host'     => 'localhost',
             'username' => 'root',
-            'password' => '123456',
+            'password' => 'ROOT',
             'dbname'   => 'dbzend'
         ));
 
