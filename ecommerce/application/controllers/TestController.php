@@ -1,6 +1,6 @@
 <?php
 
-class ProductController extends Zend_Controller_Action
+class TestController extends Zend_Controller_Action
 {
 
     public function init()
@@ -13,5 +13,13 @@ class ProductController extends Zend_Controller_Action
         // action body
     }
 
+    public function testAction()
+    {
+        // action body
+    }
+
 
 }
+
+
+

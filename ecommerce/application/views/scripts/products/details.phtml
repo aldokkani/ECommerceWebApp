@@ -1,0 +1,115 @@
+
+<div class="container">
+
+<div class="panel panel-primary">
+
+    <div class="panel-body">
+			<div class="row">
+
+			<div class="col col-lg-5">
+					<img src='<?= $this->product_data['photo'] ?>' alt='Smiley face' height='400' width='300'>
+			</div>
+			<div class="col col-lg-5">
+				<?php
+				$language='ar';
+					if($language=='en'){
+						?>
+						<table class="table">
+							<tr>
+								<td><h4>Product ID: </h4></td><td><h4><?= $this->product_data['id'] ?></h4></td>
+							</tr>
+							<tr>
+								<td><h4>Title: </h4></td><td><h4><?= $this->product_data['name_en'] ?></h4></td>
+							</tr>
+							<tr>
+								<td><h4>Rate: </h4></td><td><div class="rate">
+								  <input type="radio" id="star5" name="rate" value="5" />
+								  <label for="star5" title="I love it">5 stars</label>
+								  <input type="radio" id="star4" name="rate" value="4" />
+								  <label for="star4" title="I like it">4 stars</label>
+								  <input type="radio" id="star3" name="rate" value="3" />
+								  <label for="star3" title="it's ok">3 stars</label>
+								  <input type="radio" id="star2" name="rate" value="2" />
+								  <label for="star2" title="I don't like it">2 stars</label>
+								  <input type="radio" id="star1" name="rate" value="1" />
+								  <label for="star1" title="I hate it">1 star</label>
+								</div></td>
+							</tr>
+							<tr>
+								<td><h4>Description:</h4></td><td><?= $this->product_data['description_en'] ?></td>
+							</tr>
+							<tr>
+								<td><h4>Unit price: </h4></td><td><h4><?= $this->product_data['unit_price']." L.E." ?></h4></td>
+							</tr>
+							<tr>
+								<td><h4>Offer: </h4></td><td><h4><?= $this->offer_data['discount']." %" ?></h4></td>
+							</tr>
+			      </table>
+<p><a href='/products/edit/product_id/<?= $this->product_data['id'] ?>' class="btn btn-primary" role="button">Edit product</a> <a href='/products/vendor-offer/product_id/<?= $this->product_data['id'] ?>' class="btn btn-default" role="button">Add Offer</a><a href='/products/delete/product_id/<?= $this->product_data['id'] ?>' class="btn btn-danger" role="button">delete product</a></p>
+						<?php
+					}elseif ($language=='ar') {
+						?>
+						<table class="table">
+							<tr>
+								<td><?= $this->product_data['id'] ?></td><td>رقم المنتج</td>
+							</tr>
+							<tr>
+								<td><?= $this->product_data['name_ar'] ?></td><td>الاسم</td>
+							</tr>
+							<tr>
+								<td><div class="rate">
+								  <input class='radio' type="radio" id="star5" name="rate[]" value="5" onclick="getRadioValue(this.id)" />
+								  <label for="star5" title="I love it">5 stars</label>
+								  <input class='radio' type="radio" id="star4" name="rate[]" value="4" onclick="getRadioValue(this.id)"/>
+								  <label for="star4" title="I like it">4 stars</label>
+								  <input class='radio' type="radio" id="star3" name="rate[]" value="3" onclick="getRadioValue(this.id)"/>
+								  <label for="star3" title="it's ok">3 stars</label>
+								  <input class='radio' type="radio" id="star2" name="rate[]" value="2" onclick="getRadioValue(this.id)"/>
+								  <label for="star2" title="I don't like it">2 stars</label>
+								  <input class='radio' type="radio" id="star1" name="rate[]" value="1" onclick="getRadioValue(this.id)"/>
+								  <label for="star1" title="I hate it">1 star</label>
+								</div></td><td>التقييم </td>
+							</tr>
+							<tr>
+								<td><?= $this->product_data['description_ar'] ?></td><td> الوصف</td>
+							</tr>
+							<tr>
+								<td><?= $this->product_data['unit_price']." L.E." ?></td><td> السعر </td>
+							</tr>
+							<tr>
+                <td><h4>Offer: </h4></td><td><h4><?= $this->offer_data['discount']." %" ?></h4></td>
+							</tr>
+			      </table>
+            <p><a href='/products/edit/product_id/<?= $this->product_data['id'] ?>' class="btn btn-primary" role="button">Edit product</a> <a href='/products/vendor-offer/product_id/<?= $this->product_data['id'] ?>' class="btn btn-default" role="button">Add Offer</a><a href='/products/delete/product_id/<?= $this->product_data['id'] ?>' class="btn btn-danger" role="button">delete product</a></p>
+            <form  action="/products/product/product_id/<?= $this->product_data['id'] ?>" method="get">
+              <label >comment: </label>
+              <textarea name="name" class="form-control" rows="4" cols="70"></textarea>
+              <button type="submit" class="btn btn-success" name="button">submit</button>
+            </form>
+
+            <?php
+					}
+
+				 ?>
+
+			</div>
+					</div>
+
+
+
+    </div>
+</div>
+</div>
+
+<script type="text/javascript">
+function getRadioValue(id) {
+var radios =document.getElementsByClassName('radio');
+for (var i = 0, length = radios.length; i < length; i++) {
+  if (radios[i].checked) {
+      var javascriptVariable = radios[i].value;
+      window.location.href = "/product/calcRate?rate=" + javascriptVariable;
+      break
+  }
+}
+}
+</script>

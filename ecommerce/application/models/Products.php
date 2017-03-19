@@ -4,7 +4,7 @@ class Application_Model_Products extends Zend_Db_Table_Abstract
 {
      protected  $_name='products';
 
-      public function addProduct($productData)
+      public function addProduct($productData,$vendor_id)
     {
       $row=$this->createRow();
       $row->name_en=$productData['name_en'];
@@ -14,15 +14,24 @@ class Application_Model_Products extends Zend_Db_Table_Abstract
       $row->unit_price=$productData['unit_price'];
       $row->photo=$productData['photo'];
       $row->category_id=$productData['category_id'];
+      $row->vendor_id=$vendor_id;
       $row->save();
-     
+
     }
-    
-    public function listProducts ()
+
+    public function SelectAll ()
     {
-        return $this->fetchAll()->toArray(); 
+        return $this->fetchAll()->toArray();
+        // var_dump( $this->fetchAll()->toArray());exit();
+        // $select = $this->select()
+        //             ->from('products')
+        //             ->joinLeft(array('offer'=>'offer'),'product.id = offer.product_id');
+        //             // ->where('products.id = ?', 1);
+        //
+        // return $select;
+
     }
-    
+
     public function editProduct($id,$productData)
     {
        $product_data['name_en']=$productData['name_en'];
@@ -32,9 +41,9 @@ class Application_Model_Products extends Zend_Db_Table_Abstract
        $product_data['unit_price']=$productData['unit_price'];
        $product_data['photo']=$productData['photo'];
        $this->update($product_data,"id=$id");
-        
+
     }
-    public function productDetails($id)
+    public function selectOne($id)
     {
          return $this->find($id)->toArray()[0];
     }
@@ -43,13 +52,9 @@ class Application_Model_Products extends Zend_Db_Table_Abstract
          return $this->delete("id=$id");
     }
 
-     
-     
-     
-     
-     
-     
-     
-     
-}
+    function selectAllByVendor($vendor_id){
+        return $this ->fetchall("vendor_id=$vendor_id")->toarray();
+    }
 
+
+}
