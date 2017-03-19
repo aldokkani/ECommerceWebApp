@@ -1,3 +1,14 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+                <input type="text" id="search_input" class="form-control" placeholder="Search">
+            </div>
+            <button type="button" id="search_btn" class="btn btn-default">Search</button>
+        </form>
+    </div>
+</nav>
+
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
   <ol class="carousel-indicators ">
@@ -42,8 +53,20 @@
   </div>
 
   <!-- Controls -->
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
 <!------------------------------------------------------------------>
+
+<div id="searchResult"></div>
+
 <div class="container">
   <div class="row">
       <?php
@@ -62,5 +85,6 @@
       <?php
         }
         ?>
+
 </div> 
 </div>    
