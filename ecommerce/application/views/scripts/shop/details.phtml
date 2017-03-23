@@ -94,14 +94,14 @@
             <?php $type = "shop"; ?>
             <?php if ($type == "shop") : ?>
                 <center>
-                    <a href='/products/edit/product_id/<?= $this->product_data['id'] ?>' class="btn btn-primary" role="button">Edit product</a>
+                    <a href='/shop/edit/product_id/<?= $this->product_data['id'] ?>' class="btn btn-primary" role="button">Edit product</a>
                     <?php if ($this->offer_data['discount'] == "") : ?>
-                        <a href='/products/vendor-offer/product_id/<?= $this->product_data['id'] ?>' class="btn btn-default" role="button">Add Offer</a>
+                        <a href='/shop/vendor-offer/product_id/<?= $this->product_data['id'] ?>' class="btn btn-default" role="button">Add Offer</a>
                     <?php else: ?>
-                        <a href='/products/delete-offer/product_id/<?= $this->product_data['id'] ?>' class="btn btn-danger" role="button">Delete Offer</a>
+                        <a href='/shop/delete-offer/product_id/<?= $this->product_data['id'] ?>' class="btn btn-danger" role="button">Delete Offer</a>
                     <?php endif; ?>
 
-                    <a href='/products/delete/product_id/<?= $this->product_data['id'] ?>' class="btn btn-danger" role="button">delete product</a>
+                    <a href='/shop/delete/product_id/<?= $this->product_data['id'] ?>' class="btn btn-danger" role="button">delete product</a>
                 </center>
             <?php elseif ($type == "customer"): ?>
                 <div class="panel panel-primary">

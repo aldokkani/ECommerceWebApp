@@ -5,7 +5,9 @@ class LoginController extends Zend_Controller_Action {
     public function init() {
         /* Initialize action controller here */
         $auth = Zend_Auth::getInstance();
-        $auth->hasIdentity();
+        if ($auth->hasIdentity()) {
+            return $this->redirect('/');
+        };
 
 //        session_start();
     }

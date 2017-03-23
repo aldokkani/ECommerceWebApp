@@ -21,17 +21,17 @@ class Application_Model_Products extends Zend_Db_Table_Abstract {
         return $this->fetchAll()->toArray();
     }
 
-        public function SelectAllProductsWithOffer() {
+    public function SelectAllProductsWithOffer($cid) {
 
-        $db=Zend_Db_Table::getDefaultAdapter();
+        $db = Zend_Db_Table::getDefaultAdapter();
         $select = $db->select()
-             ->from(array('p'=>'products'),
-                array('p.id','p.name_en','p.rate','p.description_en','p.photo','p.unit_price','p.name_ar','p.description_ar'))
-             ->joinLeft(array('o'=>'offer'),'p.id = o.product_id', array('discount'));
-        $rs=$select->query()->fetchAll();
+                ->from(array('p' => 'products'), array(
+                    'p.id', 'p.name_en', 'p.rate', 'p.description_en', 'p.photo', 'p.unit_price', 'p.name_ar', 'p.description_ar', 'p.category_id'))
+                ->joinLeft(array('o' => 'offer'), 'p.id = o.product_id', array('discount'))
+                ->where("p.category_id = $cid");
+        $rs = $select->query()->fetchAll();
         return $rs;
     }
-
 
     public function editProduct($id, $productData) {
         $product_data['name_en'] = $productData['name_en'];
@@ -52,7 +52,7 @@ class Application_Model_Products extends Zend_Db_Table_Abstract {
     }
 
     public function getCategoryProducts($id) {
-        return $this->select("category_id=$id");
+        return $this->fetchAll("category_id=$id");
     }
 
     public function getNewProducts() {
@@ -65,12 +65,12 @@ class Application_Model_Products extends Zend_Db_Table_Abstract {
 
     public function searchByName($p_name) {
         /* Searches for a product by its name */
-        $product = $this->fetchAll("name_en = '".$p_name."'")->toArray()[0];
-        return $product;//json_encode($product);
+        $product = $this->fetchAll("name_en = '" . $p_name . "'")->toArray()[0];
+        return $product; //json_encode($product);
     }
 
-    public function editRate($product_id,$avgRate) {
-      // var_dump($rate);exit;
+    public function editRate($product_id, $avgRate) {
+        // var_dump($rate);exit;
         $product_data['rate'] = $avgRate;
         $this->update($product_data, "id=$product_id");
     }

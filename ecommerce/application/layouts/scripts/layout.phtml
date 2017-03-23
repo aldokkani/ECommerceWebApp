@@ -90,7 +90,7 @@
                                     $categories = (new Application_Model_Category())->selectAll();
                                     foreach ($categories as $category) {
                                         ?>
-                                        <li><a href="/categories/id/<?= $category['id'] ?>"><?= $category['name'] ?></a></li>
+                                        <li><a href="/products/display/cid/<?= $category['id'] ?>"><?= $category['name'] ?></a></li>
                                         <!--                                <li role="separator" class="divider"></li>-->
                                     <?php } ?>
                                 </ul>

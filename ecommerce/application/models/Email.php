@@ -17,7 +17,7 @@ class Application_Model_Email
             $mail->setBodyText($mailInfo['mail_body']);
             $mail->setFrom('ecommerce.zend@gmail.com', 'ECommerce');
             $mail->addTo($mailInfo['cust_mail'], $mailInfo['cust_name']);
-            $mail->setSubject($mailInfo['mail-subject']);
+            $mail->setSubject($mailInfo['mail_subject']);
             $mail->send($tr);
             return 1;
         } catch (Exception $exc) {

@@ -1,0 +1,37 @@
+<a href="/products/add/vendor_id/3">add product</a>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h1><center>Your Products Page</center></h1>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+
+                <?php
+                $language = 'en';
+
+                foreach ($this->all_productsByVendor as $key => $value) {
+                    ?>
+                    <div class="col-sm-6 col-md-4" >
+                        <div class="thumbnail">
+                            <a href='/shop/details/product_id/<?= $value['id'] ?>'><img src="<?= $value['photo'] ?>" alt='Smiley face' height='400' width='300'></a>
+                            <div class="caption">
+                                <h3><center><?php if ($language == 'en') echo $value['name_en'];
+                else echo $value['name_ar'] ?></center></h3>
+                                <p><center><?php if ($language == 'en') echo $value['description_en'];
+                else echo $value['description_ar'] ?></center></p>
+                                <p><label>Price:  </label><?= " " . $value['unit_price'] . " L.E." ?></p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <?php
+                }
+                ?>
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 
 class ShoppingcartController extends Zend_Controller_Action
 {
