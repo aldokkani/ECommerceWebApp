@@ -57,8 +57,8 @@ class Application_Form_NewProductForm extends Zend_Form
 
         $this->addElements(array(
           $name_en,
-          $name_ar,
           $description_en,
+          $name_ar,
           $description_ar,
           $unit_price,
           $photo,

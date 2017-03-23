@@ -21,22 +21,22 @@ footer p {
 }*/
 
 .carousel-inner{
-  margin-bottom: 40px;
+    margin-bottom: 40px;
 }
 
 .carousel-inner > .item > img {
- margin: 0 auto;
- height:300px;
+    margin: 0 auto;
+    height:300px;
 
 }
 
 .carousel-indicators li {
-  background-color: #999;
-  background-color: rgba(70,70,70,.25);
+    background-color: #999;
+    background-color: rgba(70,70,70,.25);
 }
 
 .carousel-indicators .active {
-  background-color: #444;
+    background-color: #444;
 }
 
 
@@ -45,19 +45,19 @@ footer p {
 }
 
 
-  .rate {
+.rate {
     border: 0px solid #cccccc;
     height: 40px;
     /*padding: 0 80px;*/
     float: left;
-  }
+}
 
-  .rate:not(:checked) > input {
+.rate:not(:checked) > input {
     position: absolute;
     top: -9999px;
-  }
+}
 
-  .rate:not(:checked) > label {
+.rate:not(:checked) > label {
     float: right;
     width: 1em;
     overflow: hidden;
@@ -65,20 +65,21 @@ footer p {
     cursor: pointer;
     font-size: 30px;
     color: #ccc;
-  }
+}
 
-  .rate:not(:checked) > label:before { content: '★ '; }
+.rate:not(:checked) > label:before { content: '★ '; }
 
-  .rate > input:checked ~ label { color: #ffc700; }
+.rate > input:checked ~ label { color: #ffc700; }
 
-  .rate:not(:checked) > label:hover, .rate:not(:checked) > label:hover ~ label { color: #ffff00; }
+.rate:not(:checked) > label:hover, .rate:not(:checked) > label:hover ~ label { color: #ffff00; }
 
-  .rate > input:checked + label:hover, .rate > input:checked + label:hover ~ label, .rate > input:checked ~ label:hover, .rate > input:checked ~ label:hover ~ label, .rate > label:hover ~ input:checked ~ label { color: #c59b08; }
+.rate > input:checked + label:hover, .rate > input:checked + label:hover ~ label, .rate > input:checked ~ label:hover, .rate > input:checked ~ label:hover ~ label, .rate > label:hover ~ input:checked ~ label { color: #c59b08; }
+
 
 .footer {
     background: #101010;
     font-family: 'Oxygen', sans-serif;
-   
+
 }
 .wrap {
     width: 100%;
@@ -104,3 +105,140 @@ ul {
 .h3{
     color:#fff
 }
+
+
+
+.fixedRate {
+    border: 0px solid #cccccc;
+    height: 40px;
+    margin-right: 85px;
+    /*float: left;*/
+}
+.fixedRate:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+}
+.fixedRate:not(:checked) > label {
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    /*cursor: pointer;*/
+    font-size: 30px;
+    color: #ccc;
+}
+.fixedRate:not(:checked) > label:before { content: '★ '; }
+.fixedRate > input:checked ~ label { color: #ffc700; }
+/*.fixedRate:not(:checked) > label:hover, .fixedRate:not(:checked) > label:hover ~ label { color: #ffff00; }*/
+/*.fixedRate > input:checked + label:hover, .fixedRate > input:checked + label:hover ~ label, .fixedRate > input:checked ~ label:hover, .fixedRate > input:checked ~ label:hover ~ label, .fixedRate > label:hover ~ input:checked ~ label { color: #c59b08; }*/
+
+
+
+
+
+
+
+.panel-shadow {
+    box-shadow: rgba(0, 0, 0, 0.3) 7px 7px 7px;
+}
+.panel-white {
+    border: 1px solid #dddddd;
+}
+.panel-white  .panel-heading {
+    color: #333;
+    background-color: #fff;
+    border-color: #ddd;
+}
+.panel-white  .panel-footer {
+    background-color: #fff;
+    border-color: #ddd;
+}
+
+.post .post-heading {
+    height: 95px;
+    padding: 20px 15px;
+}
+.post .post-heading .avatar {
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin-right: 15px;
+}
+.post .post-heading .meta .title {
+    margin-bottom: 0;
+}
+.post .post-heading .meta .title a {
+    color: black;
+}
+.post .post-heading .meta .title a:hover {
+    color: #aaaaaa;
+}
+.post .post-heading .meta .time {
+    margin-top: 8px;
+    color: #999;
+}
+.post .post-image .image {
+    width: 100%;
+    height: auto;
+}
+.post .post-description {
+    padding: 15px;
+}
+.post .post-description p {
+    font-size: 14px;
+}
+.post .post-description .stats {
+    margin-top: 20px;
+}
+.post .post-description .stats .stat-item {
+    display: inline-block;
+    margin-right: 15px;
+}
+.post .post-description .stats .stat-item .icon {
+    margin-right: 8px;
+}
+.post .post-footer {
+    border-top: 1px solid #ddd;
+    padding: 15px;
+}
+.post .post-footer .input-group-addon a {
+    color: #454545;
+}
+.post .post-footer .comments-list {
+    padding: 0;
+    margin-top: 20px;
+    list-style-type: none;
+}
+.post .post-footer .comments-list .comment {
+    display: block;
+    width: 100%;
+    margin: 20px 0;
+}
+.post .post-footer .comments-list .comment .avatar {
+    width: 35px;
+    height: 35px;
+}
+.post .post-footer .comments-list .comment .comment-heading {
+    display: block;
+    width: 100%;
+}
+.post .post-footer .comments-list .comment .comment-heading .user {
+    font-size: 14px;
+    font-weight: bold;
+    display: inline;
+    margin-top: 0;
+    margin-right: 10px;
+}
+.post .post-footer .comments-list .comment .comment-heading .time {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 0;
+    display: inline;
+}
+.post .post-footer .comments-list .comment .comment-body {
+    margin-left: 50px;
+}
+.post .post-footer .comments-list .comment > .comments-list {
+    margin-left: 50px;
+}
+
