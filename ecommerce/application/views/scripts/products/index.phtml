@@ -7,7 +7,7 @@
             <div class="row">
 
                 <?php
-                $language = 'en';
+                $language = 'ar';
 
                 foreach ($this->all_products as $key => $value) {
                     ?>
@@ -15,21 +15,31 @@
                         <div class="thumbnail">
                             <a href='/products/details/product_id/<?= $value['id'] ?>'><img src="<?= $value['photo'] ?>" alt='Smiley face' height='400' width='300'></a>
                             <div class="caption">
-                                <h3><center><?php if ($language == 'en') echo $value['name_en'];
-                else echo $value['name_ar'] ?></center></h3>
-                                <p><center><?php if ($language == 'en') echo $value['description_en'];
-                else echo $value['description_ar'] ?></center></p>
+                                <h3><center><?php if ($language == 'en')
+                    echo $value['name_en'];
+                else
+                    echo $value['name_ar']
+                        ?></center></h3>
+                                <p><center><?php if ($language == 'en')
+                                echo $value['description_en'];
+                            else
+                                echo $value['description_ar']
+                                ?></center></p>
                                 <p><label>Price:  </label><?= " " . $value['unit_price'] . " L.E." ?></p>
 
-                                <a class="btn btn-primary btn-lg" href='/shoppingcart/additemtocart/product_id/<?= $value['id'] ?>'>Add Item To Cart</a>
+                                <a href="#" class="dropdown-toggle btn btn-success" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add Product <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="<?= $this->baseUrl()?>/wishlist/add-item-to-wishlist/product_id/<?= $value['id'] ?>">Add To Wishlist </a></li>
+                                    <li><a href="<?= $this->baseUrl()?>/shoppingcart/additemtocart/product_id/<?= $value['id'] ?>">Add To Cart </a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
 
 
-                    <?php
-                }
-                ?>
+    <?php
+}
+?>
             </div>
 
         </div>

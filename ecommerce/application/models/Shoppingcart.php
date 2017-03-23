@@ -65,7 +65,6 @@ class Application_Model_Shoppingcart extends Zend_Db_Table_Abstract
 
 	function getUserShoppingCart($customerid)
 	{
-		$customerid = $_SESSION['customer_id'];
 		return $this->fetchAll('customer_id = '. $customerid)->toArray()[0];
 	}
 

@@ -13,11 +13,9 @@ class Application_Model_Offer extends Zend_Db_Table_Abstract
     }
 
     public function selectByProduct($p_id){
-        $result= $this ->fetchall("product_id=$p_id")->toarray()[0];
-        if($result){
+        @$result= $this ->fetchall("product_id=$p_id")->toarray()[0];
+        if(count($result)>0){
           return $result;
-        }else {
-          // return "no offer";
         }
     }
 
@@ -41,8 +39,8 @@ class Application_Model_Offer extends Zend_Db_Table_Abstract
         return $this->update($offer, "id= $offer_id");
     }
 
-    public function deleteOffer($offer_id) {
-        return $this->delete("id= $offer_id");
+    public function deleteOffer($p_id) {
+        return $this->delete("product_id= $p_id");
     }
 
 

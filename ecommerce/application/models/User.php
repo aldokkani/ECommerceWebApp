@@ -37,5 +37,9 @@ class Application_Model_User extends Zend_Db_Table_Abstract {
     public function activateUser($u_id) {
         return $this->update(['isactive' => 1], "id= $u_id");
     }
+    
+    public function selectUserByEmail($email) {
+        return $this->fetchAll("email= '".$email."'")->toArray()[0];
+    }
 
 }

@@ -5,7 +5,13 @@ class AdminController extends Zend_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
+        $auth = Zend_Auth::getInstance();
+        $userData = $auth->getIdentity();
+        if (!$auth->hasIdentity() || $userData->type != 'admin' ) {
+            $this->redirect('/');
+            return;
+        }
+        
     }
 
     public function indexAction()

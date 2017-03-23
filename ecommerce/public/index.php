@@ -13,7 +13,8 @@ set_include_path(implode(PATH_SEPARATOR, array(
     realpath(APPLICATION_PATH . '/../library'),
     get_include_path(),
 )));
-
+/** external library */
+require_once 'Facebook/autoload.php';
 /** Zend_Application */
 require_once 'Zend/Application.php';
 
