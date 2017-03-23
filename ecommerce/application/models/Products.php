@@ -55,7 +55,7 @@ class Application_Model_Products extends Zend_Db_Table_Abstract {
     }
 
     function selectAllByVendor($vendor_id) {
-        return $this->fetchall("vendor_id=$vendor_id")->toarray();
+        return $this->fetchAll("vendor_id=$vendor_id")->toarray();
     }
     
     public function searchByName($p_name) {

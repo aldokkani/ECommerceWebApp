@@ -75,3 +75,32 @@ footer p {
 
   .rate > input:checked + label:hover, .rate > input:checked + label:hover ~ label, .rate > input:checked ~ label:hover, .rate > input:checked ~ label:hover ~ label, .rate > label:hover ~ input:checked ~ label { color: #c59b08; }
 
+.footer {
+    background: #101010;
+    font-family: 'Oxygen', sans-serif;
+   
+}
+.wrap {
+    width: 100%;
+    margin: 0 auto;
+}
+.foot-links ul {
+    display: block;
+    float: left;
+    margin: 1% 0 1% 1.6%;
+    width: 20.8%;
+    padding: 1.5%;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.foot-links::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.h3{
+    color:#fff
+}

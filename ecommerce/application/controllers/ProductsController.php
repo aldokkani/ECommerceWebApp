@@ -120,7 +120,9 @@ class ProductsController extends Zend_Controller_Action
         $productName = $this->_request->getParam('name');
         $products = (new Application_Model_Products())->searchByName($productName);
         
-        var_dump(json_encode($products));
+        //var_dump(json_encode($products));
+        json_encode($products);
+       
     }
 
     public function displayAction()
