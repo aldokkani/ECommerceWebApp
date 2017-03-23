@@ -60,8 +60,8 @@ class Application_Model_Products extends Zend_Db_Table_Abstract {
     
     public function searchByName($p_name) {
         /* Searches for a product by its name */
-//        var_dump($this->fetchAll("name_en = '".$p_name."'")->toArray());exit;
-        return $this->fetchAll("name_en = '".$p_name."'")->toArray();
+        $product = $this->fetchAll("name_en = '".$p_name."'")->toArray()[0];
+        return $product;//json_encode($product);
     }
 
 }

@@ -1,0 +1,24 @@
+<!--<br /><br />
+<div id="view-content">
+        <p>View script for controller <b>Login</b> and script/action name <b>index</b></p>
+</div>-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="<?= $this->baseUrl() ?>/assets/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="<?= $this->baseUrl() ?>/assets/node_modules/tether/dist/js/tether.min.js"></script>
+    <script type="text/javascript" src="<?= $this->baseUrl() ?>/assets/node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="<?= $this->baseUrl() ?>/assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <title>E-Commerce</title>
+</head>
+<div style="max-width: 500px; margin: 50 auto;" class="panel panel-primary" id="login_form">
+    <div class="panel-heading"></div>
+    <div class="panel-body">
+        <?php
+        echo $this->login_form;
+        echo $this->login_error;
+        echo $this->fb_login_button;
+        ?>
+    </div>
+</div>

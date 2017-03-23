@@ -3,7 +3,7 @@
 }
 
 body {
-    padding-top: 50px;
+    padding-top: 200px;
 }
 
 table, th {
@@ -75,3 +75,10 @@ footer p {
 
   .rate > input:checked + label:hover, .rate > input:checked + label:hover ~ label, .rate > input:checked ~ label:hover, .rate > input:checked ~ label:hover ~ label, .rate > label:hover ~ input:checked ~ label { color: #c59b08; }
 
+  #login_form {
+      margin-top: 100px;
+  }
+  
+  #second-nav {
+      margin-top: 50px; 
+  }

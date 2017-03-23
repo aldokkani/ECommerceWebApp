@@ -1,29 +1,33 @@
 $('button#search_btn').on('click', function(){
     var search = $('input#search_input').val();
-    if($.trim(search) != "") {
-//        alert(search);
-        $.post('/products/search', {name: search}, function(data){
-//            var htmlStr = "\\n\
-//                <div class='col-sm-4 col-md-4'>\
-//                    <div class='thumbnail'>\
-//                        <img src=" + data[0].photo + " class='img-circle'>\
-//                        <div class='caption'>\
-//                            <h3>" + data[0].name_en + "</h3>\
-//                            <p><center><a href='#' class='btn btn-primary'\\n\
-//                             role='button'>View Category Products</a></center></p>\
-//                        </div>\
-//                    </div>\
-//                </div>"
-//            $('div#searchResult').html(htmlStr);
+    if($.trim(search) !== "") {
+        $.post('/products/search', {name: search}, function(responseData){
+            var data = JSON.parse(responseData);
+            var htmlStr = "\
+            <div class='panel panel-warning'>\
+                <div class='panel-heading'>\
+                    <h3 class='panel-title'>Search result</h3>\
+                </div>\
+                <div class='panel-body'>\
+                    <div class='col-sm-4 col-md-4'>\
+                        <div class='thumbnail'>\
+                            <img src=" + data.photo + " class='img-circle'>\
+                            <div class='caption'>\
+                                <h3>" + data.name_en + "</h3>\
+                                <p><center><a href='#' class='btn btn-primary'\
+                                 role='button'>View Category Products</a></center></p>\
+                            </div>\
+                        </div>\
+                    </div>\
+                </div>\
+            </div>"
+                
+            $('div#search_result').html(htmlStr);
+//            location.href = "#search_result";
+//            console.log(JSON.parse(data));
             
- 
-            
-            
-            console.log(typeof(JSON.parse(data)));
-//            $('div#data').text(data);
         });
     }
-
 });
 
 
