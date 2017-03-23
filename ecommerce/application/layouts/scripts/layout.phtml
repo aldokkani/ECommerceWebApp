@@ -34,7 +34,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Departments <span class="caret"></span></a>
           <ul class="dropdown-menu">
               <?php
-              foreach ($this->all_categories_ctx as $key => $value) 
+              foreach ($this->all_categories_ctx as $key => $value)
               {
                   ?>
             <li><a href="category/category_id/<?=$value['id']?>"><?= $value['name']?></a></li>
@@ -51,8 +51,8 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
- 
-<?php echo $this->layout()->content; ?>  
+
+<?php echo $this->layout()->content; ?>
 <script type="text/javascript" src="<?= $this->baseUrl()?>/assets/js/script.js"></script>
 </body>
 </html>

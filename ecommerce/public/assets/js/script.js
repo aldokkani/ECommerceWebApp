@@ -1,3 +1,22 @@
+function getRate(id) {
+var radios =document.getElementsByClassName('radio');
+for (var i = 0, length = radios.length; i < length; i++) {
+  if (radios[i].checked) {
+      var myRate = radios[i].value;
+          $.post('/products/calc-rate', {rate: myRate}, function(data){
+            var input =document.getElementById('star'+data);
+            input.checked="checked";
+          console.log(data);
+
+          });
+
+      break
+  }
+}
+}
+
+
+
 $('button#search_btn').on('click', function(){
     var search = $('input#search_input').val();
     if($.trim(search) != "") {
@@ -15,10 +34,10 @@ $('button#search_btn').on('click', function(){
 //                    </div>\
 //                </div>"
 //            $('div#searchResult').html(htmlStr);
-            
- 
-            
-            
+
+
+
+            alert(data);
             console.log(typeof(JSON.parse(data)));
 //            $('div#data').text(data);
         });

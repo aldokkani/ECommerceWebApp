@@ -11,7 +11,7 @@
 			</div>
 			<div class="col col-lg-5">
 				<?php
-				$language='ar';
+				$language='en';
 					if($language=='en'){
 						?>
 						<table class="table">
@@ -22,17 +22,16 @@
 								<td><h4>Title: </h4></td><td><h4><?= $this->product_data['name_en'] ?></h4></td>
 							</tr>
 							<tr>
-								<td><h4>Rate: </h4></td><td><div class="rate">
-								  <input type="radio" id="star5" name="rate" value="5" />
-								  <label for="star5" title="I love it">5 stars</label>
-								  <input type="radio" id="star4" name="rate" value="4" />
-								  <label for="star4" title="I like it">4 stars</label>
-								  <input type="radio" id="star3" name="rate" value="3" />
-								  <label for="star3" title="it's ok">3 stars</label>
-								  <input type="radio" id="star2" name="rate" value="2" />
-								  <label for="star2" title="I don't like it">2 stars</label>
-								  <input type="radio" id="star1" name="rate" value="1" />
-								  <label for="star1" title="I hate it">1 star</label>
+								<td><h4>Rate: </h4></td><td><div class="fixedRate">
+                  <?php for ($i=5; $i >=1 ; $i--) :?>
+                    <?php if($this->product_data['rate']==$i): ?>
+                    <input disabled="true" class='radio1' type="radio" id="star<?=$i?>" name="rate[]" value=<?=$i?>  checked="checked"/>
+  								  <label for="star<?=$i?>" ><?=$i?> stars</label>
+                  <?php else : ?>
+                    <input  disabled="true" class='radio1' type="radio" id="star<?=$i?>" name="rate[]" value=<?=$i?>/>
+  								  <label for="star<?=$i?>" ><?=$i?> stars</label>
+                  <?php endif; ?>
+                  <?php endfor; ?>
 								</div></td>
 							</tr>
 							<tr>
@@ -42,11 +41,13 @@
 								<td><h4>Unit price: </h4></td><td><h4><?= $this->product_data['unit_price']." L.E." ?></h4></td>
 							</tr>
 							<tr>
+                <?php if ($this->offer_data['discount'] != "") : ?>
 								<td><h4>Offer: </h4></td><td><h4><?= $this->offer_data['discount']." %" ?></h4></td>
+              <?php endif ; ?>
 							</tr>
 			      </table>
-<p><a href='/products/edit/product_id/<?= $this->product_data['id'] ?>' class="btn btn-primary" role="button">Edit product</a> <a href='/products/vendor-offer/product_id/<?= $this->product_data['id'] ?>' class="btn btn-default" role="button">Add Offer</a><a href='/products/delete/product_id/<?= $this->product_data['id'] ?>' class="btn btn-danger" role="button">delete product</a></p>
-						<?php
+
+            <?php
 					}elseif ($language=='ar') {
 						?>
 						<table class="table">
@@ -57,17 +58,16 @@
 								<td><?= $this->product_data['name_ar'] ?></td><td>الاسم</td>
 							</tr>
 							<tr>
-								<td><div class="rate">
-								  <input class='radio' type="radio" id="star5" name="rate[]" value="5" onclick="getRadioValue(this.id)" />
-								  <label for="star5" title="I love it">5 stars</label>
-								  <input class='radio' type="radio" id="star4" name="rate[]" value="4" onclick="getRadioValue(this.id)"/>
-								  <label for="star4" title="I like it">4 stars</label>
-								  <input class='radio' type="radio" id="star3" name="rate[]" value="3" onclick="getRadioValue(this.id)"/>
-								  <label for="star3" title="it's ok">3 stars</label>
-								  <input class='radio' type="radio" id="star2" name="rate[]" value="2" onclick="getRadioValue(this.id)"/>
-								  <label for="star2" title="I don't like it">2 stars</label>
-								  <input class='radio' type="radio" id="star1" name="rate[]" value="1" onclick="getRadioValue(this.id)"/>
-								  <label for="star1" title="I hate it">1 star</label>
+								<td><div class="fixedRate">
+                  <?php for ($i=5; $i >=1 ; $i--) :?>
+                    <?php if($this->product_data['rate']==$i): ?>
+                    <input disabled="true" class='radio1' type="radio" id="sstar<?=$i?>" name="rate[]" value=<?=$i?>  checked="checked"/>
+  								  <label for="star<?=$i?>" ><?=$i?> stars</label>
+                  <?php else : ?>
+                    <input  disabled="true" class='radio1' type="radio" id="sstar<?=$i?>" name="rate[]" value=<?=$i?>/>
+  								  <label for="star<?=$i?>" ><?=$i?> stars</label>
+                  <?php endif; ?>
+                  <?php endfor; ?>
 								</div></td><td>التقييم </td>
 							</tr>
 							<tr>
@@ -76,16 +76,12 @@
 							<tr>
 								<td><?= $this->product_data['unit_price']." L.E." ?></td><td> السعر </td>
 							</tr>
-							<tr>
-                <td><h4>Offer: </h4></td><td><h4><?= $this->offer_data['discount']." %" ?></h4></td>
+              <tr>
+                <?php if ($this->offer_data['discount'] != "") : ?>
+								<td><h4> <?= $this->offer_data['discount']." %" ?></h4></td><td><h4>خصم</h4></td>
+              <?php endif ; ?>
 							</tr>
 			      </table>
-            <p><a href='/products/edit/product_id/<?= $this->product_data['id'] ?>' class="btn btn-primary" role="button">Edit product</a> <a href='/products/vendor-offer/product_id/<?= $this->product_data['id'] ?>' class="btn btn-default" role="button">Add Offer</a><a href='/products/delete/product_id/<?= $this->product_data['id'] ?>' class="btn btn-danger" role="button">delete product</a></p>
-            <form  action="/products/product/product_id/<?= $this->product_data['id'] ?>" method="get">
-              <label >comment: </label>
-              <textarea name="name" class="form-control" rows="4" cols="70"></textarea>
-              <button type="submit" class="btn btn-success" name="button">submit</button>
-            </form>
 
             <?php
 					}
@@ -96,21 +92,70 @@
 					</div>
 
 
+<?php $type="customer";?>
+<?php if($type=="shop") : ?>
+  <center>
+    <a href='/products/edit/product_id/<?= $this->product_data['id'] ?>' class="btn btn-primary" role="button">Edit product</a>
+    <?php if ($this->offer_data['discount'] == "") : ?>
+    <a href='/products/vendor-offer/product_id/<?= $this->product_data['id'] ?>' class="btn btn-default" role="button">Add Offer</a>
+  <?php else: ?>
+    <a href='/products/delete-offer/product_id/<?= $this->product_data['id'] ?>' class="btn btn-danger" role="button">Delete Offer</a>
+  <?php endif ; ?>
 
+    <a href='/products/delete/product_id/<?= $this->product_data['id'] ?>' class="btn btn-danger" role="button">delete product</a>
+  </center>
+<?php elseif($type=="customer"): ?>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+          <center><h2>Add Your Review here<h2></center>
+      </div>
+      <div class="panel-body">
+        <?php	echo "$this->new_comment_form"; ?>
+  <br><label >Rate this product: </label><br>
+  <div class="rate">
+    <input class='radio' type="radio" id="s5" name="rate[]" value="5" onclick="getRate(this.id)" />
+    <label for="s5" title="I love it">5 stars</label>
+    <input class='radio' type="radio" id="s4" name="rate[]" value="4" onclick="getRate(this.id)"/>
+    <label for="s4" title="I like it">4 stars</label>
+    <input class='radio' type="radio" id="s3" name="rate[]" value="3" onclick="getRate(this.id)"/>
+    <label for="s3" title="it's ok">3 stars</label>
+    <input class='radio' type="radio" id="s2" name="rate[]" value="2" onclick="getRate(this.id)"/>
+    <label for="s2" title="I don't like it">2 stars</label>
+    <input class='radio' type="radio" id="s1" name="rate[]" value="1" onclick="getRate(this.id)"/>
+    <label for="s1" title="I hate it">1 star</label>
+  </div>
+</div>
+</div>
+<?php endif; ?>
     </div>
 </div>
 </div>
-
-<script type="text/javascript">
-function getRadioValue(id) {
-var radios =document.getElementsByClassName('radio');
-for (var i = 0, length = radios.length; i < length; i++) {
-  if (radios[i].checked) {
-      var javascriptVariable = radios[i].value;
-      alert(javascriptVariable);
-      // window.location.href = "/product/calcRate?rate=" + javascriptVariable;
-      break
-  }
-}
-}
-</script>
+<br><br>
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+<div class="container">
+  <?php foreach ($this->comments as $key => $value) : ?>
+      <?php if ($value['comment']!=""): ?>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="panel panel-white post panel-shadow">
+                <div class="post-heading">
+                    <div class="pull-left image">
+                        <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                    </div>
+                    <div class="pull-left meta">
+                        <div class="title h5">
+                            <a href="#"><b><?= $value['fullname'] ?></b></a>
+                            made a comment.
+                        </div>
+                        <!-- <h6 class="text-muted time">1 minute ago</h6> -->
+                    </div>
+                </div>
+                <div class="post-description">
+                    <p><?= $value['comment'] ?></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+  <?php endforeach; ?>
+</div>
