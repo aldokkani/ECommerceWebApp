@@ -19,14 +19,19 @@ class Application_Model_Products extends Zend_Db_Table_Abstract {
 
     public function SelectAll() {
         return $this->fetchAll()->toArray();
-        // var_dump( $this->fetchAll()->toArray());exit();
-        // $select = $this->select()
-        //             ->from('products')
-        //             ->joinLeft(array('offer'=>'offer'),'product.id = offer.product_id');
-        //             // ->where('products.id = ?', 1);
-        //
-        // return $select;
     }
+
+        public function SelectAllProductsWithOffer() {
+
+        $db=Zend_Db_Table::getDefaultAdapter();
+        $select = $db->select()
+             ->from(array('p'=>'products'),
+                array('p.id','p.name_en','p.rate','p.description_en','p.photo','p.unit_price','p.name_ar','p.description_ar'))
+             ->joinLeft(array('o'=>'offer'),'p.id = o.product_id', array('discount'));
+        $rs=$select->query()->fetchAll();
+        return $rs;
+    }
+
 
     public function editProduct($id, $productData) {
         $product_data['name_en'] = $productData['name_en'];
@@ -55,13 +60,19 @@ class Application_Model_Products extends Zend_Db_Table_Abstract {
     }
 
     function selectAllByVendor($vendor_id) {
-        return $this->fetchall("vendor_id=$vendor_id")->toarray();
+        return $this->fetchAll("vendor_id=$vendor_id")->toarray();
     }
-    
+
     public function searchByName($p_name) {
         /* Searches for a product by its name */
         $product = $this->fetchAll("name_en = '".$p_name."'")->toArray()[0];
         return $product;//json_encode($product);
+    }
+
+    public function editRate($product_id,$avgRate) {
+      // var_dump($rate);exit;
+        $product_data['rate'] = $avgRate;
+        $this->update($product_data, "id=$product_id");
     }
 
 }

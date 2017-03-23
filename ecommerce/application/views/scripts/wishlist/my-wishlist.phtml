@@ -1,0 +1,24 @@
+<div class='container'>
+    <div class="panel panel-primary">
+        <div class="panel-heading"><center>My WishList</center></div>
+        <div class="panel-body">
+            <table  class="table table-bordered">
+                <th>Product Name</th>
+                <th colspan="2" text-align=center ><center>Action</center> </th>
+                <?php
+                $language = 'ar';
+                foreach ($this->mywishlist_items_ctx as $key => $value) {
+                    ?>
+                    <tr>
+                        <td><?php if ($language == 'en') {
+                    ?><?= $value['name_en'] ?><?php } else{ ?><?= $value['name_ar'] ?><?php } ?></td>
+                            <td><a class='btn btn-danger' href='delete-wishlist-item/product_id/<?= $value['product_id'] ?>'>Remove Product</a></td>
+                            <td><a class='btn btn-warning' href='<?= $this->baseUrl() ?>/shoppingcart/additemtocart/product_id/<?= $value['product_id'] ?>'>Add to Cart</a></td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+            </table>
+        </div>
+    </div>
+</div>
