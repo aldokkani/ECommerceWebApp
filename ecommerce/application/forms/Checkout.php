@@ -8,10 +8,8 @@ class Application_Form_Checkout extends Zend_Form
         /* Form Elements & Other Definitions Here ... */
         $this->setMethod('POST');
 
-        $customer_id = 1;
-
         $shopping_cart_model = new Application_Model_Shoppingcart();
-        $shopping_cart_details =  $shopping_cart_model->getUserShoppingCart($customer_id);
+        $shopping_cart_details =  $shopping_cart_model->getUserShoppingCart($_SESSION['customer_id']);
 
 
         // var_dump($shopping_cart_details['id']);

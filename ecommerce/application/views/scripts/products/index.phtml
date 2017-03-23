@@ -20,6 +20,8 @@
                                 <p><center><?php if ($language == 'en') echo $value['description_en'];
                 else echo $value['description_ar'] ?></center></p>
                                 <p><label>Price:  </label><?= " " . $value['unit_price'] . " L.E." ?></p>
+
+                                <a class="btn btn-primary btn-lg" href='/shoppingcart/additemtocart/product_id/<?= $value['id'] ?>'>Add Item To Cart</a>
                             </div>
                         </div>
                     </div>

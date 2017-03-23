@@ -1,75 +1,110 @@
+<br /><br />
+<!-- <div id="view-content">
+	<p>View script for controller <b>Shoppingcart</b> and script/action name <b>mycart</b></p>
+</div> -->
+
+
+
 <!DOCTYPE html>
 <html>
-<head>	
+<head>		
+
     <script type="text/javascript">
+    // $('button#verifybutton').on('click', verifycoupon())
+
+    //$('#Quan_73').change();
+
     function quantitychanged()
     {
-        alert("quantitychanged now");
-
+        //alert($(this).attr('id'));
         $id = $.trim($(this).attr('id'));
+        //alert($(this).val());
         $qn = $.trim($(this).val());
-        console.log('/shoppingcart/updateshoppingcartquantity?shopping_cart_det_id='+$id+'&new_quantity='+$qn);
+
+        //alert($id+"____"+$qn);
+
+     //  alert($('#Quan_73').val());
+     //  //alert($('#Quan_73').val());
+     // alert($(this).attr('id'));
+     //    $id = $('#shoppingcartid').val();
+     //    //$qn = $('#shopping_cart_quantity').val();
 
         $.post('/shoppingcart/updateshoppingcartquantity?shopping_cart_det_id='+$id+'&new_quantity='+$qn , {'message' : $id},
                 function (respond) { 
                 console.log($id);   
-                console.log(respond);              
+                console.log(respond);
+                  //$(".show-msg").html(respond+"quantity changed");              
                 }
         );
-    }
 
+    }
 
     function paybillwithemail()
     {
         var coupon_id = $('#coupon_id').val();
+        //var coupon_id = $('.show-msg').html();
+        console.log(coupon_id);
+        console.log($("#confirmCheckOut").attr());
         var message = $('#coupon').val();
-        console.log("message is " + message);
-        if(coupon_id)
-        {
-          $.post('/shoppingcart/checkout/coupon_id/'+ coupon_id , {'message' : message},
-            function (respond) {
-              $(".show-msg").html("Donnneee"); 
-              $("#CongratsButton").click();
-            }
-          );
-        }
-        else
-        {
-           $.post('/shoppingcart/checkout' , {'message' : message},
-            function (respond) {
+            //if (message != '') {
 
-            }
-          );
-        }
-               
+        //console.log();
+         checkouttourl();       
+        $.post($("#confirmCheckOut").attr() , {'message' : message},
+          function (respond) {
+            $(".show-msg").html("Donnneee"); 
+            //$('input#coupon_id').val((respond.split("|")[1]).trim());
+            //checkouttourl();  
+            $("#CongratsButton").click();
+          }
+        );              
+            //} 
     }
 
     function verifycoupon()
     {
             var message = $('#coupon').val();
             if (message != '') {
+              //run ajax 
+              //alert($('#coupon').val());
+
+              // alert('/coupon/index/c_hash/'+ $('#coupon').val() + '\'');
               $.post('/coupon/validate/c_hash/'+ $('#coupon').val() + '', {'message' : message},
-                function (respond) {                         
+                //callback function
+                function (respond) {
+                  //put respond in class show-msg                          
                   $(".show-msg").html((respond.split("|")[0]).trim()); 
+
                   $('input#coupon_id').val((respond.split("|")[1]).trim());
+                  //$('#coupon_id').val(respond);
+
+                  //$("#CheckOutModal").removeClass( "fade" );  
+                  //$("#CheckOutModal").addClass( "show" );  
+
                   checkouttourl();             
                 }
-              );              
+              );
+
+              
             }
+
     }
 
     function checkouttourl()
     {
       var coupon_id = $('#coupon_id').val();
+      //var coupon_id = $('.show-msg').html();
       console.log(coupon_id);
       if(coupon_id)
       {
+
           $("#confirmCheckOut").attr("href","/shoppingcart/checkout/coupon_id/" + coupon_id);
       }
       else
       {
           $("#confirmCheckOut").attr("href","/shoppingcart/checkout");
       }
+
     }
 
 
@@ -92,30 +127,63 @@
 
 		echo '<p><a class="btn btn-danger btn-lg" href="removeitemfromcart?shopping_cart_det_id=' . $value['shopping_cart_det_id']. '"'. ' role="button">' . 'Remove Item Cart' . '</a>'  ;
 
-    // echo '<p> Quantity: <input type="text" id="'.$value['shopping_cart_det_id'].'" onchange="quantitychanged.call(this,event);" value="'.$value['quantity'].'"'. '/></p>';
 
-?>
-
-<p> Quantity:
-
-<select id="<?= $value['shopping_cart_det_id'] ?>" onchange="quantitychanged.call(this,event);" >
-    <option value="1" <?=$value['quantity'] == '1' ? ' selected="selected"' : '';?>>1</option>
-    <option value="2" <?=$value['quantity'] == '2' ? ' selected="selected"' : '';?>>2</option>
-    <option value="3" <?=$value['quantity'] == '3' ? ' selected="selected"' : '';?>>3</option>
-    <option value="4" <?=$value['quantity'] == '4' ? ' selected="selected"' : '';?>>4</option>
-    <option value="5" <?=$value['quantity'] == '5' ? ' selected="selected"' : '';?>>5</option>
-</select>
-
-</p>
+		echo '<p> Quantity: <input type="text" id="'."Quan_".$value['shopping_cart_det_id'].'" onchange="quantitychanged.call(this,event);" value="'.$value['quantity'].'"'. '/></p>';
 
 
-<?php 
+
+
 		echo '</div>';
 	}
-	?>
+ 
 
+
+ 	// echo '<p><a class="btn btn-default btn-lg" href="checkout" role="button"> Check Out </a>' ;
+
+
+ 	/////////////////////////////////////////////////////////////////////////
+
+ 	/////////////////////////////////////////////////////////////////////////////
+
+
+
+ 	//http://ecommerce.zend.com/shoppingcart/mycart
+
+	?>
 </div>
+
+<!-- ********************************************************************** -->
+
+<!-- 
+<button type="button" id="CongratsButton" class="btn btn-info btn-lg" data-toggle="modal" data-target="#BillSentModal" >Bill Sent</button>
+
+<div id="successdiv">
+  <div id="BillSentModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Cogratulations, Bill Sent to your email</h4>
+        </div>
+        <div class="modal-body">    
+         Congratulations, Please check your Inbox
+        </div>
+        <div class="modal-footer">
+        Thanks for choosing US :)
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div> -->
+
+<!-- ********************************************************************** -->
+
+
+<!-- Trigger the modal with a button -->
 <center><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#CheckOutModal">Check Out Now..</button></center>
+
+
 
 <!-- Modal -->
 <div id="CheckOutModal" class="modal fade" role="dialog">
@@ -131,13 +199,18 @@
         <div class="show-msg"></div>
         <p>
         <?php 
+
         $shopping_cart_model = new Application_Model_Shoppingcart();
         $shopping_cart_details =  $shopping_cart_model->getUserShoppingCart($_SESSION['customer_id']); 
 
         $total_amount = $shopping_cart_details["total_amount"];
         $total_discount = $shopping_cart_details["discount"];
         $net_amount = $shopping_cart_details["total_amount"] - $shopping_cart_details["discount"];
+
         ?>
+
+
+
       <div class="form-group">
         <label for="totalAmount">Total Amount : <?php echo $total_amount; ?></label>
       </div>
@@ -150,24 +223,66 @@
       <div class="form-group">
         <label for="dueamount">Net Amount : <?php echo $net_amount; ?></label>
       </div>
+
+
       <input type="hidden" id="coupon_id" name="coupon_id">
+
+      
       <div class="form-group">
         <label for="discount">Due Amount (After Coupon) : <?php echo $net_amount; ?></label>
       </div>
+
+
+        	
+        </p>
+
         <input type="text" id="coupon" name="coupon" class="form-control" placeholder="OR Use a Coupon">
+
+        <!-- <div class="input-group">
+            <span class="input-group-addon">C</span>
+            <input type="text" class="form-control" id="inputGroupSuccess2" aria-describedby="inputGroupSuccess2Status">
+        </div> -->
+       
       </div>
+
+
+
 
 
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
         <button id="verifybutton" type="button" class="btn btn-default" onclick="verifycoupon()" >Verify</button>  
 
-        <a onclick="paybillwithemail()" id="confirmCheckOut" href="" class="btn btn-primary"> Confirm Checkout </a>        
+        
+        <a onclick="paybillwithemail()" id="confirmCheckOut" href="" class="btn btn-primary"> Confirm Checkout </a>
+        
+        <!-- <a id="verifybutton" class="btn btn-default btn-lg" onclick="gethashintohref(this); return false;"  href="/coupon/index/c_hash/"<?php  ?> >Verify coupon</a> -->
+
+<!-- 
+        <a id="verifybutton" class="btn btn-default btn-lg" onclick="verifycoupon();"> verify</a> -->	
+
+
+        <!-- verifyCoupon -->
       </div>
     </div>
 
   </div>
 </div>
+
+
+
+
+<!-- 
+
+<?php
+        var_dump($this->all_cart_details);
+
+?> -->
+
+
+	
+
 
 </body>
 </html>

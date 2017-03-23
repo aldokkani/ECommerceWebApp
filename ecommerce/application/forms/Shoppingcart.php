@@ -7,10 +7,10 @@ class Application_Form_Shoppingcart extends Zend_Form {
         $this->setMethod('POST');
 
         //********** WARNING ***** Static Data *****//
-        $customer_id = 1;
+        
 
         $shopping_cart_details_model = new Application_Model_Shoppingcartdetails();
-        $allShoppingCartDetails = $shopping_cart_details_model->listShoppingCartDetails($customer_id);
+        $allShoppingCartDetails = $shopping_cart_details_model->listShoppingCartDetails($_SESSION['customer_id']);
 
         foreach ($allTracks as $key => $value) {
             $track->addMultiOption($value['tr_name'], $value['tr_name']);

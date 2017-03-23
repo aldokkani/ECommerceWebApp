@@ -5,7 +5,6 @@ class Application_Model_Shoppingcart extends Zend_Db_Table_Abstract
 	protected $_name = 'Shopping_Cart';
 	protected $_dependentTables = array('Application_Model_ShoppingCartDetails');
 
-
 	function listShoppingCarts()
 	{
 		return $this->fetchAll()->toArray();
@@ -19,7 +18,7 @@ class Application_Model_Shoppingcart extends Zend_Db_Table_Abstract
 	}
 
 
-	function updateCustomerShoppingCart($shopping_cart_id,$quantity,$unit_price,$discount)
+	function updateCustomerShoppingCart($shopping_cart_id,$quantity,$unit_price,$discount=null)
 	{
 		$db = new Zend_Db_Adapter_Pdo_Mysql(array(
 		    'host'     => 'localhost',
@@ -28,9 +27,27 @@ class Application_Model_Shoppingcart extends Zend_Db_Table_Abstract
 		    'dbname'   => 'dbzend'
 		));
 
+		//get all details of shopping cart and compute total amount here 
+		//or use mysql trigger
+		$shopping_cart_details_model = new Application_Model_Shoppingcartdetails();
+		$all_det = $shopping_cart_details_model->listShoppingCartDetails($_SESSION['customer_id']);
+		var_dump($all_det);
+		$total_due_amount=0;
+		$total_discount_amount=0;
+		for ($detail=0; $detail < sizeof($all_det) ; $detail++) { 
+			$total_due_amount += ($all_det[$detail]['unit_price'] * $all_det[$detail]['quantity']);
 
-		$stmt = $db->query("update Shopping_Cart set total_amount = total_amount + $unit_price , discount = discount+ $discount where id = $shopping_cart_id");
-		// $stmt->execute();
+			$total_discount_amount += ($all_det[$detail]['discount'] );
+		}
+
+		if($disount==null){		
+			$stmt = $db->query("update Shopping_Cart set total_amount = ".$total_due_amount." , discount = discount + ".$total_discount_amount. " ,due_amount = ". ($total_due_amount - $total_discount_amount)."  where id = $shopping_cart_id");
+		}
+		else{
+			$new_dis = $disount + $total_due_amount - $total_discount_amount;
+			$stmt = $db->query("update Shopping_Cart set total_amount = ".$total_due_amount." , discount = discount + ".$new_dis. " , due_amount = ". ($total_due_amount - $total_discount_amount)."  where id = $shopping_cart_id");
+		}
+		var_dump($stmt);
 	}
 
 	function getUserShoppingCartBillDetails($customer_id)
@@ -41,31 +58,19 @@ class Application_Model_Shoppingcart extends Zend_Db_Table_Abstract
 		    'password' => 'ROOT',
 		    'dbname'   => 'dbzend'
 		));
-
-		//$customer_id = 1;
-
-		$stmt = $db->query("SELECT * FROM dbzend.Shopping_Cart inner join users on Shopping_Cart.customer_id =  users.id where customer_id=$customer_id ORDER BY dbzend.Shopping_Cart.id DESC LIMIT 1");
-
-
-		// var_dump($stmt);
-
+		$stmt = $db->query("SELECT * FROM dbzend.Shopping_Cart inner join users on Shopping_Cart.customer_id =  users.id where customer_id=".$_SESSION['customer_id']." ORDER BY dbzend.Shopping_Cart.id DESC LIMIT 1");
 		$rows = $stmt->fetchAll();
 		return $rows;
 	}
-	
-
-
 
 	function getUserShoppingCart($customerid)
 	{
-		$customerid = 1;
+		$customerid = $_SESSION['customer_id'];
 		return $this->fetchAll('customer_id = '. $customerid)->toArray()[0];
 	}
 
-
-	function checkOutCart($shopping_cart_id)
+	function checkOutCart($shopping_cart_id,$coupon_id=null)
 	{
-
 		//update record of shopping cart in table 
 		$db = new Zend_Db_Adapter_Pdo_Mysql(array(
 		    'host'     => 'localhost',
@@ -74,41 +79,41 @@ class Application_Model_Shoppingcart extends Zend_Db_Table_Abstract
 		    'dbname'   => 'dbzend'
 		));
 
-		$date = Zend_Date::now();
-		$timeStamp = gmdate("Y-m-d H:i:s", $date->getTimestamp());
+		$customer_id=$_SESSION['customer_id'];
+		$customerBill = $this->getUserShoppingCartBillDetails($customer_id);
 
-		$stmt = $db->query("update Shopping_Cart set is_paid = true , payment_date = '".$timeStamp."' where id = $shopping_cart_id");
-
-
-		$customer_id=1;
-
-$customerBill = $this->getUserShoppingCartBillDetails($customer_id);
-
-$stringBill  = "your total amount is " . $customerBill[0]['total_amount'] ."\n";
-$stringBill .= "(-) total disount taken is  " . $customerBill[0]['discount'] ."\n";
-$stringBill .= "your due amount is " . $customerBill[0]['due_amount'] ."\n";
-		//$stringBill .= "Coupon used " . $customerBill[0]['coupon'] ."</br>";
+		if($coupon_id!=null){
+			//Get Discount from COUPON to update due amount
+			$coupon_model = new Application_Model_Coupon();
+			$percent_of_coupon = $coupon_model->selectOne($coupon_id);
+			$percent_of_coupon = $percent_of_coupon["discount"];
+			if($percent_of_coupon !== 0)
+			{
+				$net = $customerBill[0]['total_amount'] - $customerBill[0]['discount'];
+				$discount_on_net = $net * ($percent_of_coupon/100);
+				$due_amount_after_coupon = $net - $discount_on_net;
+				$discount = $discount_on_net;
+				$date = Zend_Date::now();
+				$timeStamp = gmdate("Y-m-d H:i:s", $date->getTimestamp());
+				$stmt = $db->query("update Shopping_Cart set due_amount = ".$due_amount_after_coupon.", coupon_id = ". $coupon_id. " ,is_paid = true , payment_date = '".$timeStamp."' where id = $shopping_cart_id");
+			}			
+		}
+		else
+		{
+			$discount =0;
+			$date = Zend_Date::now();
+			$timeStamp = gmdate("Y-m-d H:i:s", $date->getTimestamp());
+			$stmt = $db->query("update Shopping_Cart set is_paid = true , payment_date = '".$timeStamp."' where id = $shopping_cart_id");
+		}
+		$stringBill  = "your total amount is " . $customerBill[0]['total_amount'] ."\n";
+		$stringBill .= "(-) total disount taken is  " . $customerBill[0]['discount'] ."\n";
+		$stringBill .= "your due amount is " . $customerBill[0]['due_amount'] ."\n";
 		
-		//this is the string to send into email:
-		//var_dump($stringBill);
-		//die();
-
-
-
-		//emaill
-
-		/** Generates a coupon and send it to the customer's email */
-        //$discount = $this->getRequest()->getParam('discount');
-        //$coupon_str = (new Application_Model_Coupon())->generateCoupon($discount);
-        $user=1;
-        // $user = (new Application_Model_User())->selectOne($this->_request->getParam('uid'));
-
-        $user = (new Application_Model_User())->selectOne($user);
-
-        // var_dump($user);
-        // die();
-
-        
+		if($coupon_id != null)
+		{
+			$stringBill .= "Coupon used " . $coupon_id ."</br>";	
+		}
+        $user = (new Application_Model_User())->selectOne($_SESSION['customer_id']);
         $mailBody = "Hello Mr/Mrs ".$user['fullname'].",\n\n "
         		.  $stringBill              
                 . "\n\nHave a nice day. :)";
@@ -121,72 +126,9 @@ $stringBill .= "your due amount is " . $customerBill[0]['due_amount'] ."\n";
             ];
         
         (new Application_Model_Email())->sendMail($mailInfo);
-        //$this->redirect('admin/');
-
-
-		//end email
-		// $email_model = new Application_Model_Email();
-		// $email_model->sendMail();
-
-		//send email NOW with full bill details
-		//INTO eMAIL
-
-		//**************EMAIL***************************//
-		// $config = array('auth' => 'login',
-  //               'username' => 'myusername',
-  //               'password' => 'password');
- 
-		// $transport = new Zend_Mail_Transport_Smtp('mail.google.com', $config);
-		 
-		// $mail = new Zend_Mail();
-		// $mail->setBodyText('This is the text of the mail.');
-		// $mail->setFrom('nada.bayoumy1990@gmail.com', 'Some Sender');
-		// $mail->addTo('nada1990.bayoumy@gmail.com', 'Some Recipient');
-		// $mail->setSubject('TestSubject');
-		// $mail->send($transport);
-
-
-
-
-
-	// require_once('Zend/Mail/Transport/Smtp.php');
-	// require_once 'Zend/Mail.php';
-	// $config = array('auth' => 'login',
-	//                 'username' => 'somemail@mysite.com',
-	//                 'password' => 'somepass',
-	//                 'ssl' => 'tls');
-
-	// $transport = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $config);
-
-	// $mail = new Zend_Mail();
-	// $mail->setBodyText('This is the text of the mail.');
-	// $mail->setFrom('nada.bayoumy1990@gmail.com', 'Some Sender');
-	// $mail->addTo('nada1990.bayoumy@gmail.com', 'Some Recipient');
-	// $mail->setSubject('TestSubject');
-	// $mail->send($transport);
-
-
-
-	// $tr = new Zend_Mail_Transport_Sendmail('-freturn_to_me@example.com');
-	// Zend_Mail::setDefaultTransport($tr);
-
-	// 		$mail = new Zend_Mail();
-	// 		$mail->setBodyText('This is the text of the mail.');
-	// 		$mail->setFrom('nada.bayoumy@hotmail.com', 'Some Sender');
-	// 		$mail->addTo('nada.bayoumy@hotmail.com', 'Some Recipient');
-	// 		$mail->setSubject('TestSubject');
-	// 		$mail->send();
-
-
-		
+       
 		//create new shopping cart
 		$this->AddUserEmptyCart();
-
-
 	}
-
-
-
-
 }
 

@@ -52,6 +52,13 @@
   </div><!-- /.container-fluid -->
 </nav>
  
+<?php
+session_start();
+$_SESSION['customer_id'] = 1;
+$_SESSION['shopping_cart_id'] = 28;
+?>
+
+
 <?php echo $this->layout()->content; ?>  
 <script type="text/javascript" src="<?= $this->baseUrl()?>/assets/js/script.js"></script>
 </body>

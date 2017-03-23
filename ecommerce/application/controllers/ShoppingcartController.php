@@ -1,61 +1,32 @@
 <?php
+session_start();
 
 class ShoppingcartController extends Zend_Controller_Action
 {
-
     public function init()
     {
         /* Initialize action controller here */
     }
-
     public function indexAction()
     {
         // action body
-    }
-
-    public function listproductsAction()
-    {
-        // action body
-//         $user_model = new Application_Model_User();
-// $this->view->users = $user_model->listUsers();
-        $products_array = array('1','2', '3');
-        $this->view->products = $products_array;
     }
 
     public function additemtocartAction()
     {
         // action body
         $product_id = $this->_request->getParam("product_id");
-        // var_dump($product_id);
-        // die();
-
-        $shopping_cart_id = 1;
-        $customer_id =1;
+        //Add the Product to the Shopping Cart
         $shopping_cart_details_model = new Application_Model_Shoppingcartdetails();
-
-        $this->view->shop_cart_details = $shopping_cart_details_model->addItemToCart($customer_id,$shopping_cart_id,$product_id);
-
-        //then load all other details
-
-        //of cart
-        //redirect to action list of shopping cart or main shopping cart 
+        $this->view->shop_cart_details = $shopping_cart_details_model->addItemToCart($_SESSION['customer_id'],$_SESSION['shopping_cart_id'],$product_id);
+        //Redirect to Main shopping cart 
         $this->redirect('/shoppingcart/mycart');
-       
-
-    }
-
-    public function productdetailsAction()
-    {
-        // action body
-        $product_details = '1';
-        $this->view->product_details = $product_details;
     }
 
     public function createuseremptycartAction()
     {
         // action body
         $shopping_cart_model = new Application_Model_Shoppingcart();
-
         $shopping_cart_model->AddUserEmptyCart();
 
     }
@@ -63,74 +34,65 @@ class ShoppingcartController extends Zend_Controller_Action
     public function mycartAction()
     {
         // action body
-        $customer_id =1;
         $shopping_cart_details_model = new Application_Model_Shoppingcartdetails();
-
-         $this->view->all_cart_details = $shopping_cart_details_model->listShoppingCartDetails($customer_id);
+         $this->view->all_cart_details = $shopping_cart_details_model->listShoppingCartDetails($_SESSION['customer_id']);
+        $request = $this->getRequest();
+        if($request->isPost())
+        {
+            $quantity = $request->getParams()['quantity'];
+        }
     }
 
     public function removeitemfromcartAction()
     {
         // action body
         $detail_id = $this->_request->getParam("shopping_cart_det_id");
-
         $shopping_cart_details_model = new Application_Model_Shoppingcartdetails();
         $shopping_cart_details_model->removeItemFromCart($detail_id);
-
         $this->redirect('/shoppingcart/mycart');
     }
 
     public function checkoutAction()
     {
         // action body
-        $form = new Application_Form_Checkout();
-        $this->view->checkout_form = $form;
-
+        $this->_helper->viewRenderer->setNoRender();
+        $this->_helper->getHelper('layout')->disableLayout();
+       
         $request = $this->getRequest();
-        if($request->isPost())
+        if(isset($request->getParams()['coupon_id']))
         {
-            // var_dump($request->getParams());
-            // die();
-             $shopping_cart_id =1;
-            if($request->getParams() == "verify")
+            if(isset($request->getParams()['coupon_id']) && $request->getParams()['coupon_id'] != "")
             {
-                //if this code is valid >> 
-               
-                
                 $shopping_cart_model = new Application_Model_Shoppingcart();
-                $shopping_cart_model->checkOutCart($shopping_cart_id);
-                
+                $shopping_cart_model->checkOutCart($_SESSION['shopping_cart_id'],$request->getParams()['coupon_id']);
 
+                echo "checked out with coupon ";               
             }
-            else
-            {
-                //coupon 
+        }        
+        else
+        {
+            $shopping_cart_model = new Application_Model_Shoppingcart();
+            $shopping_cart_model->checkOutCart($_SESSION['shopping_cart_id']);
+            echo "checked out with  NO coupon ";        
+        }   
+        $this->redirect('/products');
+    }
 
-                
-                $shopping_cart_model = new Application_Model_Shoppingcart();
-                $shopping_cart_model->checkOutCart($shopping_cart_id);
-                
-            }
-
-
-
-            // if($form->isValid($request->getParams()))
-            // {
-        
-            //     $user_model = new Application_Model_Shoppingcart();
-            //     $user_model->checkOutCart($request->getParams());
-            //     $this->redirect('/user/list');
-
-            // }
-        }
-
-        // $shopping_cart_model = new Application_Model_Shoppingcart();
-        // $shopping_cart_model->checkOutCart();
-
+    public function updateshoppingcartquantityAction()
+    {
+        // action body
+        $detail_id = $this->_request->getParam("shopping_cart_det_id");
+        $quantity = $this->_request->getParam("new_quantity");
+        $shopping_cart_det_model = new Application_Model_Shoppingcartdetails();
+        $shopping_cart_det_model->updateItemInCart($detail_id,$quantity);
+        echo $detail_id ;
+        echo $quantity ;
     }
 
 
 }
+
+
 
 
 
