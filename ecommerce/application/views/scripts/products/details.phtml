@@ -1,61 +1,76 @@
 
-<div class="container">
+<a href="?language=en" onclick="window.location.reload(true);">ENGLISH</a>
+<a href="?language=ar" onclick="window.location.reload(true);">ARABIC</a>
 
-    <div class="panel panel-primary">
 
-        <div class="panel-body">
-            <div class="row">
+		<div id="wrapper" class="container">
 
-                <div class="col col-lg-5">
-                    <img src='<?= $this->product_data['photo'] ?>' alt='Smiley face' height='400' width='300'>
-                </div>
-                <div class="col col-lg-5">
-                    <?php
-                    $language = 'en';
-                    if ($language == 'en') {
-                        ?>
+			<section class="header_text sub">
+			<!-- <img class="pageBanner" src="<?= $this->baseUrl() ?>/assets/themes/images/pageBanner.png" alt="New products" > -->
+				<h4><span>Product Details</span></h4>
+			</section>
+			<section class="main-content">
+				<div class="row">
+					<div class="span9">
+						<div class="row">
+							<div class="span4">
+								<a href="themes/images/ladies/1.jpg" class="thumbnail" data-fancybox-group="group1" title="Description 1"><img alt="" src="<?= $this->product_data['photo'] ?>"></a>
+								<ul class="thumbnails small">
+									<li class="span1">
+										<a href="themes/images/ladies/2.jpg" class="thumbnail" data-fancybox-group="group1" title="Description 2"><img src="<?= $this->baseUrl() ?>/assets/themes/images/ladies/2.jpg" alt=""></a>
+									</li>
+									<li class="span1">
+										<a href="themes/images/ladies/3.jpg" class="thumbnail" data-fancybox-group="group1" title="Description 3"><img src="<?= $this->baseUrl() ?>/assets/themes/images/ladies/3.jpg" alt=""></a>
+									</li>
+									<li class="span1">
+										<a href="themes/images/ladies/4.jpg" class="thumbnail" data-fancybox-group="group1" title="Description 4"><img src="<?= $this->baseUrl() ?>/assets/themes/images/ladies/4.jpg" alt=""></a>
+									</li>
+									<li class="span1">
+										<a href="themes/images/ladies/5.jpg" class="thumbnail" data-fancybox-group="group1" title="Description 5"><img src="<?= $this->baseUrl() ?>/assets/themes/images/ladies/5.jpg" alt=""></a>
+									</li>
+								</ul>
+							</div>
+							<div class="span5">
+                <?php $language=$_GET['language'] ?>
+                <?php if ($language == 'en') :?>
                         <table class="table">
                             <tr>
-                                <td><h4>Product ID: </h4></td><td><h4><?= $this->product_data['id'] ?></h4></td>
+                                <td><h4>Product ID: </h4></td><td><h4><center><?= $this->product_data['id'] ?></center></h4></td>
                             </tr>
                             <tr>
-                                <td><h4>Title: </h4></td><td><h4><?= $this->product_data['name_en'] ?></h4></td>
+                                <td><h4>Title: </h4></td><td><h4><center><?= $this->product_data['name_en'] ?></center></h4></td>
                             </tr>
                             <tr>
                                 <td><h4>Rate: </h4></td><td><div class="fixedRate">
                                         <?php for ($i = 5; $i >= 1; $i--) : ?>
                                             <?php if ($this->product_data['rate'] == $i): ?>
-                                                <input disabled="true" class='radio1' type="radio" id="star<?= $i ?>" name="rate[]" value=<?= $i ?>  checked="checked"/>
+                                                <input disabled="true" class='radio1' type="radio" id="sstar<?= $i ?>" name="rate[]" value=<?= $i ?>  checked="checked"/>
                                                 <label for="star<?= $i ?>" ><?= $i ?> stars</label>
                                             <?php else : ?>
-                                                <input  disabled="true" class='radio1' type="radio" id="star<?= $i ?>" name="rate[]" value=<?= $i ?>/>
+                                                <input  disabled="true" class='radio1' type="radio" id="sstar<?= $i ?>" name="rate[]" value=<?= $i ?>/>
                                                 <label for="star<?= $i ?>" ><?= $i ?> stars</label>
                                             <?php endif; ?>
                                         <?php endfor; ?>
                                     </div></td>
                             </tr>
+
                             <tr>
-                                <td><h4>Description:</h4></td><td><?= $this->product_data['description_en'] ?></td>
-                            </tr>
-                            <tr>
-                                <td><h4>Unit price: </h4></td><td><h4><?= $this->product_data['unit_price'] . " L.E." ?></h4></td>
+                                <td><h4><strong>Unit price: </strong></h4></td><td><h4><center><?= $this->product_data['unit_price'] . " L.E." ?></center></h4></td>
                             </tr>
                             <tr>
                                 <?php if ($this->offer_data['discount'] != "") : ?>
-                                    <td><h4>Offer: </h4></td><td><h4><?= $this->offer_data['discount'] . " %" ?></h4></td>
+                                    <td><h4>Offer: </h4></td><td><h4><center><?= $this->offer_data['discount'] . " %" ?></center></h4></td>
                                 <?php endif; ?>
                             </tr>
                         </table>
 
-                        <?php
-                    }elseif ($language == 'ar') {
-                        ?>
+                        <?php else : ?>
                         <table class="table">
                             <tr>
-                                <td><?= $this->product_data['id'] ?></td><td>رقم المنتج</td>
+                                <td><h4><center><?= $this->product_data['id'] ?></center></h4></td><td><h4>رقم المنتج</h4></td>
                             </tr>
                             <tr>
-                                <td><?= $this->product_data['name_ar'] ?></td><td>الاسم</td>
+                                <td><h4><center><?= $this->product_data['name_ar'] ?></h4></center></td><td><h4>الاسم</h4></td>
                             </tr>
                             <tr>
                                 <td><div class="fixedRate">
@@ -68,47 +83,200 @@
                                                 <label for="star<?= $i ?>" ><?= $i ?> stars</label>
                                             <?php endif; ?>
                                         <?php endfor; ?>
-                                    </div></td><td>التقييم </td>
+                                    </div></td><td><h4>التقييم </h4></td>
                             </tr>
+
                             <tr>
-                                <td><?= $this->product_data['description_ar'] ?></td><td> الوصف</td>
-                            </tr>
-                            <tr>
-                                <td><?= $this->product_data['unit_price'] . " L.E." ?></td><td> السعر </td>
+                                <td><h4><center><?= $this->product_data['unit_price'] . " L.E." ?></h4></center></td><td><h4> السعر </h4></td>
                             </tr>
                             <tr>
                                 <?php if ($this->offer_data['discount'] != "") : ?>
-                                    <td><h4> <?= $this->offer_data['discount'] . " %" ?></h4></td><td><h4>خصم</h4></td>
+                                    <td><h4><center> <?= $this->offer_data['discount'] . " %" ?></center></h4></td><td><h4>خصم</h4></td>
                                 <?php endif; ?>
                             </tr>
                         </table>
 
-                        <?php
-                    }
-                    ?>
+                        <?php endif;?>
 
-                </div>
-            </div>
+							</div>
 
+						</div>
+						<div class="row">
+							<div class="span9">
+								<ul class="nav nav-tabs" id="myTab">
+									<li class="active"><a href="#home">Description</a></li>
+									<li class=""><a href="#profile">Additional Information</a></li>
+								</ul>
+								<div class="tab-content">
+                  <?php if($language=="en") :?>
+									<div class="tab-pane active" id="home"><?= $this->product_data['description_en'] ?></div>
+                <?php else: ?>
+                  <div class="tab-pane active" id="home"><?= $this->product_data['description_ar'] ?></div>
+                <?php endif; ?>
+									<div class="tab-pane" id="profile">
+										<table class="table table-striped shop_attributes">
+											<tbody>
+												<tr class="">
+													<th>Size</th>
+													<td>Large, Medium, Small, X-Large</td>
+												</tr>
+												<tr class="alt">
+													<th>Colour</th>
+													<td>Orange, Yellow</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="span9">
+								<br>
+								<h4 class="title">
+									<span class="pull-left"><span class="text"><strong>Related</strong> Products</span></span>
+									<span class="pull-right">
+										<a class="left button" href="#myCarousel-1" data-slide="prev"></a><a class="right button" href="#myCarousel-1" data-slide="next"></a>
+									</span>
+								</h4>
+								<div id="myCarousel-1" class="carousel slide">
+									<div class="carousel-inner">
+										<div class="active item">
+											<ul class="thumbnails listing-products">
+                        <?php foreach ($this->all_products_data as $key => $value) : ?>
+                          <?php if($value['category_id']==$this->product_data['category_id'] && $value['id']!=$this->product_data['id']) : ?>
+                        <li class="span3">
+                          <div class="product-box">
+														<span class="sale_tag"></span>
+                                <a href="product_detail.html"><img alt="" src="<?=$value['photo']?>"></a><br/>
+    														<a href="product_detail.html" class="title"><?=$value['name_en']?></a><br/>
+    														<p class="price"><?=$value['unit_price']." L.E."?></p>
 
-            <?php $type = "shop"; ?>
-            <?php if ($type == "shop") : ?>
-                <center>
-                    <a href='/products/edit/product_id/<?= $this->product_data['id'] ?>' class="btn btn-primary" role="button">Edit product</a>
-                    <?php if ($this->offer_data['discount'] == "") : ?>
-                        <a href='/products/vendor-offer/product_id/<?= $this->product_data['id'] ?>' class="btn btn-default" role="button">Add Offer</a>
-                    <?php else: ?>
-                        <a href='/products/delete-offer/product_id/<?= $this->product_data['id'] ?>' class="btn btn-danger" role="button">Delete Offer</a>
-                    <?php endif; ?>
+                          </div>
+                        </li>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
 
-                    <a href='/products/delete/product_id/<?= $this->product_data['id'] ?>' class="btn btn-danger" role="button">delete product</a>
-                </center>
-            <?php elseif ($type == "customer"): ?>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <center><h2>Add Your Review here<h2></center>
-                                    </div>
-                                    <div class="panel-body">
+										</ul>
+										</div>
+										<!-- <div class="item">
+											<ul class="thumbnails listing-products">
+												<li class="span3">
+													<div class="product-box">
+														<span class="sale_tag"></span>
+														<a href="product_detail.html"><img alt="" src="<?= $this->baseUrl() ?>/assets/themes/images/ladies/1.jpg"></a><br/>
+														<a href="product_detail.html" class="title">Fusce id molestie massa</a><br/>
+														<a href="#" class="category">Phasellus consequat</a>
+														<p class="price">$341</p>
+													</div>
+												</li>
+												<li class="span3">
+													<div class="product-box">
+														<a href="product_detail.html"><img alt="" src="<?= $this->baseUrl() ?>/assets/themes/images/ladies/2.jpg"></a><br/>
+														<a href="product_detail.html">Praesent tempor sem</a><br/>
+														<a href="#" class="category">Erat gravida</a>
+														<p class="price">$28</p>
+													</div>
+												</li>
+												<li class="span3">
+													<div class="product-box">
+														<span class="sale_tag"></span>
+														<a href="product_detail.html"><img alt="" src="<?= $this->baseUrl() ?>/assets/themes/images/ladies/3.jpg"></a><br/>
+														<a href="product_detail.html" class="title">Wuam ultrices rutrum</a><br/>
+														<a href="#" class="category">Suspendisse aliquet</a>
+														<p class="price">$341</p>
+													</div>
+												</li>
+											</ul>
+										</div> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="span3 col" style="width:250px">
+						<div class="block">
+							<ul class="nav nav-list">
+								<li class="nav-header">SUB CATEGORIES</li>
+								<li><a href="products.html">Nullam semper elementum</a></li>
+								<li class="active"><a href="products.html">Phasellus ultricies</a></li>
+								<li><a href="products.html">Donec laoreet dui</a></li>
+								<li><a href="products.html">Nullam semper elementum</a></li>
+								<li><a href="products.html">Phasellus ultricies</a></li>
+								<li><a href="products.html">Donec laoreet dui</a></li>
+							</ul>
+							<br/>
+							<ul class="nav nav-list below">
+								<li class="nav-header">MANUFACTURES</li>
+								<li><a href="products.html">Adidas</a></li>
+								<li><a href="products.html">Nike</a></li>
+								<li><a href="products.html">Dunlop</a></li>
+								<li><a href="products.html">Yamaha</a></li>
+							</ul>
+						</div>
+						<div class="block">
+							<h4 class="title">
+								<span class="pull-left"><span class="text">Randomize</span></span>
+								<span class="pull-right">
+									<a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
+								</span>
+							</h4>
+							<div id="myCarousel" class="carousel slide">
+								<div class="carousel-inner">
+									<div class="active item">
+										<ul class="thumbnails listing-products">
+											<li class="span3">
+												<div class="product-box">
+													<span class="sale_tag"></span>
+													<a href="product_detail.html"><img alt="" src="<?= $this->baseUrl() ?>/assets/themes/images/ladies/7.jpg"></a><br/>
+													<a href="product_detail.html" class="title">Fusce id molestie massa</a><br/>
+													<a href="#" class="category">Suspendisse aliquet</a>
+													<p class="price">$261</p>
+												</div>
+											</li>
+										</ul>
+									</div>
+									<div class="item">
+										<ul class="thumbnails listing-products">
+											<li class="span3">
+												<div class="product-box">
+													<a href="product_detail.html"><img alt="" src="<?= $this->baseUrl() ?>/assets/themes/images/ladies/8.jpg"></a><br/>
+													<a href="product_detail.html" class="title">Tempor sem sodales</a><br/>
+													<a href="#" class="category">Urna nec lectus mollis</a>
+													<p class="price">$134</p>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="block">
+							<h4 class="title"><strong>Best</strong> Seller</h4>
+							<ul class="small-product">
+								<li>
+									<a href="#" title="Praesent tempor sem sodales">
+										<img src="<?= $this->baseUrl() ?>/assets/themes/images/ladies/1.jpg" alt="Praesent tempor sem sodales">
+									</a>
+									<a href="#">Praesent tempor sem</a>
+								</li>
+								<li>
+									<a href="#" title="Luctus quam ultrices rutrum">
+										<img src="<?= $this->baseUrl() ?>/assets/themes/images/ladies/2.jpg" alt="Luctus quam ultrices rutrum">
+									</a>
+									<a href="#">Luctus quam ultrices rutrum</a>
+								</li>
+								<li>
+									<a href="#" title="Fusce id molestie massa">
+										<img src="<?= $this->baseUrl() ?>/assets/themes/images/ladies/3.jpg" alt="Fusce id molestie massa">
+									</a>
+									<a href="#">Fusce id molestie massa</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+      <section>
+        <div class="panel-body">
                                         <?php echo "$this->new_comment_form"; ?>
                                         <br><label >Rate this product: </label><br>
                                         <div class="rate">
@@ -124,14 +292,9 @@
                                             <label for="s1" title="I hate it">1 star</label>
                                         </div>
                                     </div>
-                                    </div>
-                                <?php endif; ?>
-                                </div>
-                                </div>
-                                </div>
-                                <br><br>
-                                <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-                                <div class="container">
+      </section>
+      <section>
+        <div class="container">
                                     <?php foreach ($this->comments as $key => $value) : ?>
                                         <?php if ($value['comment'] != ""): ?>
                                             <div class="row">
@@ -146,7 +309,7 @@
                                                                     <a href="#"><b><?= $value['fullname'] ?></b></a>
                                                                     made a comment.
                                                                 </div>
-                                                                <!-- <h6 class="text-muted time">1 minute ago</h6> -->
+                                                                <h6 class="text-muted time">1 minute ago</h6>
                                                             </div>
                                                         </div>
                                                         <div class="post-description">
@@ -158,3 +321,26 @@
                                         <?php endif; ?>
                                     <?php endforeach; ?>
                                 </div>
+      </section>
+		</div>
+		<script src="<?= $this->baseUrl() ?>/assets/themes/js/common.js"></script>
+		<script>
+			$(function () {
+				$('#myTab a:first').tab('show');
+				$('#myTab a').click(function (e) {
+					e.preventDefault();
+					$(this).tab('show');
+				})
+			})
+			$(document).ready(function() {
+				$('.thumbnail').fancybox({
+					openEffect  : 'none',
+					closeEffect : 'none'
+				});
+
+				$('#myCarousel-2').carousel({
+                    interval: 2500
+                });
+			});
+		</script>
+  
