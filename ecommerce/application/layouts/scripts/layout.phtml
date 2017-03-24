@@ -4,137 +4,230 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="<?= $this->baseUrl() ?>/assets/node_modules/bootstrap/dist/css/bootstrap.min.css">
+<!--         <link rel="stylesheet" href="<?= $this->baseUrl() ?>/assets/node_modules/bootstrap/dist/css/bootstrap.min.css">  -->
         <link rel="stylesheet" href="<?= $this->baseUrl() ?>/assets/css/style.css"/>
-        <script type="text/javascript" src="<?= $this->baseUrl() ?>/assets/node_modules/tether/dist/js/tether.min.js"></script>
-        <script type="text/javascript" src="<?= $this->baseUrl() ?>/assets/node_modules/jquery/dist/jquery.min.js"></script>
-        <script type="text/javascript" src="<?= $this->baseUrl() ?>/assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<!--         <script type="text/javascript" src="<?= $this->baseUrl() ?>/assets/node_modules/tether/dist/js/tether.min.js"></script> -->
+<!--          <script type="text/javascript" src="<?= $this->baseUrl() ?>/assets/node_modules/jquery/dist/jquery.min.js"></script> -->
+<!--         <script type="text/javascript" src="<?= $this->baseUrl() ?>/assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script> -->
+
+        <!-- template links -->
+
+        <link href="<?= $this->baseUrl() ?>/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">      
+        <link href="<?= $this->baseUrl() ?>/assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+        
+        <link href="<?= $this->baseUrl() ?>/assets/themes/css/bootstrappage.css" rel="stylesheet"/>
+        
+        <!-- global styles -->
+        <link href="<?= $this->baseUrl() ?>/assets/themes/css/flexslider.css" rel="stylesheet"/>
+        <link href="<?= $this->baseUrl() ?>/assets/themes/css/main.css" rel="stylesheet"/>
+
+        <!-- scripts -->
+        <script src="<?= $this->baseUrl() ?>/assets/themes/js/jquery-1.7.2.min.js"></script>
+        <script src="<?= $this->baseUrl() ?>/assets/bootstrap/js/bootstrap.min.js"></script>               
+        <script src="<?= $this->baseUrl() ?>/assets/themes/js/superfish.js"></script>  
+        <!-- end of template links -->
+
         <title>E-Commerce</title>
     </head>
     <body>
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="row">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="container-fluid">
-                    <div class="col-sm-2">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="/">Brand</a>
-                        </div>    
-                    </div>
-                    <div class="col-sm-7">
-                        <div class="input-group">
-                            <div class="input-group-btn">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
-                                </ul>
-                            </div><!-- /btn-group -->
-                            <input type="text" class="form-control navbar-btn" id="search_input" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default navbar-btn" id="search_btn" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                            </span>
-                        </div><!-- /input-group -->
-                    </div>
-                    <div class="col-sm-3">
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav navbar-right">
-                                <?php
-                                $auth = Zend_Auth::getInstance();
-                                if ($auth->hasIdentity()) {
-                                    $userName = $auth->getIdentity()->fullname;
-                                    ?>
-                                    <li>
-                                        <p class="navbar-text navbar-right">Welcome<span style="font-weight: bold; font-size: 20px"> <?= $userName ?></span></p>
-                                    </li>
-                                    <li style="margin-left: 25px; margin-right: 20px"><div class="dropdown">
-                                            <button class="btn btn-warning dropdown-toggle navbar-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                                <li><a href="/signout">Sign Out</a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
 
-                                   <?php
-                                } else {
-                                    ?>
-                                    <li><a class="btn navbar-btn btn-sm btn-warning" href="/login">Login</a></li>
-                                    <li><a style="margin-left: 10px; margin-right: 15px" class="btn navbar-btn btn-sm btn-warning" href="/signup">Sign Up</a></li>
-                                <?php } ?>
-                            </ul>
-                        </div><!-- /.navbar-collapse -->
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="container">
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li><a href="/">Home <span class="sr-only">(current)</span></a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Departments <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <?php
-                                    $categories = (new Application_Model_Category())->selectAll();
-                                    foreach ($categories as $category) {
-                                        ?>
-                                        <li><a href="/products/display/cid/<?= $category['id'] ?>"><?= $category['name'] ?></a></li>
-                                        <!--                                <li role="separator" class="divider"></li>-->
-                                    <?php } ?>
-                                </ul>
-                            </li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#">My Shopping Cart</a></li>
-                            <li><a href="#">My Wish List</a></li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                </div>
-            </div>
-        </nav>
-        <!--        <nav style="z-index: 2"class="navbar navbar-default navbar-fixed-top" id="second-nav">
-                    <div class="container-fluid">
-                         Collect the nav links, forms, and other content for toggling 
-        
-                    </div> /.container-fluid 
-                </nav>-->
 
-        <div class="container">
-            <div id="search_result"></div>
-            <?php echo $this->layout()->content; ?>  
-            <div class="footer">
-                <div class="wrap">
-                    <div class="foot-links">
-                        <ul>
-                            <h3>Links</h3>
-                            <li><a href="<?= $this->baseUrl() ?>">Home</a></li>
-                            <li><a href="<?= $this->baseUrl() ?>/products">Products</a></li>
-                            <li><a href="//w3layouts.com/contact" >Contact Us</a></li>
-                        </ul>
-                        <ul>
-                            <h3>Others</h3>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Support</a></li>
-                        </ul>
 
-                        <div class="clear"></div>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-            </div>
-            <script type="text/javascript" src="<?= $this->baseUrl() ?>/assets/js/script.js"></script>
+
+    <div id="top-bar" class="container">
+      <div class="row">
+        <div class="span4">
+
+
+          <input type="text" class="form-control navbar-btn input-block-level search-query" id="search_input" placeholder="Search for...">
+            <span class="input-group-btn">
+                <button class="btn btn-default navbar-btn" id="search_btn" type="button"><span class="glyphicon glyphicon-search"></span></button>
+            </span>
+
+
+
+         <!--<form method="POST" class="search_form">
+            <input type="text" class="input-block-level search-query" Placeholder="eg. T-sirt">
+          </form> -->
+
+
+        </div>
+        <div class="span8">
+          <div class="account pull-right">
+            <ul class="user-menu">        
+              <li><a href="#">My Account</a></li>
+              <li><a href="cart.html">Your Cart</a></li>
+              <li><a href="checkout.html">Checkout</a></li>         
+              <li><a href="register.html">Login</a></li>
+              <li></li>    
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div id="wrapper" class="container">
+      <section class="navbar main-menu">
+        <div class="navbar-inner main-menu">        
+          <a href="index.html" class="logo pull-left"><img src="<?= $this->baseUrl() ?>/assets/themes/images/logo.png" class="site_logo" alt=""></a>
+          <nav id="menu" class="pull-right">
+            <ul>
+              <li><a href="./products.html">Woman</a>         
+                <ul>
+                  <li><a href="./products.html">Lacinia nibh</a></li>                 
+                  <li><a href="./products.html">Eget molestie</a></li>
+                  <li><a href="./products.html">Varius purus</a></li>                 
+                </ul>
+              </li>                             
+              <li><a href="./products.html">Man</a></li>      
+              <li><a href="./products.html">Sport</a>
+                <ul>                  
+                  <li><a href="./products.html">Gifts and Tech</a></li>
+                  <li><a href="./products.html">Ties and Hats</a></li>
+                  <li><a href="./products.html">Cold Weather</a></li>
+                </ul>
+              </li>             
+              <li><a href="./products.html">Hangbag</a></li>
+              <li><a href="./products.html">Best Seller</a></li>
+              <li><a href="./products.html">Top Seller</a></li>
+            </ul>
+          </nav>
+        </div>
+      </section>
+      <section>
+          
+      <div class="row" id="search_result"></div>
+
+      </section>
+      <section  class="homepage-slider" id="home-slider">
+        <div class="flexslider">
+          <ul class="slides">
+            <li>
+              <img src="<?= $this->baseUrl() ?>/assets/themes/images/carousel/banner-1.jpg" alt="" />
+            </li>
+            <li>
+              <img src="<?= $this->baseUrl() ?>/assets/themes/images/carousel/banner-2.jpg" alt="" />
+              <div class="intro">
+                <h1>Mid season sale</h1>
+                <p><span>Up to 50% Off</span></p>
+                <p><span>On selected items online and in stores</span></p>
+              </div>
+            </li>
+          </ul>
+        </div>      
+      </section>
+      <section class="header_text">
+        We stand for top quality templates. Our genuine developers always optimized bootstrap commercial templates. 
+        <br/>Don't miss to use our cheap abd best bootstrap templates.
+      </section>
+      <section class="main-content">
+          
+      <div class="foot-links">
+            <ul>
+                <h3>Links</h3>
+                <li><a href="<?= $this->baseUrl() ?>">Home</a></li>
+                <li><a href="<?= $this->baseUrl() ?>/products">Products</a></li>
+                <li><a href="//w3layouts.com/contact" >Contact Us</a></li>
+            </ul>
+            <ul>
+                <h3>Others</h3>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Support</a></li>
+            </ul>
+
+            <div class="clear"></div>
+        </div>
+
+
+
+      </section>
+      <section class="main-content">
+         <?php echo $this->layout()->content; ?>  
+      </section>
+      <section class="our_client">
+        <h4 class="title"><span class="text">Manufactures</span></h4>
+        <div class="row">         
+          <div class="span2">
+            <a href="#"><img alt="" src="<?= $this->baseUrl() ?>/assets/themes/images/clients/14.png"></a>
+          </div>
+          <div class="span2">
+            <a href="#"><img alt="" src="<?= $this->baseUrl() ?>/assets/themes/images/clients/35.png"></a>
+          </div>
+          <div class="span2">
+            <a href="#"><img alt="" src="<?= $this->baseUrl() ?>/assets/themes/images/clients/1.png"></a>
+          </div>
+          <div class="span2">
+            <a href="#"><img alt="" src="<?= $this->baseUrl() ?>/assets/themes/images/clients/2.png"></a>
+          </div>
+          <div class="span2">
+            <a href="#"><img alt="" src="<?= $this->baseUrl() ?>/assets/themes/images/clients/3.png"></a>
+          </div>
+          <div class="span2">
+            <a href="#"><img alt="" src="<?= $this->baseUrl() ?>/assets/themes/images/clients/4.png"></a>
+          </div>
+        </div>
+      </section>
+      <section id="footer-bar">
+        <div class="row">
+          <div class="span3">
+            <h4>Navigation</h4>
+            <ul class="nav">
+              <li><a href="./index.html">Homepage</a></li>  
+              <li><a href="./about.html">About Us</a></li>
+              <li><a href="./contact.html">Contac Us</a></li>
+              <li><a href="./cart.html">Your Cart</a></li>
+              <li><a href="./register.html">Login</a></li>              
+            </ul>         
+          </div>
+          <div class="span4">
+            <h4>My Account</h4>
+            <ul class="nav">
+              <li><a href="#">My Account</a></li>
+              <li><a href="#">Order History</a></li>
+              <li><a href="#">Wish List</a></li>
+              <li><a href="#">Newsletter</a></li>
+            </ul>
+          </div>
+          <div class="span5">
+            <p class="logo"><img src="<?= $this->baseUrl() ?>/assets/themes/images/logo.png" class="site_logo" alt=""></p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
+            <br/>
+            <span class="social_icons">
+              <a class="facebook" href="#">Facebook</a>
+              <a class="twitter" href="#">Twitter</a>
+              <a class="skype" href="#">Skype</a>
+              <a class="vimeo" href="#">Vimeo</a>
+            </span>
+          </div>          
+        </div>  
+      </section>
+      <section id="copyright">
+        <span>Copyright 2013 bootstrappage template  All right reserved.</span>
+      </section>
+    </div>
+    <script src="<?= $this->baseUrl() ?>/assets/themes/js/common.js"></script>
+    <script src="<?= $this->baseUrl() ?>/assets/themes/js/jquery.flexslider-min.js"></script>
+
+    <script type="text/javascript">
+      $(function() {
+        $(document).ready(function() {
+          $('.flexslider').flexslider({
+            animation: "fade",
+            slideshowSpeed: 4000,
+            animationSpeed: 600,
+            controlNav: false,
+            directionNav: true,
+            controlsContainer: ".flex-container" // the container that holds the flexslider
+          });
+        });
+      });
+    </script>
+
+      <script type="text/javascript" src="<?= $this->baseUrl() ?>/assets/js/script.js"></script>    
+
+
+
     </body>
 </html>
