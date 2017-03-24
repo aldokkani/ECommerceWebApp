@@ -131,12 +131,12 @@
         <div class="show-msg"></div>
         <p>
         <?php 
-        $shopping_cart_model = new Application_Model_Shoppingcart();
-        $shopping_cart_details =  $shopping_cart_model->getUserShoppingCart($_SESSION['customer_id']); 
-
-        $total_amount = $shopping_cart_details["total_amount"];
-        $total_discount = $shopping_cart_details["discount"];
-        $net_amount = $shopping_cart_details["total_amount"] - $shopping_cart_details["discount"];
+//        $shopping_cart_model = new Application_Model_Shoppingcart();
+//        $shopping_cart_details =  $shopping_cart_model->getUserShoppingCart($_SESSION['customer_id']); 
+//
+//        $total_amount = $shopping_cart_details["total_amount"];
+//        $total_discount = $shopping_cart_details["discount"];
+//        $net_amount = $shopping_cart_details["total_amount"] - $shopping_cart_details["discount"];
         ?>
       <div class="form-group">
         <label for="totalAmount">Total Amount : <?php echo $total_amount; ?></label>

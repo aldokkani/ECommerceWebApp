@@ -3,13 +3,28 @@
 
 class ShoppingcartController extends Zend_Controller_Action
 {
+    private  $userData;
+    
     public function init()
     {
         /* Initialize action controller here */
+        $auth = Zend_Auth::getInstance();
+        $this->userData = $auth->getIdentity();
     }
     public function indexAction()
     {
-        // action body
+        
+//        (new Application_Model_Shoppingcartdetails())->updateItemInCart(42, 3);
+//        $shopping_cart = (new Application_Model_Shoppingcart())->fetchAll("id= 12")->toArray()[0];
+////        $product = (object)(new Application_Model_Products())->selectOne(19);
+//////        var_dump($shopping_cart->discount);exit();
+////         (new Application_Model_Shoppingcartdetails())->addItemToCart($shopping_cart, $product);
+//        var_dump((new Application_Model_Shoppingcartdetails())->listShoppingCartDetails(4));exit();
+////        var_dump($this->userData);exit;
+//        $cop = (new Application_Model_Coupon())->selectOne(2);
+////        var_dump($cop->updateCoupon(2,3));exit;
+//        (new Application_Model_Shoppingcart())->checkOutCart($this->userData, $shopping_cart, $cop);
+        
     }
 
     public function additemtocartAction()
@@ -18,7 +33,7 @@ class ShoppingcartController extends Zend_Controller_Action
         $product_id = $this->_request->getParam("product_id");
         //Add the Product to the Shopping Cart
         $shopping_cart_details_model = new Application_Model_Shoppingcartdetails();
-        $this->view->shop_cart_details = $shopping_cart_details_model->addItemToCart($_SESSION['customer_id'],$_SESSION['shopping_cart_id'],$product_id);
+        $this->view->shop_cart_details = $shopping_cart_details_model->addItemToCart($this->userData->id, $this->userData->cart_id ,$product_id);
         //Redirect to Main shopping cart 
         $this->redirect('/shoppingcart/mycart');
     }
@@ -27,7 +42,7 @@ class ShoppingcartController extends Zend_Controller_Action
     {
         // action body
         $shopping_cart_model = new Application_Model_Shoppingcart();
-        $shopping_cart_model->AddUserEmptyCart();
+        $shopping_cart_model->AddUserEmptyCart($this->userData->id);
 
     }
 
@@ -35,12 +50,9 @@ class ShoppingcartController extends Zend_Controller_Action
     {
         // action body
         $shopping_cart_details_model = new Application_Model_Shoppingcartdetails();
-         $this->view->all_cart_details = $shopping_cart_details_model->listShoppingCartDetails($_SESSION['customer_id']);
-        $request = $this->getRequest();
-        if($request->isPost())
-        {
-            $quantity = $request->getParams()['quantity'];
-        }
+//        var_dump($this->userData->id);exit;
+        $this->view->all_cart_details = $shopping_cart_details_model->listShoppingCartDetails($this->userData->id);
+//        var_dump($this->view->all_cart_details);exit;
     }
 
     public function removeitemfromcartAction()
@@ -64,15 +76,14 @@ class ShoppingcartController extends Zend_Controller_Action
             if(isset($request->getParams()['coupon_id']) && $request->getParams()['coupon_id'] != "")
             {
                 $shopping_cart_model = new Application_Model_Shoppingcart();
-                $shopping_cart_model->checkOutCart($_SESSION['shopping_cart_id'],$request->getParams()['coupon_id']);
-
+                $shopping_cart_model->checkOutCart($this->userData->cart_id,$request->getParams()['coupon_id']);
                 echo "checked out with coupon ";               
             }
         }        
         else
         {
             $shopping_cart_model = new Application_Model_Shoppingcart();
-            $shopping_cart_model->checkOutCart($_SESSION['shopping_cart_id']);
+            $shopping_cart_model->checkOutCart($this->userData->cart_id);
             echo "checked out with  NO coupon ";        
         }   
         $this->redirect('/products');
