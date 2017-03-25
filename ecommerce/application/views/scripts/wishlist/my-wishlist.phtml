@@ -1,3 +1,10 @@
+<?php
+if(isset($_GET['ar'])){
+    $language="ar";
+}else {
+  $language="en";
+}
+?>
 <section class="main-content">        
     <div class="row">
         <div class="span9">
@@ -15,8 +22,7 @@
                 <tbody>
 
                     <?php
-                    
-                    $language = 'ar';
+                  
                     foreach ($this->mywishlist_items_ctx as $key => $value) {
                         ?>
                         <tr>
