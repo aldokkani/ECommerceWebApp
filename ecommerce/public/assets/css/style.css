@@ -129,7 +129,7 @@ ul {
     width: 1em;
     overflow: hidden;
     white-space: nowrap;
-    /*cursor: pointer;*/
+    cursor: auto !important;
     font-size: 30px;
     color: #ccc;
 }
@@ -161,8 +161,8 @@ ul {
 }
 
 .post .post-heading {
-    height: 95px;
-    padding: 20px 15px;
+    height: 80px;
+    padding: 6px 28px;
 }
 .post .post-heading .avatar {
     width: 60px;
@@ -188,7 +188,8 @@ ul {
     height: auto;
 }
 .post .post-description {
-    padding: 15px;
+  padding: 8px 59px;
+  background-color: #f5f5f5;
 }
 .post .post-description p {
     font-size: 14px;
@@ -255,3 +256,8 @@ ul {
   #second-nav {
       margin-top: 50px;
   }
+.comment_textarea{
+  margin: 0px 0px 10px;
+  width: 602px;
+  height: 87px;
+}
