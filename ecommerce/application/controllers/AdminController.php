@@ -5,13 +5,15 @@ class AdminController extends Zend_Controller_Action
 
     public function init()
     {
+        //to disable normal template layout
+        $this->_helper->getHelper('layout')->disableLayout(); 
+
         $auth = Zend_Auth::getInstance();
         $userData = $auth->getIdentity();
         if (!$auth->hasIdentity() || $userData->type != 'admin' ) {
             $this->redirect('/');
             return;
-        }
-        
+        }        
     }
 
     public function indexAction()
@@ -109,6 +111,20 @@ class AdminController extends Zend_Controller_Action
             }
         }
     }
+
+
+    public function usersAction() {
+        $this->view->users = (new Application_Model_User())->selectAll();
+        
+
+
+    }
+    public function categoriesAction() {
+        $this->view->categories = (new Application_Model_Category())->selectAll();
+
+    }
+
+
 
 
 }
