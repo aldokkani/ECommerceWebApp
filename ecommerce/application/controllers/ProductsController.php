@@ -1,9 +1,11 @@
 <?php
 
 class ProductsController extends Zend_Controller_Action {
-
+  private $userData;
     public function init() {
         /* Initialize action controller here */
+        $auth = Zend_Auth::getInstance();
+        $this->userData = $auth->getIdentity();
     }
 
     public function indexAction() {
@@ -31,15 +33,15 @@ class ProductsController extends Zend_Controller_Action {
         if ($request->isPost()) {
             if ($form->isValid($request->getPost())) {
                 $review_model = new Application_Model_UserProductReview();
-                $user_id = 1;
-                $product_id = 19;
+                $product_id =  $this->_request->getParam('product_id');
                 $rateValue = 0;
                 $comment = $this->_request->getParam('comment');
-                $review_model->addNewReview($user_id, $product_id, $rateValue, $comment);
+                $review_model->addNewReview($this->userData->id, $product_id, $rateValue, $comment);
                 $this->redirect('/products/details/product_id/' . $id);
             }
         }
         $this->view->new_comment_form = $form;
+        $this->view->user_data = $this->userData;
     }
 
 //    public function listAction() {
@@ -54,14 +56,15 @@ class ProductsController extends Zend_Controller_Action {
 
     public function calcRateAction() {
         // action body
-        $user_id = 1;
-        $product_id = 19;
+        // $product_id = $this->_request->getParam('product_id');
+        // echo $product_id;die;
         $this->_helper->viewRenderer->setNoRender();
         $this->_helper->getHelper('layout')->disableLayout();
         $rateValue = $this->_request->getParam('rate');
         $comment = "";
+        $product_id= $this->_request->getParam('product_id');
         $review2_model = new Application_Model_UserProductReview();
-        $review2_model->addNewReview($user_id, $product_id, $rateValue, $comment);
+        $review2_model->addNewReview($this->userData->id, $product_id, $rateValue, $comment);
         $review1_model = new Application_Model_UserProductReview();
         $avgRate = $review1_model->selectRateByProduct($product_id);
         echo $avgRate;
