@@ -15,11 +15,13 @@ class LoginController extends Zend_Controller_Action {
     public function indexAction() {
 //        session_start();
 //        $this->_helper->viewRenderer->setNoRender();
-        $this->_helper->getHelper('layout')->disableLayout();
-        $form = new Application_Form_Login();
+//        $this->_helper->getHelper('layout')->disableLayout();
+        $loginForm = new Application_Form_Login();
+        $signUpForm = new Application_Form_SignUp();
         $request = $this->getRequest();
-        if ($request->isPost()) {
-            if ($form->isValid($request->getPost())) {
+        
+        if ($request->isPost() && $request->getParam('login_submit') == 'Login') {
+            if ($loginForm->isValid($request->getPost())) {
                 $my_auth = new Application_Model_MyAuth();
                 $isAuth = $my_auth->login(
                         $request->getParam('email'), $request->getParam('passwd')
@@ -52,7 +54,8 @@ class LoginController extends Zend_Controller_Action {
 
         // echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
         $this->view->fb_login_button = '<a class="btn btn-primary" href="' . $loginUrl . '">Log in with Facebook!</a>';
-        $this->view->login_form = $form;
+        $this->view->login_form = $loginForm;
+        $this->view->sign_up_form = $signUpForm;
     }
 
     public function fbcallbackAction() {
