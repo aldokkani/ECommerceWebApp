@@ -1,4 +1,13 @@
 
+<?php
+
+if(isset($_GET['ar'])){
+    $language="ar";
+}else {
+  $language="en";
+}
+
+?>
 			<section class="header_text sub">
 				<h4><span>Products</span></h4>
 			</section>
@@ -33,12 +42,22 @@
                                         <label for="star<?= $i ?>" ><?= $i ?> stars</label>
                       <?php endif; ?>
                     <?php endfor; ?>
+                    <nav id="menu">
+                        <ul><li>
+                    <a href="#">Add Product </a>
+                        <ul>
+                          <li><a href="<?= $this->baseUrl() ?>/wishlist/add-item-to-wishlist/product_id/<?= $value['id'] ?>">Add To Wishlist </a></li>
+                          <li><a href="<?= $this->baseUrl() ?>/shoppingcart/additemtocart/product_id/<?= $value['id'] ?>">Add To Cart </a></li>
+                        </ul>
+                      </li></ul></nav>
                             </div></p>
-                    <a href="#" class="dropdown-toggle btn btn-success" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add Product <span class="caret"></span></a>
+                    <!-- <a href="#" class="dropdown-toggle btn btn-success" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add Product <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="<?= $this->baseUrl() ?>/wishlist/add-item-to-wishlist/product_id/<?= $value['id'] ?>">Add To Wishlist </a></li>
                                 <li><a href="<?= $this->baseUrl() ?>/shoppingcart/additemtocart/product_id/<?= $value['id'] ?>">Add To Cart </a></li>
-                            </ul>
+                            </ul> -->
+
+
 								</div>
 							</li>
           <?php endforeach; ?>
@@ -59,20 +78,20 @@
 						<div class="block">
 							<ul class="nav nav-list">
 								<li class="nav-header">SUB CATEGORIES</li>
-								<li><a href="products.html">Nullam semper elementum</a></li>
-								<li class="active"><a href="products.html">Phasellus ultricies</a></li>
-								<li><a href="products.html">Donec laoreet dui</a></li>
-								<li><a href="products.html">Nullam semper elementum</a></li>
-								<li><a href="products.html">Phasellus ultricies</a></li>
-								<li><a href="products.html">Donec laoreet dui</a></li>
+								<li><a href="#">Nullam semper elementum</a></li>
+								<li class="active"><a href="#">Phasellus ultricies</a></li>
+								<li><a href="#">Donec laoreet dui</a></li>
+								<li><a href="#">Nullam semper elementum</a></li>
+								<li><a href="#">Phasellus ultricies</a></li>
+								<li><a href="#">Donec laoreet dui</a></li>
 							</ul>
 							<br/>
 							<ul class="nav nav-list below">
 								<li class="nav-header">MANUFACTURES</li>
-								<li><a href="products.html">Adidas</a></li>
-								<li><a href="products.html">Nike</a></li>
-								<li><a href="products.html">Dunlop</a></li>
-								<li><a href="products.html">Yamaha</a></li>
+								<li><a href="#">Adidas</a></li>
+								<li><a href="#">Nike</a></li>
+								<li><a href="#">Dunlop</a></li>
+								<li><a href="#">Yamaha</a></li>
 							</ul>
 						</div>
 						<div class="block">

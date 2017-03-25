@@ -1,17 +1,17 @@
 <?php
 
-if(isset($_GET['language'])){
-    $language=$_GET['language'] ;
+if(isset($_GET['ar'])){
+    $language="ar";
 }else {
   $language="en";
 }
 
 ?>
 
-<a href="/shop/add">add product</a>
+
 
 		<div id="wrapper" class="container">
-
+<hr><a class="btn btn-warning" href="/shop/add">add product</a>
 			<section class="header_text sub">
 				<h4><span>Products</span></h4>
 			</section>
@@ -20,15 +20,21 @@ if(isset($_GET['language'])){
 				<div class="row">
 					<div class="span9">
 						<ul class="thumbnails listing-products">
-              <?php foreach ($this->all_productsByVendor as $key => $value) : ?>
+              <?php
+$counter = 0;
+foreach ($this->all_productsByVendor as $value ) {
+    if (!($counter % 3)) {
+        echo '<div class="row">';
+    }
+    ?>
 							<li class="span3">
 								<div class="product-box">
 									<span class="sale_tag"></span>
-									<a href="/products/details/product_id/<?= $value['id'] ?>"><img class="imageDisplay" alt="" src="<?= $value['photo'] ?>"></a><br/>
+									<a href="/shop/details/product_id/<?= $value['id'] ?>"><img class="imageDisplay" alt="" src="<?= $value['photo'] ?>"></a><br/>
                   <?php if($language=="en") : ?>
-                    <a href="/products/details/product_id/<?= $value['id'] ?>" class="title"><?= $value['name_en'] ?></a><br/>
+                    <a href="/shop/details/product_id/<?= $value['id'] ?>" class="title"><?= $value['name_en'] ?></a><br/>
                   <?php else: ?>
-                    <a href="/products/details/product_id/<?= $value['id'] ?>" class="title"><?= $value['name_ar'] ?></a><br/>
+                    <a href="/shop/details/product_id/<?= $value['id'] ?>" class="title"><?= $value['name_ar'] ?></a><br/>
                   <?php endif; ?>
                   <?php if ($value['discount']) : ?>
                                 <a class="category"><?= "discount ".$value['discount'] . " %" ?></a>
@@ -54,7 +60,13 @@ if(isset($_GET['language'])){
                             </ul>
 								</div>
 							</li>
-          <?php endforeach; ?>
+              <?php
+    if (!(($counter - 2) % 3)) {
+        echo "</div>";
+    }
+    $counter += 1;
+}
+?>
 						</ul>
 						<hr>
 						<div class="pagination pagination-small pagination-centered">
@@ -72,20 +84,20 @@ if(isset($_GET['language'])){
 						<div class="block">
 							<ul class="nav nav-list">
 								<li class="nav-header">SUB CATEGORIES</li>
-								<li><a href="products.html">Nullam semper elementum</a></li>
-								<li class="active"><a href="products.html">Phasellus ultricies</a></li>
-								<li><a href="products.html">Donec laoreet dui</a></li>
-								<li><a href="products.html">Nullam semper elementum</a></li>
-								<li><a href="products.html">Phasellus ultricies</a></li>
-								<li><a href="products.html">Donec laoreet dui</a></li>
+								<li><a href="#">Nullam semper elementum</a></li>
+								<li class="active"><a href="#">Phasellus ultricies</a></li>
+								<li><a href="#">Donec laoreet dui</a></li>
+								<li><a href="#">Nullam semper elementum</a></li>
+								<li><a href="#">Phasellus ultricies</a></li>
+								<li><a href="#">Donec laoreet dui</a></li>
 							</ul>
 							<br/>
 							<ul class="nav nav-list below">
 								<li class="nav-header">MANUFACTURES</li>
-								<li><a href="products.html">Adidas</a></li>
-								<li><a href="products.html">Nike</a></li>
-								<li><a href="products.html">Dunlop</a></li>
-								<li><a href="products.html">Yamaha</a></li>
+								<li><a href="#">Adidas</a></li>
+								<li><a href="#">Nike</a></li>
+								<li><a href="#">Dunlop</a></li>
+								<li><a href="#">Yamaha</a></li>
 							</ul>
 						</div>
 						<div class="block">
