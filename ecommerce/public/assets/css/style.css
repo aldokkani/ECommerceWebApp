@@ -246,7 +246,21 @@ ul {
       margin-top: 50px;
   }
 
+
   .my-img-preview_size {
       height: 200px;
       width: 230px;
   }
+
+
+
+.productimageincart{
+    max-height: 130px !important;
+
+}
+
+
+
+.imageofshoppingcart{
+    max-height: 130px !important;    
+}

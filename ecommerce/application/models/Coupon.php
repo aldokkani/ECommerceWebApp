@@ -35,10 +35,7 @@ class Application_Model_Coupon extends Zend_Db_Table_Abstract
 
     public function verifyCoupon($c_hash) {
         
-        return $this->fetchall("c_hash=$c_hash")->toarray();
-
-        // var_dump($result);
-        // die();
+        return $this->fetchall("c_hash='".$c_hash."'")->toarray();
     }
 
     
