@@ -68,7 +68,11 @@ class Application_Model_Products extends Zend_Db_Table_Abstract {
     }
 
     public function getNewProducts() {
-        return $this->fetchAll($where = null, $order = 'id DESC', $count = 5);
+        return $this->fetchAll($where = null, $order = 'id DESC', $count = 8);
+    }
+    
+    public function getFeatureProducts() {
+        return $this->fetchAll($where = null, $order = 'id ASC', $count = 8);
     }
 
     function selectAllByVendor($vendor_id) {

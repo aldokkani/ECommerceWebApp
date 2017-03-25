@@ -1,6 +1,15 @@
+<?php
+
+if(isset($_GET['language'])){
+    $language=$_GET['language'] ;
+}else {
+  $language="en";
+}
+
+?>
+
 <a href="/shop/add">add product</a>
 
-      <?php $language=$_GET['language'] ?>
 		<div id="wrapper" class="container">
 
 			<section class="header_text sub">

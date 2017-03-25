@@ -39,11 +39,10 @@ class ShopController extends Zend_Controller_Action
         if ($request->isPost()) {
             if ($form->isValid($request->getPost())) {
                 $review_model = new Application_Model_UserProductReview();
-                $user_id = 1;
                 $product_id = 19;
                 $rateValue = 0;
                 $comment = $this->_request->getParam('comment');
-                $review_model->addNewReview($user_id, $product_id, $rateValue, $comment);
+                $review_model->addNewReview($this->userData->id, $product_id, $rateValue, $comment);
                 $this->redirect('/shop/details/product_id/' . $id);
             }
         }

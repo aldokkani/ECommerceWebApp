@@ -21,28 +21,29 @@ $('button#search_btn').on('click', function(){
                     </div>\
                 </div>\
             </div>"
-                
+
             $('div#search_result').html(htmlStr);
 //            location.href = "#search_result";
 //            console.log(JSON.parse(data));
-            
+
         });
     }
 });
 
-function getRate(id) {
-    var radios = document.getElementsByClassName('radio');
+function getRate(id, p_id) {
+    // var radios = document.getElementsByClassName('radio');
+    var radios = $('.radio');
     for (var i = 0, length = radios.length; i < length; i++) {
         if (radios[i].checked) {
             var myRate = radios[i].value;
-            $.post('/products/calc-rate', {rate: myRate}, function (data) {
-                var input = document.getElementById('star' + data);
-                input.checked = "checked";
-                console.log(data);
+            $.post('/products/calc-rate', {rate: myRate, product_id: p_id}, function (data) {
+              // console.log(myRate,"      fffffff  __", p_id);
+              console.log(data);
+                $('#star'+data).attr("checked" , "checked")
 
             });
 
-            break
+            break;
         }
     }
 }

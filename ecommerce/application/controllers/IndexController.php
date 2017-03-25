@@ -7,11 +7,11 @@ class IndexController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-        // action body
+        
         $products_obj = new Application_Model_Products();
-        //$this->view->all_products_ctx=$products_obj->listProducts();
         $this->view->new_products = $products_obj->getNewProducts();
-        //----------------------------------------------------------
+        $this->view->feature_products = $products_obj->getFeatureProducts();
+        
         $category_obj = new Application_Model_Category();
         $this->view->all_categories_ctx = $category_obj->selectAll();
     }

@@ -8,22 +8,17 @@ class Application_Form_CommentForm extends Zend_Form
         /* Form Elements & Other Definitions Here ... */
         $this->setMethod('POST');
 
-        $comment = new Zend_Form_Element_Text('comment');  // <input type="text" name="fname" class="form-control">
+        $comment = new Zend_Form_Element_Textarea('comment');  // <input type="text" name="fname" class="form-control">
         $comment->setLabel('Add comment: ');
-        $comment->setAttribs(array('class'=>'input-xlarge','rows'=>'4','placeholder'=>'example:this is amazing product'));   //style
-        // $comment->setAttrib("rows",4);
+        $comment->setAttribs(array('style'=>'width: 540px;','ROWS'=>'4', 'placeholder'=>'example:this is amazing product , all my family loved it'));   //style
 
 
         $submit= new Zend_Form_Element_Submit('Submit');
-        $submit->setAttribs(array('class'=>'btn btn-success '));
-
-        $reset= new Zend_Form_Element_Submit('Reset');
-        $reset->setAttribs(array('class'=>'btn btn-warning'));
-
+        $submit->setAttribs(array('class'=>'btn ','style'=>'background-color:#f5f5f5'));
+        $submit->setLabel('Add comment');
         $this->addElements(array(
           $comment,
-          $submit,
-          $reset
+          $submit
         ));
     }
 

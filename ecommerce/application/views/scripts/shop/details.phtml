@@ -1,6 +1,15 @@
 
-<a href="?language=en" onclick="window.location.reload(true);">ENGLISH</a>
-<a href="?language=ar" onclick="window.location.reload(true);">ARABIC</a>
+<?php
+
+if(isset($_GET['language'])){
+		$language=$_GET['language'] ;
+}else {
+	$language="en";
+}
+
+?>
+
+
 
 
 		<div id="wrapper" class="container">
@@ -31,7 +40,6 @@
 								</ul>
 							</div>
 							<div class="span5">
-                <?php $language=$_GET['language'] ?>
                 <?php if ($language == 'en') :?>
                         <table class="table">
                             <tr>

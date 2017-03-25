@@ -1,72 +1,68 @@
 <?php
 
-class Application_Form_SignUp extends Zend_Form
-{
+class Application_Form_SignUp extends Zend_Form {
 
-    public function init()
-    {
-        /* Form Elements & Other Definitions Here ... */
+    public function init() {
         $this->setMethod('POST');
-        //fullname-------------------------------------------------
-        $fullname=new Zend_Form_Element_Text('fullname');
-        $fullname->setLabel('Full Name : ');
-        $fullname->setAttribs(array(
-          'class'=>'form-control',
-          'placeholder'=>'example: Mahmoud Magdy Kamel'
+        $fname = new Zend_Form_Element_Text('fname');
+        $fname->setLabel('First Name');
+        $fname->setRequired();
+        $fname->addValidator('StringLength', false, array(3, 10));
+        $fname->addFilter('StringTrim');
+        $fname->setAttribs(array(
+            'class' => 'input-xlarge',
+            'placeholder' => 'John'
         ));
-        $fullname->setRequired();
-        $fullname->addValidator('StringLength', false, Array(3,45));
-        $fullname->addFilter('StringTrim');
-        //email------------------------------------------------
-        $email=new Zend_Form_Element_Text('email');
-        $email->setLabel('Email Address: ');
-        $email->setAttribs(array(
-          'class'=>'form-control',
-          'placeholder'=>'example:mahmoudmagdy@gmail.com'
+
+        $lname = new Zend_Form_Element_Text('lname');
+        $lname->setLabel('Last Name');
+        $lname->setRequired();
+        $lname->addValidator('StringLength', false, array(3, 10));
+        $lname->addFilter('StringTrim');
+        $lname->setAttribs(array(
+            'class' => 'input-xlarge',
+            'placeholder' => 'Mark'
         ));
+
+        $email = new Zend_Form_Element_Text('email');
+        $email->setLabel('E-mail');
         $email->setRequired();
-        //password---------------------------------------------
-        $password=new Zend_Form_Element_Password('password');
-        $password->setLabel('Password: ')
-                 ->setRequired(true)
-                 ->setAttrib('class', 'form-control');
-        //confirm Password--------------------------------------
-        $cnf_password=new Zend_Form_Element_Password('cnf_password');
-        $cnf_password->setLabel('Confirm Password : ')
-                 ->setRequired(true)
-                 ->setAttrib('class', 'form-control');
-        //Type-------------------------------------------------------
-//        $type= new Zend_Form_Element_Radio('type');
-//        $type->setLabel('Choose User Type : ');
-//        $type->setValueOptions(array(
-//        '0' => 'CustomerUser',
-//        '1' => 'ShopUser',
-//        '2' => 'AdminUser'
-//        ));
-//        $type->setRequired(true)
-//             ->setAttrib('class', 'form-control');
-        //submit-----------------------------------------------------
-        $submit=new Zend_Form_Element_Submit('submit');
+        $email->addValidator('EmailAddress');
+        $email->setAttribs(array(
+            'class' => 'input-xlarge',
+            'placeholder' => 'john_mark@example.me'
+        ));
+
+        
+        $passwd = new Zend_Form_Element_Password('passwd');
+        $passwd->setLabel('Password')
+                ->setRequired()
+                ->setAttribs(array(
+                    'class' => 'input-xlarge',
+        ));
+
+        $conf_passwd = new Zend_Form_Element_Password('conf_passwd');
+        $conf_passwd->setLabel('Re-type Password')
+                ->setRequired()
+                ->addValidator('Identical', false, array('token' => 'passwd'))
+                ->setAttribs(array(
+                    'class' => 'form-control',
+        ));
+
+        $submit = new Zend_Form_Element_Submit('Sign Up');
         $submit->setAttribs(array(
-          'class'=>'btn btn-success'
+            'class' => 'btn btn-success',
+            'name' => 'register_submit'
         ));
-        //reset------------------------------------------------------
-        $reset=new Zend_Form_Element_Reset('reset');
+
+        $reset = new Zend_Form_Element_Reset('Reset');
         $reset->setAttribs(array(
-          'class'=>'btn btn-danger'
+            'class' => 'btn btn-warning'
         ));
-        //-----------------------------------------------------------
-        $this->addElements(array(
-          $fullname,
-          $email,
-          $password,
-          $cnf_password,
-          //$type,
-          $submit,
-          $reset
-        ));
+
+        $this->addElements(
+                array($fname, $lname, $email, $passwd, $conf_passwd, $submit, $reset)
+        );
     }
 
-
 }
-
