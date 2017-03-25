@@ -255,3 +255,16 @@ ul {
   #second-nav {
       margin-top: 50px;
   }
+
+
+
+.productimageincart{
+    max-height: 130px !important;
+
+}
+
+
+
+.imageofshoppingcart{
+    max-height: 130px !important;    
+}

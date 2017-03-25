@@ -123,7 +123,7 @@ class CouponController extends Zend_Controller_Action
     	$request = $this->getRequest();
         $couponpar = $request->getParams()['c_hash'];
 
-
+        
         $coupon_model = new Application_Model_Coupon();        
         $coupon = $coupon_model->verifyCoupon($couponpar);
 
@@ -132,14 +132,18 @@ class CouponController extends Zend_Controller_Action
         {
         	if($coupon && $coupon[0]["c_hash"] === $couponpar )
 	        {
-	        	echo "Coupon entered is valid | ". $coupon[0]["id"];
+	        	echo "Success: Coupon entered is valid | ". $coupon[0]["id"]."|".$coupon[0]["discount"];
+                //echo "(".$coupon[0]["discount"].")";
 	        	// die();
 	        	
 	        }
+            else{
+                echo "Fail: Coupon is Not Valid";
+            }
         }
         else
         {
-        	echo "not valid";
+        	echo "Fail: Coupon is Not Valid";
         	//die();
         }
 
