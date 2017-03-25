@@ -44,7 +44,7 @@
                                 ?>
                                 <li><a style=" font-size: 18px" href="#">Welcome <span style="font-weight: bold"><?= $userName ?></span></a></li>
                                 <li><a href="/shoppingcart/mycart">My Cart</a></li>
-                                <li><a href="/wishlist">My Wish List</a></li>
+                                <li><a href="/wishlist/my-wishlist">My Wish List</a></li>
                                 <li><a href="/signout">Logout</a></li>
                             <?php else : ?>
                                 <li><a href="/login">My Account</a></li>
@@ -66,7 +66,7 @@
 
                     <nav id="menu" class="pull-right">
                         <ul>
-                            <li><a href="./products.html">Departments</a>
+                            <li><a href="#">Departments</a>
                                 <ul>
                                     <?php
                                     $categories = (new Application_Model_Category())->selectAll();
@@ -76,8 +76,8 @@
                                     <?php } ?>
                                 </ul>
                             </li>
-                            <li><a href="./products.html">Best Seller</a></li>
-                            <li><a href="./products.html">Top Seller</a></li>
+                            <li><a href="#">Best Seller</a></li>
+                            <li><a href="#">Top Seller</a></li>
                         </ul>
                     </nav>
                 </div>

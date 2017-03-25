@@ -1,140 +1,134 @@
 
-			<section class="header_text sub">
-				<h4><span>Products</span></h4>
-			</section>
-			<section class="main-content">
+<section class="header_text sub">
+    <h4><span>Products</span></h4>
+</section>
+<section class="main-content">
 
-				<div class="row">
-					<div class="span9">
-						<ul class="thumbnails listing-products">
-              <?php foreach ($this->all_products_with_offer as $key => $value) : ?>
-							<li class="span3">
-								<div class="product-box">
-									<span class="sale_tag"></span>
-									<a href="/products/details/product_id/<?= $value['id'] ?>"><img class="imageDisplay" alt="" src="<?= $value['photo'] ?>"></a><br/>
-                  <?php if($language=="en") : ?>
-                    <a href="/products/details/product_id/<?= $value['id'] ?>" class="title"><?= $value['name_en'] ?></a><br/>
-                  <?php else: ?>
-                    <a href="/products/details/product_id/<?= $value['id'] ?>" class="title"><?= $value['name_ar'] ?></a><br/>
-                  <?php endif; ?>
-                  <?php if ($value['discount']) : ?>
-                                <a class="category"><?= "discount ".$value['discount'] . " %" ?></a>
-                  <?php endif; ?>
-                  <p class="price"><?= " " . $value['unit_price'] . " L.E." ?></p>
+    <div class="row">
+        <div class="span9">
+            <ul class="thumbnails listing-products">
+                <?php foreach ($this->all_products_with_offer as $key => $value) : ?>
+                    <li class="span3">
+                        <div class="product-box">
+                            <span class="sale_tag"></span>
+                            <a href="/products/details/product_id/<?= $value['id'] ?>"><img class="imageDisplay" alt="" src="<?= $value['photo'] ?>"></a><br/>
+                            <?php if ($language == "en") : ?>
+                                <a href="/products/details/product_id/<?= $value['id'] ?>" class="title"><?= $value['name_en'] ?></a><br/>
+                            <?php else: ?>
+                                <a href="/products/details/product_id/<?= $value['id'] ?>" class="title"><?= $value['name_ar'] ?></a><br/>
+                            <?php endif; ?>
+                            <?php if ($value['discount']) : ?>
+                                <a class="category"><?= "discount " . $value['discount'] . " %" ?></a>
+                            <?php endif; ?>
+                            <p class="price"><?= " " . $value['unit_price'] . " L.E." ?></p>
 
-                  <p>
+                            <p>
                             <div class="fixedRate">
                                 <?php for ($i = 5; $i >= 1; $i--) : ?>
-                      <?php if ($value['rate'] == $i): ?>
+                                    <?php if ($value['rate'] == $i): ?>
                                         <input disabled="true" class='radio1' type="radio" value=<?= $i ?>  checked="checked"/>
                                         <label for="star<?= $i ?>" ><?= $i ?> stars</label>
-                      <?php else : ?>
+                                    <?php else : ?>
                                         <input  disabled="true" class='radio1' type="radio" value=<?= $i ?>/>
                                         <label for="star<?= $i ?>" ><?= $i ?> stars</label>
-                      <?php endif; ?>
-                    <?php endfor; ?>
+                                    <?php endif; ?>
+                                <?php endfor; ?>
                             </div></p>
-                    <a href="#" class="dropdown-toggle btn btn-success" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add Product <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle btn btn-success" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add Product <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="<?= $this->baseUrl() ?>/wishlist/add-item-to-wishlist/product_id/<?= $value['id'] ?>">Add To Wishlist </a></li>
                                 <li><a href="<?= $this->baseUrl() ?>/shoppingcart/additemtocart/product_id/<?= $value['id'] ?>">Add To Cart </a></li>
                             </ul>
-								</div>
-							</li>
-          <?php endforeach; ?>
-						</ul>
-						<hr>
-						<div class="pagination pagination-small pagination-centered">
-							<ul>
-								<li><a href="#">Prev</a></li>
-								<li class="active"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">Next</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="span3 col" style="width:250px">
-						<div class="block">
-							<ul class="nav nav-list">
-								<li class="nav-header">SUB CATEGORIES</li>
-								<li><a href="products.html">Nullam semper elementum</a></li>
-								<li class="active"><a href="products.html">Phasellus ultricies</a></li>
-								<li><a href="products.html">Donec laoreet dui</a></li>
-								<li><a href="products.html">Nullam semper elementum</a></li>
-								<li><a href="products.html">Phasellus ultricies</a></li>
-								<li><a href="products.html">Donec laoreet dui</a></li>
-							</ul>
-							<br/>
-							<ul class="nav nav-list below">
-								<li class="nav-header">MANUFACTURES</li>
-								<li><a href="products.html">Adidas</a></li>
-								<li><a href="products.html">Nike</a></li>
-								<li><a href="products.html">Dunlop</a></li>
-								<li><a href="products.html">Yamaha</a></li>
-							</ul>
-						</div>
-						<div class="block">
-							<h4 class="title">
-								<span class="pull-left"><span class="text">Randomize</span></span>
-								<span class="pull-right">
-									<a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
-								</span>
-							</h4>
-							<div id="myCarousel" class="carousel slide">
-								<div class="carousel-inner">
-									<div class="active item">
-										<ul class="thumbnails listing-products">
-											<li class="span3">
-												<div class="product-box">
-													<span class="sale_tag"></span>
-													<img alt="" src="<?= $this->baseUrl() ?>/assets/themes/images/ladies/1.jpg"><br/>
-													<a href="product_detail.html" class="title">Fusce id molestie massa</a><br/>
-													<a href="#" class="category">Suspendisse aliquet</a>
-													<p class="price">$261</p>
-												</div>
-											</li>
-										</ul>
-									</div>
-									<div class="item">
-										<ul class="thumbnails listing-products">
-											<li class="span3">
-												<div class="product-box">
-													<img alt="" src="<?= $this->baseUrl() ?>/assets/themes/images/ladies/2.jpg"><br/>
-													<a href="product_detail.html" class="title">Tempor sem sodales</a><br/>
-													<a href="#" class="category">Urna nec lectus mollis</a>
-													<p class="price">$134</p>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="block">
-							<h4 class="title"><strong>Best</strong> Seller</h4>
-							<ul class="small-product">
-								<li>
-									<a href="#" title="Praesent tempor sem sodales">
-										<img src="<?= $this->baseUrl() ?>/assets/themes/images/ladies/3.jpg" alt="Praesent tempor sem sodales">
-									</a>
-									<a href="#">Praesent tempor sem</a>
-								</li>
-								<li>
-									<a href="#" title="Luctus quam ultrices rutrum">
-										<img src="<?= $this->baseUrl() ?>/assets/themes/images/ladies/4.jpg" alt="Luctus quam ultrices rutrum">
-									</a>
-									<a href="#">Luctus quam ultrices rutrum</a>
-								</li>
-								<li>
-									<a href="#" title="Fusce id molestie massa">
-										<img src="<?= $this->baseUrl() ?>/assets/themes/images/ladies/5.jpg" alt="Fusce id molestie massa">
-									</a>
-									<a href="#">Fusce id molestie massa</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</section>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+            <hr>
+            <div class="pagination pagination-small pagination-centered">
+                <ul>
+                    <li><a href="#">Prev</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">Next</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="span3 col" style="width:250px">
+            <div class="block">
+                <ul class="nav nav-list">
+                    <li class="nav-header">CATEGORIES</li>
+                    <?php foreach ($this->all_categories as $key => $value) { ?>
+
+                        <li><a href="/products/display/cid/<?= $value['id'] ?>"><?= $value['name'] ?></a></li>
+                        <?php
+                    }
+                    ?>
+                </ul>
+                <br/>
+
+            </div>
+            <div class="block">
+                <h4 class="title">
+                    <span class="pull-left"><span class="text">Randomize</span></span>
+                    <span class="pull-right">
+                        <a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
+                    </span>
+                </h4>
+                <div id="myCarousel" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="active item">
+                            <ul class="thumbnails listing-products">
+                                <li class="span3">
+                                    <div class="product-box">
+                                        <span class="sale_tag"></span>
+                                        <img alt="" src="<?= $this->baseUrl() ?>/assets/themes/images/ladies/1.jpg"><br/>
+                                        <a href="product_detail.html" class="title">Fusce id molestie massa</a><br/>
+                                        <a href="#" class="category">Suspendisse aliquet</a>
+                                        <p class="price">$261</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="item">
+                            <ul class="thumbnails listing-products">
+                                <li class="span3">
+                                    <div class="product-box">
+                                        <img alt="" src="<?= $this->baseUrl() ?>/assets/themes/images/ladies/2.jpg"><br/>
+                                        <a href="product_detail.html" class="title">Tempor sem sodales</a><br/>
+                                        <a href="#" class="category">Urna nec lectus mollis</a>
+                                        <p class="price">$134</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block">
+                <h4 class="title"><strong>Best</strong> Seller</h4>
+                <ul class="small-product">
+                    <li>
+                        <a href="#" title="Praesent tempor sem sodales">
+                            <img src="<?= $this->baseUrl() ?>/assets/themes/images/ladies/3.jpg" alt="Praesent tempor sem sodales">
+                        </a>
+                        <a href="#">Praesent tempor sem</a>
+                    </li>
+                    <li>
+                        <a href="#" title="Luctus quam ultrices rutrum">
+                            <img src="<?= $this->baseUrl() ?>/assets/themes/images/ladies/4.jpg" alt="Luctus quam ultrices rutrum">
+                        </a>
+                        <a href="#">Luctus quam ultrices rutrum</a>
+                    </li>
+                    <li>
+                        <a href="#" title="Fusce id molestie massa">
+                            <img src="<?= $this->baseUrl() ?>/assets/themes/images/ladies/5.jpg" alt="Fusce id molestie massa">
+                        </a>
+                        <a href="#">Fusce id molestie massa</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

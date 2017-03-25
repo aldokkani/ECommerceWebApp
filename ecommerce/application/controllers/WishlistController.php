@@ -42,6 +42,12 @@ class WishlistController extends Zend_Controller_Action
         $wishlist_obj=new Application_Model_Wishlist();
         $wishlist_items=$wishlist_obj->selectAll($this->userData->id);
         $this->view->mywishlist_items_ctx=$wishlist_items;
+        //---------------------------------------
+        $category_obj=new Application_Model_Category();
+        $this->view->all_categories=$category_obj->selectAll();
+        //-----------------------------------------
+        $products_obj = new Application_Model_Products();
+        $this->view->new_products = $products_obj->getNewProducts();
         
         
     }
