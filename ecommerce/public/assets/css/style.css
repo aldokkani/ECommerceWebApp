@@ -246,6 +246,15 @@ ul {
       margin-top: 50px;
   }
 
+  #chartContainer{
+      display:inline-block;
+      padding-right: 100px;
+  }
+  #pieContainer{
+     display:inline-block; 
+  }
+
+
 .comment_textarea{
   margin: 0px 0px 10px;
   width: 602px;
@@ -266,3 +275,4 @@ ul {
     max-height: 130px !important;
 
 }
+

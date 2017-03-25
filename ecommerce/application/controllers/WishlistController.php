@@ -20,7 +20,8 @@ class WishlistController extends Zend_Controller_Action
         // action body
         $product_id=$this->_request->getParam('product_id');
         $wishlist_obj=new Application_Model_Wishlist();
-        $check=$wishlist_obj->checkOnProduct($product_id);
+        $check=$wishlist_obj->checkOnProduct($product_id,$this->userData->id);
+        //echo $this->userData->id;  die();
         if ($check)
         {
             $this->redirect('wishlist/my-wishlist');
