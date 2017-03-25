@@ -2,11 +2,7 @@
     <div class="row">
         <div class="span9">
             <h4 class="title"><span class="text"><strong>My</strong> Wishlist (<?php echo sizeof($this->mywishlist_items_ctx); ?>) </span></h4>
-           <?php 
-           if (sizeof($this->mywishlist_items_ctx==0)){?>
-               <h3>No Wish List Items</h3>
-               <?php
-           }else{?>
+    <?php if($this->mywishlist_items_ctx):?>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -42,9 +38,9 @@
 
                 </tbody>
             </table>
-              <?php
-           }
-           ?>
+       <?php else:?>
+            <p><strong>There Is No Items In your Wishlist</strong></p>
+            <?php endif;?>
         </div>
         <div class="span3 col">
             <div class="block">
