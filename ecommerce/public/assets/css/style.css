@@ -256,8 +256,18 @@ ul {
   #second-nav {
       margin-top: 50px;
   }
+
 .comment_textarea{
   margin: 0px 0px 10px;
   width: 602px;
   height: 87px;
+
+.productimageincart{
+    max-height: 130px !important;
+
+}
+
+.imageofshoppingcart{
+    max-height: 130px !important;
+
 }
