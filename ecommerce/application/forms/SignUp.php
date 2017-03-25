@@ -4,24 +4,14 @@ class Application_Form_SignUp extends Zend_Form {
 
     public function init() {
         $this->setMethod('POST');
-        $fname = new Zend_Form_Element_Text('fname');
-        $fname->setLabel('First Name');
+        $fname = new Zend_Form_Element_Text('fullname');
+        $fname->setLabel('Full Name');
         $fname->setRequired();
-        $fname->addValidator('StringLength', false, array(3, 10));
+        $fname->addValidator('StringLength', false, array(3, 50));
         $fname->addFilter('StringTrim');
         $fname->setAttribs(array(
             'class' => 'input-xlarge',
-            'placeholder' => 'John'
-        ));
-
-        $lname = new Zend_Form_Element_Text('lname');
-        $lname->setLabel('Last Name');
-        $lname->setRequired();
-        $lname->addValidator('StringLength', false, array(3, 10));
-        $lname->addFilter('StringTrim');
-        $lname->setAttribs(array(
-            'class' => 'input-xlarge',
-            'placeholder' => 'Mark'
+            'placeholder' => 'Enter your full name'
         ));
 
         $email = new Zend_Form_Element_Text('email');
@@ -30,7 +20,7 @@ class Application_Form_SignUp extends Zend_Form {
         $email->addValidator('EmailAddress');
         $email->setAttribs(array(
             'class' => 'input-xlarge',
-            'placeholder' => 'john_mark@example.me'
+            'placeholder' => 'Enter your email'
         ));
 
         
@@ -39,6 +29,7 @@ class Application_Form_SignUp extends Zend_Form {
                 ->setRequired()
                 ->setAttribs(array(
                     'class' => 'input-xlarge',
+                    'placeholder' => 'Enter your password'
         ));
 
         $conf_passwd = new Zend_Form_Element_Password('conf_passwd');
@@ -46,22 +37,23 @@ class Application_Form_SignUp extends Zend_Form {
                 ->setRequired()
                 ->addValidator('Identical', false, array('token' => 'passwd'))
                 ->setAttribs(array(
-                    'class' => 'form-control',
+                    'class' => 'input-xlarge',
+                    'placeholder' => 'Re-enter your password'
         ));
 
         $submit = new Zend_Form_Element_Submit('Sign Up');
         $submit->setAttribs(array(
-            'class' => 'btn btn-success',
+            'class' => 'btn btn-inverse large',
             'name' => 'register_submit'
         ));
 
         $reset = new Zend_Form_Element_Reset('Reset');
         $reset->setAttribs(array(
-            'class' => 'btn btn-warning'
+            'class' => 'btn large'
         ));
 
         $this->addElements(
-                array($fname, $lname, $email, $passwd, $conf_passwd, $submit, $reset)
+                array($fname, $email, $passwd, $conf_passwd, $submit, $reset)
         );
     }
 

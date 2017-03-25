@@ -8,7 +8,7 @@ class Application_Model_MyAuth {
         $authAdapter = new Zend_Auth_Adapter_DbTable(
                 $db, 'users', 'email', 'password');
         $authAdapter->setIdentity($id)
-                ->setCredential($credential); //md5($credential));
+                ->setCredential(md5($credential));
         if ($authAdapter->authenticate()->isValid()) {
             $auth = Zend_Auth::getInstance();
             $storage = $auth->getStorage();

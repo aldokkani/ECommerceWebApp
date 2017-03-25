@@ -1,3 +1,40 @@
+$('form#search_form').submit(function(e){
+        e.preventDefault();
+        console.log("test");
+        var search = $('input#search_input').val();
+    if($.trim(search) !== "") {
+        $.post('/products/search', {name: search}, function(responseData){
+            var data = JSON.parse(responseData);
+            var htmlStr = "\
+            <div>\
+                <div>\
+                    <h3>Search result</h3>\
+                    <hr>\
+                </div>\
+                <ul class='thumbnails'>\
+                                    <li class='span3'>\
+                                        <div class='product-box'>\
+                                            <p>\
+                                                <a href='/products/details/product_id/"+data.id+"'>\
+                                                    <img class='my-img-preview_size' src=" + data.photo + ">\
+                                                </a>\
+                                            </p>\
+                                            <a href='/products/details/product_id/"+data.id+"' class='title'>"+data.name_en+"</a><br/>\
+                                            <a href='/products/details/product_id/"+data.id+"' class='category'>"+"Category"+"</a>\
+                                            <p class='price'>$"+data.price+"</p>\
+                                        </div>\
+                                    </li>\
+                                </ul>\
+                                </div>";
+
+            $('div#searchResult').html(htmlStr);
+//            location.href = "#search_result";
+            console.log(data.photo);
+
+        });
+    }
+    });
+
 $('button#search_btn').on('click', function(){
     var search = $('input#search_input').val();
     if($.trim(search) !== "") {

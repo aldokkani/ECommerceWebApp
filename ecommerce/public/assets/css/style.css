@@ -1,6 +1,6 @@
 .imageDisplay{
-  max-height: 240px !important;
-width: 100%;
+    max-height: 240px !important;
+    width: 100%;
 }
 
 
@@ -178,8 +178,8 @@ ul {
     height: auto;
 }
 .post .post-description {
-  padding: 8px 59px;
-  background-color: #f5f5f5;
+    padding: 8px 59px;
+    background-color: #f5f5f5;
 }
 .post .post-description p {
     font-size: 14px;
@@ -239,25 +239,24 @@ ul {
     margin-left: 50px;
 }
 
-  #login_form {
-      margin-top: 100px;
-  }
+#login_form {
+    margin-top: 100px;
+}
 
-  #second-nav {
-      margin-top: 50px;
-  }
+#second-nav {
+    margin-top: 50px;
+}
 
 .comment_textarea{
-  margin: 0px 0px 10px;
-  width: 602px;
-  height: 87px;
+    margin: 0px 0px 10px;
+    width: 602px;
+    height: 87px;
+}
 
-  .my-img-preview_size {
-      height: 200px;
-      width: 230px;
-  }
-
-
+.my-img-preview_size {
+    height: 200px;
+    width: 230px;
+}
 
 .productimageincart{
     max-height: 130px !important;

@@ -30,8 +30,8 @@
         <div id="top-bar" class="container">
             <div class="row">
                 <div class="span4">
-                    <form method="POST" class="search_form">
-                        <input type="text" class="input-block-level search-query" style="color: black;" Placeholder="eg. T-shirt">
+                    <form method="POST" id="search_form" class="search_form">
+                        <input type="text" class="input-block-level search-query" id="search_input" style="color: black;" Placeholder="eg. T-shirt">
                     </form>
                 </div>
                 <div class="span8">
@@ -82,7 +82,7 @@
                     </nav>
                 </div>
             </section>
-
+            <div id="searchResult"></div>
             <?php echo $this->layout()->content; ?>
 
             <section id="footer-bar">

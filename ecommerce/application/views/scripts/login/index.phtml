@@ -1,12 +1,16 @@
 <section class="header_text sub">
-    <img class="pageBanner" src="themes/images/pageBanner.png" alt="New products" >
+    <img class="pageBanner" src="/assets/themes/images/pageBanner.png" alt="New products" >
     <h4><span>Login or Regsiter</span></h4>
+    <?php echo $this->api_error;?>
 </section>			
 <section class="main-content">				
     <div class="row">
         <div class="span5">					
             <h4 class="title"><span class="text"><strong>Login</strong> Form</span></h4>
-            <?php echo $this->login_form; ?>
+            <?php echo $this->login_form; 
+            echo $this->fb_login_button;
+            echo $this->login_error;
+            ?>
         </div>
         <div class="span7">					
             <h4 class="title"><span class="text"><strong>Register</strong> Form</span></h4>
@@ -14,8 +18,4 @@
         </div>				
     </div>
 </section>
-<?php
-//echo $this->login_form;
-//echo $this->login_error;
-//echo $this->fb_login_button;
-?>
+

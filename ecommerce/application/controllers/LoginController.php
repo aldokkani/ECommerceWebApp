@@ -13,12 +13,31 @@ class LoginController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-//        session_start();
-//        $this->_helper->viewRenderer->setNoRender();
-//        $this->_helper->getHelper('layout')->disableLayout();
+        
+        if(isset($_GET['ss'])){
+            $this->view->api_error = "<div class='alert alert-danger' role='alert'>
+                            You are not a memeber, please <a href='#' class='alert-link'>Sign up</a> first.
+                        </div>";
+        }
         $loginForm = new Application_Form_Login();
         $signUpForm = new Application_Form_SignUp();
         $request = $this->getRequest();
+        
+        if ($request->isPost() && $request->getParam('register_submit') == 'SignUp' ){
+            if ($signUpForm->isValid($request->getPost())) {
+                $user_model = new Application_Model_User();
+                $user_model->addUser($request->getParams());
+                $user_id = (new Application_Model_User())
+                        ->selectUserByEmail($request->getParam('email'))['id'];
+                (new Application_Model_Shoppingcart())->AddUserEmptyCart($user_id);
+                $my_auth = new Application_Model_MyAuth();
+                $isAuth = $my_auth->login(
+                        $request->getParam('email'), $request->getParam('passwd')
+                );
+                $this->redirect('/');
+            }
+        }
+       
         
         if ($request->isPost() && $request->getParam('login_submit') == 'Login') {
             if ($loginForm->isValid($request->getPost())) {
@@ -90,7 +109,7 @@ class LoginController extends Zend_Controller_Action {
         $fb->setDefaultAccessToken($accessToken);
 
         try {
-            $response = $fb->get('/me?fields=email');
+            $response = $fb->get('/me?fields=name,email');
             $userNode = $response->getGraphUser();
             //var_dump($userNode);exit;
         } catch (Facebook\Exceptions\FacebookResponseException $e) {
@@ -110,11 +129,18 @@ class LoginController extends Zend_Controller_Action {
             $auth = Zend_Auth::getInstance();
             $storage = $auth->getStorage();
             $user = (new Application_Model_User())->selectUserByEmail($userNode['email']);
-            unset($user['password']);
-            $user['cart_id'] = (new Application_Model_Shoppingcart())
-                    ->getUserShoppingCart($user['id']);
-            $storage->write((object)$user);
-            $this->redirect('/');
+            if($user) {
+                unset($user['password']);
+                $user['cart_id'] = (new Application_Model_Shoppingcart())
+                        ->getUserShoppingCart($user['id']);
+                $storage->write((object) $user);
+                $this->redirect('/');
+            }
+            else {
+                $_POST['email'] = $userNode['email'];
+                $_POST['name'] = $userNode['name'];
+                $this->redirect('/login?ss');
+            }
         }
     }
 
