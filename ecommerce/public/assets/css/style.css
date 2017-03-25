@@ -247,17 +247,25 @@ ul {
       margin-top: 50px;
   }
 
+  #chartContainer{
+      display:inline-block;
+      padding-right: 100px;
+  }
+  #pieContainer{
+     display:inline-block; 
+  }
+
+
 .comment_textarea{
   margin: 0px 0px 10px;
   width: 602px;
   height: 87px;
+}
 
-  .my-img-preview_size {
+.my-img-preview_size {
       height: 200px;
       width: 230px;
-  }
-
-
+}
 
 .productimageincart{
     max-height: 130px !important;
@@ -268,3 +276,4 @@ ul {
     max-height: 130px !important;
 
 }
+
