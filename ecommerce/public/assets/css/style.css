@@ -255,3 +255,10 @@ ul {
   #second-nav {
       margin-top: 50px;
   }
+  #chartContainer{
+      display:inline-block;
+      padding-right: 100px;
+  }
+  #pieContainer{
+     display:inline-block; 
+  }

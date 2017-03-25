@@ -1,3 +1,91 @@
+<head>
+    <script type="text/javascript">
+        
+ $(window).load(function(){
+    // alert('hello');
+     totalRevenue();
+     usersPurchases();
+ });               
+            function totalRevenue () {
+            var myvar =<?php echo (json_encode($this->totalRevenue)); ?>;
+                var arrObj = [];
+                var obj = JSON.stringify(myvar, function(key, value){
+
+                arrObj.push(value);
+            })
+            var myArr = [];
+            for (key in arrObj[0])
+            {
+                myArr.push(arrObj[0][key]);
+            }
+            
+
+			var chart = new CanvasJS.Chart("chartContainer", {
+                            theme: "theme4",
+				title: {
+					text: "(Total Product Revenue)/10"
+				},
+                                axisX: {
+                                    interval:0.5
+                                },
+                                axisY: {
+                                    interval:10
+                                },
+//                                dataPointWidth: 60,
+				data: [{
+					type: "column",
+                                        indexLabelLineThickness:0.5,
+					dataPoints: myArr
+				}]
+			});
+			chart.render();
+		};
+                //-----------------------------------------------------------------------
+         function usersPurchases () {
+                var myvar =<?php echo (json_encode($this->userPie)); ?>;
+                //console.log(myvar);
+                var arrObj = [];
+                var obj = JSON.stringify(myvar, function(key, value){
+
+                arrObj.push(value);
+            });
+ var myArr = [];
+            for (key in arrObj[0])
+            {
+                myArr.push(arrObj[0][key]);
+                //console.log(key)
+            }
+            
+                        console.log(myArr);
+             
+	var chart = new CanvasJS.Chart("pieContainer",
+	{
+
+
+
+		theme: "theme4",
+		title:{
+		text: "Number of Users Purchases"
+		},
+		data: [
+		{
+			type: "pie",
+			showInLegend: true,
+			toolTipContent: "{y}",
+			legendText: "{indexLabel}",
+			dataPoints: myArr
+		}
+		]
+	});
+	chart.render();
+};
+            
+    </script>
+    <script src="<?= $this->baseUrl() ?>/assets/js/jquery.canvasjs.min.js"></script>
+</head>
+<!--//--------------------------------------------------------------->
+<div id="chartContainer" style="height: 400px; width: 40%;"></div>
+<div id="pieContainer" style="height: 400px; width: 40%;"></div>
 <table class="table table-striped table-bordered">
     <th>Product Name</th><th>Product Category</th><th>Number of Users who purchased Product</th>
     <th>Total Product Revenue</th><th> Total Category Revenue</th><th> Top Category Product </th>   
@@ -16,4 +104,6 @@
     }
     ?>
 </table>
+
+
 

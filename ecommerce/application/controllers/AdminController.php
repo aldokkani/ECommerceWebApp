@@ -91,6 +91,15 @@ class AdminController extends Zend_Controller_Action {
 
     public function statisticsAction() {
         // action body
+//        $counter=0;
+//        $category_ids=[];
+//        $category_model=new Application_Model_Category();
+//        $all_categories=$category_model->selectAll();
+//        foreach($all_categories as $category){
+//            $category_ids[$counter]['label']=$category['id'];
+//            $counter++;
+//        }
+        //var_dump($category_ids); die();
         $products_model = new Application_Model_Products();
         $statistics_model = new Application_Model_Statistics();
         $this->view->all_products = $products_model->SelectAll();
@@ -98,6 +107,9 @@ class AdminController extends Zend_Controller_Action {
         
         $counter = 0;
         $products = [];
+        $totRevenue=[];
+        $userPie=[];
+        
         foreach ($all_products as $product) {
             //print_r($value['id']);
 //            $product_id=$value['id'];
@@ -123,10 +135,26 @@ class AdminController extends Zend_Controller_Action {
             
             //$this->view->all_products=$products[$counter];
             $counter++;
-            
+            //---------------------------------------
+           // $category_ids[$counter]['y']=$categoryRevenue;
+            //---------------------------------------
+             
+             $totRevenue[$counter]['y'] = $totalRevenue/10;
+             $totRevenue[$counter]['label'] = $product['name_en'];
+             $userPie[$counter]['y'] = $usersCount;
+             $userPie[$counter]['indexLabel'] = $product['name_en'];
+        
+             
         }
-        //var_dump($products);die;
+        
          $this->view->all_products=$products;
+         //var_dump($category_ids);die;
+         
+      
+          $this->view->totalRevenue=$totRevenue;
+          $this->view->userPie=$userPie;
+          
+          //$this->view->category_ids=$category_ids;
     }
 
 }
