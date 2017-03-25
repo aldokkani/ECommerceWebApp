@@ -37,12 +37,15 @@ class Application_Model_Wishlist extends Zend_Db_Table_Abstract {
         
     }
     
-    public function checkOnProduct($product_id)
+    public function checkOnProduct($product_id,$user_id)
     {
         $db=Zend_Db_Table::getDefaultAdapter();
         $select = $db->select()
              ->from(array('w'=>'wishlist'),'product_id')
-             ->where('w.product_id= ?',$product_id);
+             
+             ->where('w.product_id=?', $product_id)
+             ->where('w.customer_id=?', $user_id);
+        //echo $select; die();
         $rs=$select->query()->fetchAll();
         return $rs;
     }

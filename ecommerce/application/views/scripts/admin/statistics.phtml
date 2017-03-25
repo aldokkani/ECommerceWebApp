@@ -1,0 +1,19 @@
+<table class="table table-striped table-bordered">
+    <th>Product Name</th><th>Product Category</th><th>Number of Users who purchased Product</th>
+    <th>Total Product Revenue</th><th> Total Category Revenue</th><th> Top Category Product </th>   
+    <?php
+    foreach ($this->all_products as $product) {
+        ?> 
+        <tr>
+            <td><?= $product['p_name'] ?></td>
+            <td><?= $product['p_cat'] ?></td>
+            <td><?= $product['users_num'] ?></td>
+            <td><?= $product['totalrevenue'] ?></td>
+            <td><?= $product['category_revenue'] ?></td>
+            <td><?= $product['top_product'] ?></td>
+        </tr>
+        <?php
+    }
+    ?>
+</table>
+
