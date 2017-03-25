@@ -11,21 +11,22 @@ class Application_Form_Login extends Zend_Form
         $email->setLabel('Email')
             ->setRequired()
             ->setAttribs(array(
-                'class' => 'form-control',
-                'placeholder' => 'Email'
+                'class' => 'input-xlarge',
+                'placeholder' => 'Enter your email'
             ));
 
         $passwd = new Zend_Form_Element_Password('passwd');
         $passwd->setLabel('Password')
             ->setRequired()
             ->setAttribs(array(
-                'class' => 'form-control',
-                'placeholder' => 'Password'
+                'class' => 'input-xlarge',
+                'placeholder' => 'Enter your password'
             ));
 
         $submit = new Zend_Form_Element_Submit('Login');
         $submit->setAttribs(array(
-            'class' => 'btn btn-success btn-block'
+            'class' => 'btn btn-inverse large',
+            'name' => 'login_submit'
         ));
 
         $this->addElements(array($email, $passwd, $submit));

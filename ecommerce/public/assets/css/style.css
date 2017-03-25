@@ -16,16 +16,6 @@ table, th {
     text-align: center;
 }
 
-/*footer {
-    padding-top: 50px;
-    padding-bottom: 50px;
-}
-
-footer p {
-    width: 50%;
-    margin: 0 auto;
-}*/
-
 .carousel-inner{
     margin-bottom: 40px;
 }
@@ -261,6 +251,13 @@ ul {
   margin: 0px 0px 10px;
   width: 602px;
   height: 87px;
+
+  .my-img-preview_size {
+      height: 200px;
+      width: 230px;
+  }
+
+
 
 .productimageincart{
     max-height: 130px !important;

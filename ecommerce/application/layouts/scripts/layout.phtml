@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="utf-8">
+        <title>E-Commerce</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<!--         <link rel="stylesheet" href="<?= $this->baseUrl() ?>/assets/node_modules/bootstrap/dist/css/bootstrap.min.css">  -->
-        <link rel="stylesheet" href="<?= $this->baseUrl() ?>/assets/css/style.css"/>
-<!--         <script type="text/javascript" src="<?= $this->baseUrl() ?>/assets/node_modules/tether/dist/js/tether.min.js"></script> -->
-<!--          <script type="text/javascript" src="<?= $this->baseUrl() ?>/assets/node_modules/jquery/dist/jquery.min.js"></script> -->
-<!--         <script type="text/javascript" src="<?= $this->baseUrl() ?>/assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script> -->
-
-        <!-- template links -->
-
+        <meta name="description" content="">
+        <!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+        <!-- bootstrap -->
         <link href="<?= $this->baseUrl() ?>/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="<?= $this->baseUrl() ?>/assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
 
         <link href="<?= $this->baseUrl() ?>/assets/themes/css/bootstrappage.css" rel="stylesheet"/>
+
+
+        <link rel="stylesheet" href="<?= $this->baseUrl() ?>/assets/css/style.css"/>
 
         <!-- global styles -->
         <link href="<?= $this->baseUrl() ?>/assets/themes/css/flexslider.css" rel="stylesheet"/>
@@ -25,211 +23,122 @@
         <script src="<?= $this->baseUrl() ?>/assets/themes/js/jquery-1.7.2.min.js"></script>
         <script src="<?= $this->baseUrl() ?>/assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="<?= $this->baseUrl() ?>/assets/themes/js/superfish.js"></script>
-        <!-- end of template links -->
+        <script src="<?= $this->baseUrl() ?>/assets/themes/js/jquery.scrolltotop.js"></script>
 
-        <title>E-Commerce</title>
     </head>
     <body>
-
-
-
-
-    <div id="top-bar" class="container">
-      <div class="row">
-        <div class="span4">
-
-
-          <input type="text" class="form-control navbar-btn input-block-level search-query" id="search_input" placeholder="Search for...">
-            <span class="input-group-btn">
-                <button class="btn btn-default navbar-btn" id="search_btn" type="button"><span class="glyphicon glyphicon-search"></span></button>
-            </span>
-
-
-
-         <!--<form method="POST" class="search_form">
-            <input type="text" class="input-block-level search-query" Placeholder="eg. T-sirt">
-          </form> -->
-
-
+        <div id="top-bar" class="container">
+            <div class="row">
+                <div class="span4">
+                    <form method="POST" class="search_form">
+                        <input type="text" class="input-block-level search-query" style="color: black;" Placeholder="eg. T-shirt">
+                    </form>
+                </div>
+                <div class="span8">
+                    <div class="account pull-right">
+                        <ul class="user-menu">
+                            <?php
+                            $auth = Zend_Auth::getInstance();
+                            if ($auth->hasIdentity()) :
+                                $userName = explode(" ", $auth->getIdentity()->fullname)[0];
+                                ?>
+                                <li><a style=" font-size: 18px" href="#">Welcome <span style="font-weight: bold"><?= $userName ?></span></a></li>
+                                <li><a href="/shoppingcart/mycart">My Cart</a></li>
+                                <li><a href="/wishlist">My Wish List</a></li>
+                                <li><a href="/signout">Logout</a></li>
+                            <?php else : ?>
+                                <li><a href="/login">My Account</a></li>
+                                <li><a href="/login">Your Cart</a></li>
+                                <li><a href="/login">Checkout</a></li>
+                                <li><a href="/login">Login</a></li>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="span8">
-          <div class="account pull-right">
-            <ul class="user-menu">
-              <li><a href="#">My Account</a></li>
-              <li><a href="cart.html">Your Cart</a></li>
-              <li><a href="checkout.html">Checkout</a></li>
-              <li><a href="?language=en" onclick="window.location.reload(true);">ENGLISH</a></li>
-              <li><a href="?language=ar" onclick="window.location.reload(true);">ARABIC</a></li>
-              <li><a href="<?= $this->baseUrl() ?>/login">Login</a></li>
-              <li></li>
-            </ul>
-          </div>
+        <div id="wrapper" class="container">
+            <section class="navbar main-menu">
+                <div class="navbar-inner main-menu">
+                    <a href="/" class="logo pull-left">
+                        <img src="/assets/themes/images/logo.png" class="site_logo" alt="">
+                    </a>
+
+                    <nav id="menu" class="pull-right">
+                        <ul>
+                            <li><a href="./products.html">Departments</a>
+                                <ul>
+                                    <?php
+                                    $categories = (new Application_Model_Category())->selectAll();
+                                    foreach ($categories as $category) {
+                                        ?>
+                                        <li><a href="/products/display/cid/<?= $category['id'] ?>"><?= $category['name'] ?></a></li>
+                                    <?php } ?>
+                                </ul>
+                            </li>
+                            <li><a href="./products.html">Best Seller</a></li>
+                            <li><a href="./products.html">Top Seller</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </section>
+
+            <?php echo $this->layout()->content; ?>
+
+            <section id="footer-bar">
+                <div class="row">
+                    <div class="span3">
+                        <h4>Navigation</h4>
+                        <ul class="nav">
+                            <li><a href="./index.html">Homepage</a></li>
+                            <li><a href="./about.html">About Us</a></li>
+                            <li><a href="./contact.html">Contac Us</a></li>
+                            <li><a href="./cart.html">Your Cart</a></li>
+                            <li><a href="./register.html">Login</a></li>
+                        </ul>
+                    </div>
+                    <div class="span4">
+                        <h4>My Account</h4>
+                        <ul class="nav">
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">Order History</a></li>
+                            <li><a href="#">Wish List</a></li>
+                            <li><a href="#">Newsletter</a></li>
+                        </ul>
+                    </div>
+                    <div class="span5">
+                        <p class="logo"><img src="<?= $this->baseUrl() ?>/assets/themes/images/logo.png" class="site_logo" alt=""></p>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
+                        <br/>
+                        <span class="social_icons">
+                            <a class="facebook" href="#">Facebook</a>
+                            <a class="twitter" href="#">Twitter</a>
+                            <a class="skype" href="#">Skype</a>
+                            <a class="vimeo" href="#">Vimeo</a>
+                        </span>
+                    </div>
+                </div>
+            </section>
+            <section id="copyright">
+                <span>Copyright 2013 bootstrappage template  All right reserved.</span>
+            </section>
         </div>
-      </div>
-    </div>
-
-
-    <div id="wrapper" class="container">
-      <section class="navbar main-menu">
-        <div class="navbar-inner main-menu">
-          <a href="index.html" class="logo pull-left"><img src="<?= $this->baseUrl() ?>/assets/themes/images/logo.png" class="site_logo" alt=""></a>
-          <nav id="menu" class="pull-right">
-            <ul>
-              <li><a href="./products.html">Woman</a>
-                <ul>
-                  <li><a href="./products.html">Lacinia nibh</a></li>
-                  <li><a href="./products.html">Eget molestie</a></li>
-                  <li><a href="./products.html">Varius purus</a></li>
-                </ul>
-              </li>
-              <li><a href="./products.html">Man</a></li>
-              <li><a href="./products.html">Sport</a>
-                <ul>
-                  <li><a href="./products.html">Gifts and Tech</a></li>
-                  <li><a href="./products.html">Ties and Hats</a></li>
-                  <li><a href="./products.html">Cold Weather</a></li>
-                </ul>
-              </li>
-              <li><a href="./products.html">Hangbag</a></li>
-              <li><a href="./products.html">Best Seller</a></li>
-              <li><a href="./products.html">Top Seller</a></li>
-            </ul>
-          </nav>
-        </div>
-      </section>
-      <section>
-
-      <div class="row" id="search_result"></div>
-
-      </section>
-      <section  class="homepage-slider" id="home-slider">
-        <div class="flexslider">
-          <ul class="slides">
-            <li>
-              <img src="<?= $this->baseUrl() ?>/assets/themes/images/carousel/banner-1.jpg" alt="" />
-            </li>
-            <li>
-              <img src="<?= $this->baseUrl() ?>/assets/themes/images/carousel/banner-2.jpg" alt="" />
-              <div class="intro">
-                <h1>Mid season sale</h1>
-                <p><span>Up to 50% Off</span></p>
-                <p><span>On selected items online and in stores</span></p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </section>
-      <section class="header_text">
-        We stand for top quality templates. Our genuine developers always optimized bootstrap commercial templates.
-        <br/>Don't miss to use our cheap abd best bootstrap templates.
-      </section>
-      <section class="main-content">
-
-      <div class="foot-links">
-            <ul>
-                <h3>Links</h3>
-                <li><a href="<?= $this->baseUrl() ?>">Home</a></li>
-                <li><a href="<?= $this->baseUrl() ?>/products">Products</a></li>
-                <li><a href="//w3layouts.com/contact" >Contact Us</a></li>
-            </ul>
-            <ul>
-                <h3>Others</h3>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Support</a></li>
-            </ul>
-
-            <div class="clear"></div>
-        </div>
-
-
-
-      </section>
-      <section class="main-content">
-         <?php echo $this->layout()->content; ?>
-      </section>
-      <section class="our_client">
-        <h4 class="title"><span class="text">Manufactures</span></h4>
-        <div class="row">
-          <div class="span2">
-            <a href="#"><img alt="" src="<?= $this->baseUrl() ?>/assets/themes/images/clients/14.png"></a>
-          </div>
-          <div class="span2">
-            <a href="#"><img alt="" src="<?= $this->baseUrl() ?>/assets/themes/images/clients/35.png"></a>
-          </div>
-          <div class="span2">
-            <a href="#"><img alt="" src="<?= $this->baseUrl() ?>/assets/themes/images/clients/1.png"></a>
-          </div>
-          <div class="span2">
-            <a href="#"><img alt="" src="<?= $this->baseUrl() ?>/assets/themes/images/clients/2.png"></a>
-          </div>
-          <div class="span2">
-            <a href="#"><img alt="" src="<?= $this->baseUrl() ?>/assets/themes/images/clients/3.png"></a>
-          </div>
-          <div class="span2">
-            <a href="#"><img alt="" src="<?= $this->baseUrl() ?>/assets/themes/images/clients/4.png"></a>
-          </div>
-        </div>
-      </section>
-      <section id="footer-bar">
-        <div class="row">
-          <div class="span3">
-            <h4>Navigation</h4>
-            <ul class="nav">
-              <li><a href="./index.html">Homepage</a></li>
-              <li><a href="./about.html">About Us</a></li>
-              <li><a href="./contact.html">Contac Us</a></li>
-              <li><a href="./cart.html">Your Cart</a></li>
-              <li><a href="./register.html">Login</a></li>
-            </ul>
-          </div>
-          <div class="span4">
-            <h4>My Account</h4>
-            <ul class="nav">
-              <li><a href="#">My Account</a></li>
-              <li><a href="#">Order History</a></li>
-              <li><a href="#">Wish List</a></li>
-              <li><a href="#">Newsletter</a></li>
-            </ul>
-          </div>
-          <div class="span5">
-            <p class="logo"><img src="<?= $this->baseUrl() ?>/assets/themes/images/logo.png" class="site_logo" alt=""></p>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
-            <br/>
-            <span class="social_icons">
-              <a class="facebook" href="#">Facebook</a>
-              <a class="twitter" href="#">Twitter</a>
-              <a class="skype" href="#">Skype</a>
-              <a class="vimeo" href="#">Vimeo</a>
-            </span>
-          </div>
-        </div>
-      </section>
-      <section id="copyright">
-        <span>Copyright 2013 bootstrappage template  All right reserved.</span>
-      </section>
-    </div>
-    <script src="<?= $this->baseUrl() ?>/assets/themes/js/common.js"></script>
-    <script src="<?= $this->baseUrl() ?>/assets/themes/js/jquery.flexslider-min.js"></script>
-
-    <script type="text/javascript">
-      $(function() {
-        $(document).ready(function() {
-          $('.flexslider').flexslider({
-            animation: "fade",
-            slideshowSpeed: 4000,
-            animationSpeed: 600,
-            controlNav: false,
-            directionNav: true,
-            controlsContainer: ".flex-container" // the container that holds the flexslider
-          });
-        });
-      });
-    </script>
-
-      <script type="text/javascript" src="<?= $this->baseUrl() ?>/assets/js/script.js"></script>
-
-
-
+        <script src="/assets/themes/js/common.js"></script>
+        <script src="/assets/themes/js/jquery.flexslider-min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $(document).ready(function () {
+                    $('.flexslider').flexslider({
+                        animation: "fade",
+                        slideshowSpeed: 4000,
+                        animationSpeed: 600,
+                        controlNav: false,
+                        directionNav: true,
+                        controlsContainer: ".flex-container" // the container that holds the flexslider
+                    });
+                });
+            });
+        </script>
+        <script type="text/javascript" src="<?= $this->baseUrl() ?>/assets/js/script.js"></script>
     </body>
 </html>
