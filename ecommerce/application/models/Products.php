@@ -33,6 +33,18 @@ class Application_Model_Products extends Zend_Db_Table_Abstract {
         return $rs;
     }
 
+    public function SelectAllProductsWithOfferByVendor($vendor_id) {
+
+        $db = Zend_Db_Table::getDefaultAdapter();
+        $select = $db->select()
+                ->from(array('p' => 'products'), array(
+                    'p.id', 'p.name_en', 'p.rate', 'p.description_en', 'p.photo', 'p.unit_price', 'p.name_ar', 'p.description_ar', 'p.category_id'))
+                ->joinLeft(array('o' => 'offer'), 'p.id = o.product_id', array('discount'))
+                ->where("p.vendor_id = $vendor_id");
+        $rs = $select->query()->fetchAll();
+        return $rs;
+    }
+
     public function editProduct($id, $productData) {
         $product_data['name_en'] = $productData['name_en'];
         $product_data['name_ar'] = $productData['name_ar'];

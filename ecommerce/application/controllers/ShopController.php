@@ -3,7 +3,7 @@
 class ShopController extends Zend_Controller_Action
 {
     private  $userData;
-    
+
     public function init()
     {
         /* Initialize action controller here */
@@ -18,10 +18,10 @@ class ShopController extends Zend_Controller_Action
     public function indexAction()
     {
         $product_model = new Application_Model_Products();
-        $this->view->all_productsByVendor = $product_model->selectAllByVendor($this->userData->id);
-  
+        $this->view->all_productsByVendor = $product_model->SelectAllProductsWithOfferByVendor($this->userData->id);
+
     }
-    
+
     public function detailsAction() {
         // action body
         $id = $this->_request->getParam('product_id');
@@ -49,7 +49,7 @@ class ShopController extends Zend_Controller_Action
         }
         $this->view->new_comment_form = $form;
     }
-    
+
 //    public function listAllByVendorAction() {
 //        // action body
 //        $product_model = new Application_Model_Products();
@@ -65,8 +65,7 @@ class ShopController extends Zend_Controller_Action
         if ($request->isPost()) {
             if ($form->isValid($request->getPost())) {
                 $product_model = new Application_Model_Products();
-                $vendor_id = $this->_request->getParam('vendor_id');
-                $product_model->addProduct($request->getParams(), $vendor_id);
+                $product_model->addProduct($request->getParams(), $this->userData->id);
                 $this->redirect('/shop');
             }
         }
@@ -90,7 +89,7 @@ class ShopController extends Zend_Controller_Action
             }
         }
     }
-    
+
     public function deleteAction() {
         // action body
         $product_model = new Application_Model_Products();
@@ -113,7 +112,7 @@ class ShopController extends Zend_Controller_Action
         }
         $this->view->newOffer_form = $form;
     }
-    
+
     public function deleteOfferAction() {
         // action body
         $offer_model = new Application_Model_Offer();
@@ -122,4 +121,3 @@ class ShopController extends Zend_Controller_Action
         $this->redirect("/shop/details/product_id/" . $product_id);
     }
 }
-

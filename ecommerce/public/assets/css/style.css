@@ -1,9 +1,15 @@
+.imageDisplay{
+  max-height: 240px !important;
+width: 100%;
+}
+
+
 .navbar {
     margin-bottom: 0px;
 }
 
 body {
-    padding-top: 200px;
+    /*padding-top: 200px;*/
 }
 
 table, th {
@@ -245,7 +251,7 @@ ul {
   #login_form {
       margin-top: 100px;
   }
-  
+
   #second-nav {
-      margin-top: 50px; 
+      margin-top: 50px;
   }

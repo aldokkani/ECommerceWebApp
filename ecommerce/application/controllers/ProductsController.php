@@ -8,9 +8,9 @@ class ProductsController extends Zend_Controller_Action {
 
     public function indexAction() {
         // action body
-        
+
     }
-    
+
     public function detailsAction() {
         // action body
         $id = $this->_request->getParam('product_id');
@@ -18,9 +18,12 @@ class ProductsController extends Zend_Controller_Action {
         $offerData = $offer_model->selectByProduct($id);
         $product_model = new Application_Model_Products();
         $productData = $product_model->selectOne($id);
+        $product_model2 = new Application_Model_Products();
+        $all_products_data = $product_model2->SelectAll($id);
         $review_model2 = new Application_Model_UserProductReview();
         $comments = $review_model2->selectCommentByProduct($id);
         $this->view->comments = $comments;
+        $this->view->all_products_data = $all_products_data;
         $this->view->product_data = $productData;
         $this->view->offer_data = $offerData;
         $form = new Application_Form_CommentForm();
