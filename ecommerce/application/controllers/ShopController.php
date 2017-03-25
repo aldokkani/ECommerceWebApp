@@ -19,7 +19,7 @@ class ShopController extends Zend_Controller_Action
     {
         $product_model = new Application_Model_Products();
         $this->view->all_productsByVendor = $product_model->SelectAllProductsWithOfferByVendor($this->userData->id);
-
+        // $this->view->user_data = $this->userData;
     }
 
     public function detailsAction() {

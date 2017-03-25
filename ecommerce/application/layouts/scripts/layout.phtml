@@ -27,6 +27,7 @@
 
     </head>
     <body>
+
         <div id="top-bar" class="container">
             <div class="row">
                 <div class="span4">
@@ -66,6 +67,18 @@
 
                     <nav id="menu" class="pull-right">
                         <ul>
+
+                          <?php
+                          $auth = Zend_Auth::getInstance();
+                          if ($auth->hasIdentity()) :
+
+                              $type = $auth->getIdentity()->type;
+                              if ($type == "shop") :
+                              ?>
+                            <li><a href="/shop">Manage My Products</a></li>
+                          <?php elseif ($type == "admin") :?>
+                          <li><a href="/admin">ADMIN PANEL!</a></li>
+                          <?php endif; endif; ?>
                             <li><a href="#">Departments</a>
                                 <ul>
                                     <?php
@@ -76,8 +89,13 @@
                                     <?php } ?>
                                 </ul>
                             </li>
-                            <li><a href="#">Best Seller</a></li>
-                            <li><a href="#">Top Seller</a></li>
+
+                            <li><a href="#">Language</a>
+                                <ul>
+                                     <li><a href="?ar" onclick="window.location.reload(true);">ARABIC</a></li>
+                                     <li><a href="?en" onclick="window.location.reload(true);">ENGLISH</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </nav>
                 </div>
