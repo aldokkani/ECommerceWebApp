@@ -8,7 +8,7 @@ class Application_Model_Wishlist extends Zend_Db_Table_Abstract {
         
         $db=Zend_Db_Table::getDefaultAdapter();
         $select = $db->select()
-             ->from(array('p'=>'products'),array('name_en','name_ar'))
+             ->from(array('p'=>'products'),array('name_en','name_ar','photo','description_en','description_ar','unit_price'))
              ->join(array('w'=>'wishlist'),'p.id = w.product_id', array('product_id'))
              ->where('w.customer_id= ?',$customer_id);
 //        $select=$db->select()->from('wishlist')->where('product_id= ?', 4);
@@ -37,12 +37,15 @@ class Application_Model_Wishlist extends Zend_Db_Table_Abstract {
         
     }
     
-    public function checkOnProduct($product_id)
+    public function checkOnProduct($product_id,$user_id)
     {
         $db=Zend_Db_Table::getDefaultAdapter();
         $select = $db->select()
              ->from(array('w'=>'wishlist'),'product_id')
-             ->where('w.product_id= ?',$product_id);
+             
+             ->where('w.product_id=?', $product_id)
+             ->where('w.customer_id=?', $user_id);
+        //echo $select; die();
         $rs=$select->query()->fetchAll();
         return $rs;
     }

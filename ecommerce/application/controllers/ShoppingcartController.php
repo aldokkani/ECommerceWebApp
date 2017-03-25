@@ -34,6 +34,12 @@ class ShoppingcartController extends Zend_Controller_Action
     {
         $shopping_cart_details_model = new Application_Model_Shoppingcartdetails();
         $this->view->all_cart_details = $shopping_cart_details_model->listShoppingCartDetails($this->userData->id);
+    //-----------------------------------------------------
+         $category_obj=new Application_Model_Category();
+        $this->view->all_categories=$category_obj->selectAll();
+        
+
+        
     }
 
     public function removeitemfromcartAction()

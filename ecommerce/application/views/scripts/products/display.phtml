@@ -1,44 +1,66 @@
 
+
+<?php
+
+if(isset($_GET['ar'])){
+    $language="ar";
+}else {
+  $language="en";
+}
+
+?>
 			<section class="header_text sub">
 				<h4><span>Products</span></h4>
 			</section>
 			<section class="main-content">
 
-				<div class="row">
-					<div class="span9">
-						<ul class="thumbnails listing-products">
-              <?php foreach ($this->all_products_with_offer as $key => $value) : ?>
-							<li class="span3">
-								<div class="product-box">
-									<span class="sale_tag"></span>
-									<a href="/products/details/product_id/<?= $value['id'] ?>"><img class="imageDisplay" alt="" src="<?= $value['photo'] ?>"></a><br/>
-                  <?php if($language=="en") : ?>
-                    <a href="/products/details/product_id/<?= $value['id'] ?>" class="title"><?= $value['name_en'] ?></a><br/>
-                  <?php else: ?>
-                    <a href="/products/details/product_id/<?= $value['id'] ?>" class="title"><?= $value['name_ar'] ?></a><br/>
-                  <?php endif; ?>
-                  <?php if ($value['discount']) : ?>
-                                <a class="category"><?= "discount ".$value['discount'] . " %" ?></a>
-                  <?php endif; ?>
-                  <p class="price"><?= " " . $value['unit_price'] . " L.E." ?></p>
 
-                  <p>
+    <div class="row">
+        <div class="span9">
+            <ul class="thumbnails listing-products">
+                <?php foreach ($this->all_products_with_offer as $key => $value) : ?>
+                    <li class="span3">
+                        <div class="product-box">
+                            <span class="sale_tag"></span>
+                            <a href="/products/details/product_id/<?= $value['id'] ?>"><img class="imageDisplay" alt="" src="<?= $value['photo'] ?>"></a><br/>
+                            <?php if ($language == "en") : ?>
+                                <a href="/products/details/product_id/<?= $value['id'] ?>" class="title"><?= $value['name_en'] ?></a><br/>
+                            <?php else: ?>
+                                <a href="/products/details/product_id/<?= $value['id'] ?>" class="title"><?= $value['name_ar'] ?></a><br/>
+                            <?php endif; ?>
+                            <?php if ($value['discount']) : ?>
+                                <a class="category"><?= "discount " . $value['discount'] . " %" ?></a>
+                            <?php endif; ?>
+                            <p class="price"><?= " " . $value['unit_price'] . " L.E." ?></p>
+
+                            <p>
                             <div class="fixedRate">
                                 <?php for ($i = 5; $i >= 1; $i--) : ?>
-                      <?php if ($value['rate'] == $i): ?>
+                                    <?php if ($value['rate'] == $i): ?>
                                         <input disabled="true" class='radio1' type="radio" value=<?= $i ?>  checked="checked"/>
                                         <label for="star<?= $i ?>" ><?= $i ?> stars</label>
-                      <?php else : ?>
+                                    <?php else : ?>
                                         <input  disabled="true" class='radio1' type="radio" value=<?= $i ?>/>
                                         <label for="star<?= $i ?>" ><?= $i ?> stars</label>
+
                       <?php endif; ?>
                     <?php endfor; ?>
+                    <nav id="menu">
+                        <ul><li>
+                    <a href="#">Add Product </a>
+                        <ul>
+                          <li><a href="<?= $this->baseUrl() ?>/wishlist/add-item-to-wishlist/product_id/<?= $value['id'] ?>">Add To Wishlist </a></li>
+                          <li><a href="<?= $this->baseUrl() ?>/shoppingcart/additemtocart/product_id/<?= $value['id'] ?>">Add To Cart </a></li>
+                        </ul>
+                      </li></ul></nav>
                             </div></p>
-                    <a href="#" class="dropdown-toggle btn btn-success" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add Product <span class="caret"></span></a>
+                    <!-- <a href="#" class="dropdown-toggle btn btn-success" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add Product <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="<?= $this->baseUrl() ?>/wishlist/add-item-to-wishlist/product_id/<?= $value['id'] ?>">Add To Wishlist </a></li>
                                 <li><a href="<?= $this->baseUrl() ?>/shoppingcart/additemtocart/product_id/<?= $value['id'] ?>">Add To Cart </a></li>
-                            </ul>
+                            </ul> -->
+
+
 								</div>
 							</li>
           <?php endforeach; ?>
@@ -58,21 +80,21 @@
 					<div class="span3 col" style="width:250px">
 						<div class="block">
 							<ul class="nav nav-list">
-								<li class="nav-header">SUB CATEGORIES</li>
-								<li><a href="products.html">Nullam semper elementum</a></li>
-								<li class="active"><a href="products.html">Phasellus ultricies</a></li>
-								<li><a href="products.html">Donec laoreet dui</a></li>
-								<li><a href="products.html">Nullam semper elementum</a></li>
-								<li><a href="products.html">Phasellus ultricies</a></li>
-								<li><a href="products.html">Donec laoreet dui</a></li>
+								<li class="nav-header">CATEGORIES</li>
+								 <?php foreach ($this->all_categories as $key => $value) { ?>
+
+                        <li><a href="/products/display/cid/<?= $value['id'] ?>"><?= $value['name'] ?></a></li>
+                        <?php
+                    }
+                    ?>
 							</ul>
 							<br/>
 							<ul class="nav nav-list below">
 								<li class="nav-header">MANUFACTURES</li>
-								<li><a href="products.html">Adidas</a></li>
-								<li><a href="products.html">Nike</a></li>
-								<li><a href="products.html">Dunlop</a></li>
-								<li><a href="products.html">Yamaha</a></li>
+								<li><a href="#">Adidas</a></li>
+								<li><a href="#">Nike</a></li>
+								<li><a href="#">Dunlop</a></li>
+								<li><a href="#">Yamaha</a></li>
 							</ul>
 						</div>
 						<div class="block">
@@ -138,3 +160,4 @@
 					</div>
 				</div>
 			</section>
+

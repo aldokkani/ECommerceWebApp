@@ -83,6 +83,11 @@ class ProductsController extends Zend_Controller_Action {
         $product_model = new Application_Model_Products();
         $result = $product_model->SelectAllProductsWithOffer($id);
         $this->view->all_products_with_offer = $result;
+        //-----------------------------------------------
+         $category_obj=new Application_Model_Category();
+        $this->view->all_categories=$category_obj->selectAll();
+        
+
     }
 
 }

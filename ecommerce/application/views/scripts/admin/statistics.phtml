@@ -25,14 +25,106 @@
         <script src="<?= $this->baseUrl() ?>/assets/themes/js/superfish.js"></script>
         <script src="<?= $this->baseUrl() ?>/assets/themes/js/jquery.scrolltotop.js"></script>
 
+
+
+         <script type="text/javascript">
+        
+ $(window).load(function(){
+    // alert('hello');
+     totalRevenue();
+     usersPurchases();
+ });               
+            function totalRevenue () {
+            var myvar =<?php echo (json_encode($this->totalRevenue)); ?>;
+                var arrObj = [];
+                var obj = JSON.stringify(myvar, function(key, value){
+
+                arrObj.push(value);
+            })
+            var myArr = [];
+            for (key in arrObj[0])
+            {
+                myArr.push(arrObj[0][key]);
+            }
+            
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                            theme: "theme4",
+                title: {
+                    text: "(Total Product Revenue)/10"
+                },
+                                axisX: {
+                                    interval:0.5
+                                },
+                                axisY: {
+                                    interval:10
+                                },
+//                                dataPointWidth: 60,
+                data: [{
+                    type: "column",
+                                        indexLabelLineThickness:0.5,
+                    dataPoints: myArr
+                }]
+            });
+            chart.render();
+        };
+                //-----------------------------------------------------------------------
+         function usersPurchases () {
+                var myvar =<?php echo (json_encode($this->userPie)); ?>;
+                //console.log(myvar);
+                var arrObj = [];
+                var obj = JSON.stringify(myvar, function(key, value){
+
+                arrObj.push(value);
+            });
+ var myArr = [];
+            for (key in arrObj[0])
+            {
+                myArr.push(arrObj[0][key]);
+                //console.log(key)
+            }
+            
+                        console.log(myArr);
+             
+    var chart = new CanvasJS.Chart("pieContainer",
+    {
+
+
+
+        theme: "theme4",
+        title:{
+        text: "Number of Users Purchases"
+        },
+        data: [
+        {
+            type: "pie",
+            showInLegend: true,
+            toolTipContent: "{y}",
+            legendText: "{indexLabel}",
+            dataPoints: myArr
+        }
+        ]
+    });
+    chart.render();
+};
+            
+    </script>
+    <script src="<?= $this->baseUrl() ?>/assets/js/jquery.canvasjs.min.js"></script>
+
+
+
+
+
+
+
+
     </head>
     <body>
-
         <div id="top-bar" class="container">
             <div class="row">
                 <div class="span4">
-                    <form method="POST" id="search_form" class="search_form">
-                        <input type="text" class="input-block-level search-query" id="search_input" style="color: black;" Placeholder="eg. T-shirt">
+                    <form method="POST" class="search_form">
+                        <input type="text" class="input-block-level search-query" style="color: black;" Placeholder="eg. T-shirt">
                     </form>
                 </div>
                 <div class="span8">
@@ -45,7 +137,7 @@
                                 ?>
                                 <li><a style=" font-size: 18px" href="#">Welcome <span style="font-weight: bold"><?= $userName ?></span></a></li>
                                 <li><a href="/shoppingcart/mycart">My Cart</a></li>
-                                <li><a href="/wishlist/my-wishlist">My Wish List</a></li>
+                                <li><a href="/wishlist">My Wish List</a></li>
                                 <li><a href="/signout">Logout</a></li>
                             <?php else : ?>
                                 <li><a href="/login">My Account</a></li>
@@ -67,19 +159,7 @@
 
                     <nav id="menu" class="pull-right">
                         <ul>
-
-                          <?php
-                          $auth = Zend_Auth::getInstance();
-                          if ($auth->hasIdentity()) :
-
-                              $type = $auth->getIdentity()->type;
-                              if ($type == "shop") :
-                              ?>
-                            <li><a href="/shop">Manage My Products</a></li>
-                          <?php elseif ($type == "admin") :?>
-                          <li><a href="/admin">ADMIN PANEL!</a></li>
-                          <?php endif; endif; ?>
-                            <li><a href="#">Departments</a>
+                            <li><a href="./products.html">Departments</a>
                                 <ul>
                                     <?php
                                     $categories = (new Application_Model_Category())->selectAll();
@@ -89,19 +169,43 @@
                                     <?php } ?>
                                 </ul>
                             </li>
-
-                            <li><a href="#">Language</a>
-                                <ul>
-                                     <li><a href="?ar" onclick="window.location.reload(true);">ARABIC</a></li>
-                                     <li><a href="?en" onclick="window.location.reload(true);">ENGLISH</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="./products.html">Best Seller</a></li>
+                            <li><a href="./products.html">Top Seller</a></li>
                         </ul>
                     </nav>
                 </div>
             </section>
-            <div id="searchResult"></div>
-            <?php echo $this->layout()->content; ?>
+
+
+
+
+<!-- nada -->
+
+<div id="chartContainer" style="height: 400px; width: 40%;"></div>
+<div id="pieContainer" style="height: 400px; width: 40%;"></div>
+<table class="table table-striped table-bordered">
+    <th>Product Name</th><th>Product Category</th><th>Number of Users who purchased Product</th>
+    <th>Total Product Revenue</th><th> Total Category Revenue</th><th> Top Category Product </th>   
+    <?php
+    foreach ($this->all_products as $product) {
+        ?> 
+        <tr>
+            <td><?= $product['p_name'] ?></td>
+            <td><?= $product['p_cat'] ?></td>
+            <td><?= $product['users_num'] ?></td>
+            <td><?= $product['totalrevenue'] ?></td>
+            <td><?= $product['category_revenue'] ?></td>
+            <td><?= $product['top_product'] ?></td>
+        </tr>
+        <?php
+    }
+    ?>
+</table>
+
+
+
+
+<!-- end nada -->
 
             <section id="footer-bar">
                 <div class="row">
@@ -160,3 +264,5 @@
         <script type="text/javascript" src="<?= $this->baseUrl() ?>/assets/js/script.js"></script>
     </body>
 </html>
+
+
