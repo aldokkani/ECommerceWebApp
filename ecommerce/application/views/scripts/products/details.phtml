@@ -106,7 +106,17 @@
                         </table>
 
                         <?php endif;?>
-
+<?php // endif;?>
+                        <?php  if($this->user_data) :?>
+                        <nav id="menu">
+                            <ul><li>
+                        <a class="btn btn-success" href="#">Add Product </a>
+                            <ul>
+                              <li><a href="<?= $this->baseUrl() ?>/wishlist/add-item-to-wishlist/product_id/<?= $this->product_data['id'] ?>">Add To Wishlist </a></li>
+                              <li><a href="<?= $this->baseUrl() ?>/shoppingcart/additemtocart/product_id/<?= $this->product_data['id'] ?>">Add To Cart </a></li>
+                            </ul>
+                          </li></ul></nav>
+                        <?php endif; ?>
 							</div>
 
 						</div>

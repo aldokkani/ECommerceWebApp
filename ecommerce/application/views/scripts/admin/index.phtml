@@ -33,11 +33,11 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="../../index2.html" class="logo">
+    <a href="/" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>Amazon</b>Co</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>ECOMMERCE</b> Up</span>
+      <span class="logo-lg"><b>SHOPPERS</b> Up</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -325,8 +325,9 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">ADMIN Panel</li>
-        <li><a href="admin/users"><i class="fa fa-book"></i> <span>Users</span></a></li>
-        <li><a href="admin/categories"><i class="fa fa-book"></i> <span>Categories</span></a></li>        
+        <li><a href="/admin/users"><i class="fa fa-book"></i> <span>Users</span></a></li>
+        <li><a href="/admin/categories"><i class="fa fa-book"></i> <span>Categories</span></a></li>    
+        <li><a href="/admin/statistics"><i class="fa fa-book"></i> <span>Statistics</span></a></li>     
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -337,7 +338,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        CATEGORIES
+        CATEGORIES 
         <small>ecommerce application</small>
       </h1>
       <ol class="breadcrumb">
@@ -354,6 +355,7 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Categories</h3>
+              <a href="/admin/addcat" class="btn btn-primary" role="button">ADD NEW CATEGORY</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -383,9 +385,9 @@
                   <td><img height="200" width="400" src="<?=$category['photo']?>"></td>
                   <td><?=$category['name']?></td>
                   <td>
-                      <a href="editcat/cat_id/<?=$category['id']?>" class="btn btn-primary" role="button">Edit</a></td>
+                      <a href="/admin/editcat/cat_id/<?=$category['id']?>" class="btn btn-primary" role="button">Edit</a></td>
                   <td>
-                     <a href="delcat/cat_id/<?=$category['id']?>" class="btn btn-danger" role="button">Delete</a></td>
+                     <a href="/admin/delcat/cat_id/<?=$category['id']?>" class="btn btn-danger" role="button">Delete</a></td>
                 </tr>
 
 

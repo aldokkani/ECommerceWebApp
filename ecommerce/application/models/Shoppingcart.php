@@ -12,6 +12,7 @@ class Application_Model_Shoppingcart extends Zend_Db_Table_Abstract {
         $userData['customer_id'] = $u_id;
         $row = $this->createRow($userData);
         $row->save();
+//        var_dump($userData);exit;
     }
 
     function updateShoppingCart($shopping_cart_id) {
@@ -28,7 +29,8 @@ class Application_Model_Shoppingcart extends Zend_Db_Table_Abstract {
     }
 
     function getUserShoppingCart($customerid) {
-        return $this->fetchAll('customer_id = ' . $customerid)->toArray()[0];
+//        return $this->fetchAll('customer_id = ' . $customerid)->toArray()[0];
+        return $this->fetchAll("customer_id = $customerid", $order = "id DESC")->toArray()[0];
     }
 
     function getUserShoppingCartWhereShoppingCartId($shopping_cart_id) {
@@ -68,10 +70,10 @@ class Application_Model_Shoppingcart extends Zend_Db_Table_Abstract {
             'mail_body' => $mailBody,
             'mail_subject' => "ECommerce Bill Information"
         ];
-
+        $this->AddUserEmptyCart($userData->id);
         (new Application_Model_Email())->sendMail($mailInfo);
         //create new shopping cart
-        $this->AddUserEmptyCart($userData->id);
+        
     }
 
 }

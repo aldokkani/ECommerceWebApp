@@ -8,6 +8,10 @@ class ShoppingcartController extends Zend_Controller_Action
     {
         $auth = Zend_Auth::getInstance();
         $this->userData = $auth->getIdentity();
+        if (!$auth->hasIdentity()) {
+            $this->redirect('/login');
+            return;
+        }     
     }
 
     public function indexAction()
@@ -33,7 +37,9 @@ class ShoppingcartController extends Zend_Controller_Action
     public function mycartAction()
     {
         $shopping_cart_details_model = new Application_Model_Shoppingcartdetails();
-        $this->view->all_cart_details = $shopping_cart_details_model->listShoppingCartDetails($this->userData->id);
+//        var_dump($this->userData->cart_id);exit;
+        $this->view->all_cart_details = $shopping_cart_details_model
+                ->listShoppingCartDetails($this->userData->id, $this->userData->cart_id['id']);
     //-----------------------------------------------------
          $category_obj=new Application_Model_Category();
         $this->view->all_categories=$category_obj->selectAll();
@@ -75,6 +81,9 @@ class ShoppingcartController extends Zend_Controller_Action
             $shopping_cart_model->checkOutCart($this->userData, $this->userData->cart_id);
             echo "checked out with  NO coupon ";        
         }   
+        $shopping_cart_id = (new Application_Model_Shoppingcart())->getUserShoppingCart($this->userData->id);
+//        var_dump($shopping_cart_id);exit;
+        $this->userData->cart_id = $shopping_cart_id;
         $this->redirect('/products');
     }
 

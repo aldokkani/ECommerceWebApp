@@ -18,14 +18,14 @@ class Application_Form_CatForm extends Zend_Form
                 ->setAttribs(array('class'=>'form-control','placeholder'=>'photo url'))
                 ->setRequired();
 
-        $parent = new Zend_Form_Element_Select('parent_cat_id');  // drop down list
-        $catModel = new Application_Model_Category();
-        $allcats = $catModel->selectAll();
-        foreach ($allcats as $key => $value){
-          $parent->addMultiOption($value['id'],$value['name']);
-        }
-        $parent->setLabel('Parent Category:');
-        $parent->setAttribs(array('class'=>'form-control'));
+//        $parent = new Zend_Form_Element_Select('parent_cat_id');  // drop down list
+//        $catModel = new Application_Model_Category();
+//        $allcats = $catModel->selectAll();
+//        foreach ($allcats as $key => $value){
+//          $parent->addMultiOption($value['id'],$value['name']);
+//        }
+//        $parent->setLabel('Parent Category:');
+//        $parent->setAttribs(array('class'=>'form-control'));
 
         $submit= new Zend_Form_Element_Submit('Submit');
         $submit->setAttribs(array('class'=>'btn btn-success btn-block'));
@@ -36,7 +36,7 @@ class Application_Form_CatForm extends Zend_Form
         $this->addElements(array(
           $name,
           $photo,
-          $parent,
+//          $parent,
           $submit,
           $reset
         ));

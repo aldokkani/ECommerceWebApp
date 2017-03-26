@@ -4,15 +4,16 @@ class Application_Model_Shoppingcartdetails extends Zend_Db_Table_Abstract {
 
     protected $_name = 'Shopping_Cart_Det';
 
-    function listShoppingCartDetails($customer_id) {
+    function listShoppingCartDetails($customer_id, $shopping_cart_det_id) {
         
         $db = Zend_Db_Table::getDefaultAdapter();
         $select = $db->select()
                 ->from(array('scd' => 'Shopping_Cart_Det'), array('shopping_cart_det_id'=>'scd.id', 'unit_price' => 'scd.unit_price','item_discount'=>'scd.discount','date'=>'scd.date','quantity'=>'scd.quantity'))
                 ->joinInner(array('sc' => 'Shopping_Cart'), 'scd.shopping_cart_id = sc.id')
                 ->joinInner(array('pro' => 'products'), 'scd.product_id = pro.id')
-                ->where("sc.customer_id = $customer_id ");
+                ->where("sc.customer_id = $customer_id and sc.id = $shopping_cart_det_id");
         $result = $select->query()->fetchAll();
+//        var_dump($result);exit;
         return $result;
     }
 

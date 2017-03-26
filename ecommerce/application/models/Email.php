@@ -12,18 +12,20 @@ class Application_Model_Email
             'ssl'      => 'tls',
         ));
         
-        try {
+//        try {
             $mail = new Zend_Mail();
+//            var_dump($mail);exit;
             $mail->setBodyText($mailInfo['mail_body']);
             $mail->setFrom('ecommerce.zend@gmail.com', 'ECommerce');
             $mail->addTo($mailInfo['cust_mail'], $mailInfo['cust_name']);
             $mail->setSubject($mailInfo['mail_subject']);
             $mail->send($tr);
+//            var_dump($mail);exit;
             return 1;
-        } catch (Exception $exc) {
+//        } catch (Exception $exc) {
 //            echo $exc->getTraceAsString();exit;
-            echo 'Faild to send mail';exit();
-        }
+//            echo 'Faild to send mail';exit;
+//        }
     }
 
 }

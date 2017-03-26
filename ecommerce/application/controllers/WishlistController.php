@@ -9,6 +9,10 @@ class WishlistController extends Zend_Controller_Action
         /* Initialize action controller here */
         $auth = Zend_Auth::getInstance();
         $this->userData = $auth->getIdentity();
+        if (!$auth->hasIdentity()) {
+            $this->redirect('/login');
+            return;
+        }
     }
     public function indexAction()
     {
